@@ -1,4 +1,4 @@
-# 🌡️ TechTerm — ThermVaccine
+# 🌡️ ThermVaccine
 
 > **Plataforma Inteligente para Monitoramento e Otimização de Infraestruturas Sustentáveis**  
 > Monitoramento Ativo e Predição de Riscos na Logística de Termolábeis
@@ -7,7 +7,7 @@
 
 ## 📋 Sobre o Projeto
 
-O transporte inadequado de termolábeis resulta na perda de até **50% dos insumos globais** e **25% dos produtos biológicos no Brasil**. O **TechTerm** é uma plataforma desenvolvida para combater esse problema por meio do monitoramento contínuo da temperatura durante o transporte logístico de vacinas.
+O transporte inadequado de termolábeis resulta na perda de até **50% dos insumos globais** e **25% dos produtos biológicos no Brasil**. O **ThermVaccine** é uma plataforma desenvolvida para combater esse problema por meio do monitoramento contínuo da temperatura durante o transporte logístico de vacinas.
 
 O sistema captura dados gerados por DataLoggers via nuvem, detecta variações de temperatura e recalcula automaticamente o tempo de vida útil restante do medicamento — alertando a equipe de qualidade sempre que necessário.
 
