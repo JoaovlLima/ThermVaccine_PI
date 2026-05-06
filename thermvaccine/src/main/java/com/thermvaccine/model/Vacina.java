@@ -10,7 +10,6 @@ public class Vacina {
 
     public Vacina(String nome, float tempe_min, float tempe_max){
         //id = autofill do SQL?
-        //hii
         this.nome = nome;
         this.tempe_min = tempe_min;
         this.tempe_max = tempe_max;

@@ -1,19 +1,22 @@
 package com.thermvaccine.model;
-//import java.time.format.DateTimeFormatter; <- é esse mesmo
+import java.time.format.DateTimeFormatter;
+import java.time.LocalDateTime;
 
 public class Lote {
+
+    private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
 
     private long id;
     private int quantidade;
     private String fabricante;
-    //qual datetime?
+    private LocalDateTime validade;
     private Usuario usuario;
     private Vacina vacina;
 
-    public Lote(int quantidade, String fabricante, /*validade*/ Usuario usuario, Vacina vacina){
+    public Lote(int quantidade, String fabricante, String validade, Usuario usuario, Vacina vacina){
         this.quantidade = quantidade;
         this.fabricante = fabricante;
-        //validade 
+        this.validade = LocalDateTime.parse(validade, FORMATTER);
         this.usuario = usuario;
         this.vacina = vacina;
     }
@@ -35,6 +38,10 @@ public class Lote {
         return usuario;
     }
 
+    public String getValidade(){
+        return validade.format(FORMATTER);
+    }
+
     public Vacina getVacina() {
         return vacina;
     }
@@ -51,6 +58,10 @@ public class Lote {
 
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
+    }
+
+    public void setValidade(LocalDateTime validade) {
+        this.validade = validade;
     }
 
     public void setVacina(Vacina vacina) {
