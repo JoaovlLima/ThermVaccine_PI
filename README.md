@@ -154,3 +154,6 @@ mvn exec:java -Dexec.mainClass="com.thermvaccine.Main"
 
 **Fundação Hermínio Ometto — FHO**  
 Sistemas de Informação — Projeto Interdisciplinar I / 3ºA / 2026
+
+
+kayky é foda
