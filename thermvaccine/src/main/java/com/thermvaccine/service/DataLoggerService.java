@@ -1,12 +1,12 @@
 package com.thermvaccine.service;
 
 import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,14 +34,20 @@ public class DataLoggerService {
             while ((linha = br.readLine()) != null) {
 
                 String[] valores = linha.split(";");
+                LocalDateTime data_hora;
+                try {
+                    data_hora = LocalDateTime.parse(valores[1], formatter);
+                } catch (DateTimeParseException e) {
+                    data_hora = corrigirDataHora(valores[1]);
+                }
 
                 Long id = Long.parseLong(valores[0]);
-                LocalDateTime data_hora = LocalDateTime.parse(valores[1], formatter);
+                
                 float temperatura = Float.parseFloat(valores[2]);
-                boolean energia = Boolean.parseBoolean(valores[4]);
-                boolean rede = Boolean.parseBoolean(valores[5]);
-                boolean alarme = Boolean.parseBoolean(valores[7]);
-                boolean compressor = Boolean.parseBoolean(valores[8]);
+                float energia = Float.parseFloat(valores[4]);
+                boolean rede = Integer.parseInt(valores[5]) == 1;
+                boolean alarme = Integer.parseInt(valores[7]) == 1;
+                boolean compressor = Integer.parseInt(valores[8]) == 1;
 
                 RegistroDatalloger registro = new RegistroDatalloger(id, temperatura, rede, energia, compressor,
                         alarme, data_hora);
@@ -49,6 +55,8 @@ public class DataLoggerService {
                 registros.add(registro);
                 System.out.println(id + " - " + temperatura);
             }
+            // Indice;Data_Hora;T1_C;T2_C;Bateria_V;Rede;Porta;Alarme;Compressor;Status -> csv
+            // id,temperatura,rede,energia,compressor,alarme,data_hora -> entidade
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -58,8 +66,36 @@ public class DataLoggerService {
         return registros;
     }
 
+    public LocalDateTime corrigirDataHora(String dataStr) {
+
+    DateTimeFormatter formatter =
+            DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+
+    // separa data e hora
+    String[] partesDataHora = dataStr.split(" ");
+
+    String data = partesDataHora[0];
+    String hora = partesDataHora[1];
+
+    // separa HH:mm:ss
+    String[] partesHora = hora.split(":");
+
+    int horas = Integer.parseInt(partesHora[0]);
+    int minutos = Integer.parseInt(partesHora[1]);
+    int segundos = Integer.parseInt(partesHora[2]);
+
+
+    String dataBase = data + " " +
+            String.format("%02d:%02d:%02d", horas, minutos, 0);
+
+    LocalDateTime dataHora =
+            LocalDateTime.parse(dataBase, formatter);
+
+
+    dataHora = dataHora.plusSeconds(segundos);
+
+    return dataHora;
 }
 
-// Indice;Data_Hora;T1_C;T2_C;Bateria_V;Rede;Porta;Alarme;Compressor;Status
-// ->csv
-// id,temperatura,rede,energia,compressor,alarme,data_hora -> entidade
+}
+
