@@ -3,6 +3,7 @@ package com.thermvaccine;
 import java.util.List;
 
 import com.thermvaccine.model.RegistroDatalloger;
+import com.thermvaccine.service.CalculoVidaUtilService;
 import com.thermvaccine.service.DataLoggerService;
 
 public class Main {
@@ -13,5 +14,9 @@ public class Main {
 
         System.out.println("Quantidade : "+registros.size());
 
+        System.out.println("---------------------");
+
+        CalculoVidaUtilService.calcular(registros);
+        
     }
 }
