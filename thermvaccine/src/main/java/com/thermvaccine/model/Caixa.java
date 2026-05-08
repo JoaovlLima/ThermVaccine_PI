@@ -9,7 +9,7 @@ public class Caixa {
         this.id = id;
         this.qtd_max_vac = qtd_max_vac;
     }
-
+ 
 
     public long getId() {
         return id;
