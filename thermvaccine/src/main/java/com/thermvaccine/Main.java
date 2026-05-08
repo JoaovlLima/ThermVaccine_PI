@@ -1,33 +1,23 @@
 package com.thermvaccine;
 
-import com.thermvaccine.model.Vacina;
-import com.thermvaccine.service.VacinaService;
+import java.util.List;
+
+import com.thermvaccine.model.RegistroDatalloger;
+import com.thermvaccine.service.CalculoVidaUtilService;
+import com.thermvaccine.service.DataLoggerService;
 
 public class Main {
+
     public static void main(String[] args) {
-        System.out.println("Hello world!");
+       
+        DataLoggerService dataLoggerService = new DataLoggerService();
 
+        List<RegistroDatalloger> registros = dataLoggerService.leituraArquivo();
 
-        VacinaService service =
-                new VacinaService();
+        System.out.println("---------------------");
 
-        service.criar(
-                new Vacina("Pfizer",2.0f, 8.0f)
-        );
-
-        System.out.println("\nLISTA:");
-        service.listar();
-
-        service.atualizar(1,
-                "Pfizer Bivalente");
-
-        System.out.println("\nATUALIZADO:");
-        service.listar();
-
-        service.deletar(2);
-
-        System.out.println("\nDEPOIS DELETE:");
-        service.listar();
+        CalculoVidaUtilService.calcular(registros);
+        
     }
 }
 
