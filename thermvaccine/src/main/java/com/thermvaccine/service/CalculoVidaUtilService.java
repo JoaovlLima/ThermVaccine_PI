@@ -11,13 +11,15 @@ public class CalculoVidaUtilService {
     public static final double EA = 100000.0;
     public static final double A = 6.04e12;
     public static final double MRNA_INICIAL = 100.0;
-    public static final double THRESHOLD_PERCENT = 70.0;
+    public static final double THRESHOLD_PERCENT = 95.0;
 
 
     public static double calcular(List<RegistroDatalloger> registros){
 
         double MRNA_Atual = MRNA_INICIAL;
     
+
+        System.out.printf("mRNA intacto: %.2f%%\n", MRNA_INICIAL);
 
         for(int i = 0; i < registros.size() - 1; i++){
 
@@ -30,23 +32,23 @@ public class CalculoVidaUtilService {
 
             ).toSeconds();
 
+
+            if (deltaTSegundos <= 0) continue;
+
             double tempKelvin = atual.getTemperatura() + 273.15;
-
             double k = A * Math.exp(-EA / (R * tempKelvin));
-
             MRNA_Atual = MRNA_Atual * Math.exp(-k * deltaTSegundos);
 
-            
+            double percentualIntacto = (MRNA_Atual / MRNA_INICIAL) * 100.0;
+            System.out.printf("mRNA intacto: %.2f%%\n", percentualIntacto);
 
+            if(percentualIntacto < THRESHOLD_PERCENT){
+                return percentualIntacto;
+            }
         }
-        
-        double percentualIntacto = (MRNA_Atual / MRNA_INICIAL) * 100.0;
-        System.out.printf("mRNA intacto: %.2f%%\n", percentualIntacto);
 
-        return percentualIntacto;
+        double percentualFinal = (MRNA_Atual / MRNA_INICIAL) * 100;
+        return percentualFinal;
 
     }
-
-
-
 }
