@@ -9,10 +9,10 @@ import com.thermvaccine.service.DataLoggerService;
 public class Main {
 
     public static void main(String[] args) {
-        DataLoggerService dataService = new DataLoggerService();
-        List<RegistroDatalloger> registros = dataService.leituraArquivo();
+       
+        DataLoggerService dataLoggerService = new DataLoggerService();
 
-        System.out.println("Quantidade : "+registros.size());
+        List<RegistroDatalloger> registros = dataLoggerService.leituraArquivo();
 
         System.out.println("---------------------");
 

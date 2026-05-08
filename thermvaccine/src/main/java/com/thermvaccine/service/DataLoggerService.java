@@ -11,8 +11,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.thermvaccine.model.RegistroDatalloger;
+import com.thermvaccine.repository.RegistroRepository;
 
 public class DataLoggerService {
+
+    private final RegistroRepository registroRepository;
+
+    public DataLoggerService(){
+        this.registroRepository = new RegistroRepository();
+    }
 
     public List<RegistroDatalloger> leituraArquivo() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
@@ -34,6 +41,7 @@ public class DataLoggerService {
             while ((linha = br.readLine()) != null) {
 
                 String[] valores = linha.split(";");
+
                 LocalDateTime data_hora;
                 try {
                     data_hora = LocalDateTime.parse(valores[1], formatter);
@@ -43,21 +51,22 @@ public class DataLoggerService {
 
                 Long id = Long.parseLong(valores[0]);
                 
-                float temperatura = Float.parseFloat(valores[2]);
+                float t1 = Float.parseFloat(valores[2]);
+                float t2 = Float.parseFloat(valores[3]);
+                float temperatura = (t1+t2)/2;
                 float energia = Float.parseFloat(valores[4]);
                 boolean rede = Integer.parseInt(valores[5]) == 1;
                 boolean alarme = Integer.parseInt(valores[7]) == 1;
                 boolean compressor = Integer.parseInt(valores[8]) == 1;
 
                 RegistroDatalloger registro = new RegistroDatalloger(id, temperatura, rede, energia, compressor,
-                        alarme, data_hora);
+                        alarme,data_hora);
 
                 registros.add(registro);
-                System.out.println(id + " - " + temperatura);
+                
             }
             // Indice;Data_Hora;T1_C;T2_C;Bateria_V;Rede;Porta;Alarme;Compressor;Status -> csv
             // id,temperatura,rede,energia,compressor,alarme,data_hora -> entidade
-
         } catch (IOException e) {
             e.printStackTrace();
 
@@ -95,6 +104,20 @@ public class DataLoggerService {
     dataHora = dataHora.plusSeconds(segundos);
 
     return dataHora;
+}
+
+
+public void salvarRegistro(List<RegistroDatalloger> registros){
+
+    for (RegistroDatalloger registro : registros) {
+
+        List<RegistroDatalloger> registroBanco = registroRepository.listar();
+        
+
+        
+        
+    }
+
 }
 
 }
