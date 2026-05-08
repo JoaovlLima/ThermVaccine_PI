@@ -13,7 +13,7 @@ import com.thermvaccine.model.Vacina;
 public class VacinaRepository {
 
     private final File arquivo =
-            new File("vacinas.json");
+            new File("vacina.json");
 
     private final ObjectMapper mapper =
             new ObjectMapper();
