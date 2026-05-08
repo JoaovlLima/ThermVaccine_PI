@@ -38,7 +38,7 @@ public class Usuario {
         return cargo;
     }
 
-    public String getEmpresa() {
+    public Empresa getEmpresa() {
         return empresa;
     }
 
@@ -56,7 +56,7 @@ public class Usuario {
         this.cargo = cargo;
     }
 
-    public void setEmpresa(String empresa) {
+    public void setEmpresa(Empresa empresa) {
         this.empresa = empresa;
     }
 
