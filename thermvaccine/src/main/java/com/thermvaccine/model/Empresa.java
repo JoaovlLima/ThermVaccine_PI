@@ -11,7 +11,7 @@ public class Empresa {
         this.nome = nome;
         this.sede = sede;
     }
-
+ 
 
     public String getCnpj() {
         return cnpj;
