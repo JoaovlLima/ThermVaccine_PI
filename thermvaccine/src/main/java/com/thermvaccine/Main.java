@@ -12,9 +12,13 @@ public class Main {
        
         DataLoggerService dataLoggerService = new DataLoggerService();
 
+        dataLoggerService.limparBanco();
+        
         List<RegistroDatalloger> registros = dataLoggerService.leituraArquivo();
 
         System.out.println("---------------------");
+
+        dataLoggerService.salvarRegistro(registros);
 
         CalculoVidaUtilService.calcular(registros);
         
