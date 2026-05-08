@@ -9,6 +9,7 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import com.thermvaccine.model.RegistroDatalloger;
 import com.thermvaccine.repository.RegistroRepository;
@@ -17,7 +18,7 @@ public class DataLoggerService {
 
     private final RegistroRepository registroRepository;
 
-    public DataLoggerService(){
+    public DataLoggerService() {
         this.registroRepository = new RegistroRepository();
     }
 
@@ -42,30 +43,31 @@ public class DataLoggerService {
 
                 String[] valores = linha.split(";");
 
-                LocalDateTime data_hora;
-                try {
-                    data_hora = LocalDateTime.parse(valores[1], formatter);
-                } catch (DateTimeParseException e) {
-                    data_hora = corrigirDataHora(valores[1]);
-                }
+                // LocalDateTime data_hora;
+                // try {
+                // data_hora = LocalDateTime.parse(valores[1], formatter);
+                // } catch (DateTimeParseException e) {
+                // data_hora = corrigirDataHora(valores[1]);
+                // }
 
-                Long id = Long.parseLong(valores[0]);
-                
+                Long id = Long.parseLong(valores[0])+1;
+
                 float t1 = Float.parseFloat(valores[2]);
                 float t2 = Float.parseFloat(valores[3]);
-                float temperatura = (t1+t2)/2;
+                float temperatura = (t1 + t2) / 2;
                 float energia = Float.parseFloat(valores[4]);
                 boolean rede = Integer.parseInt(valores[5]) == 1;
                 boolean alarme = Integer.parseInt(valores[7]) == 1;
                 boolean compressor = Integer.parseInt(valores[8]) == 1;
 
                 RegistroDatalloger registro = new RegistroDatalloger(id, temperatura, rede, energia, compressor,
-                        alarme,data_hora);
+                        alarme);
 
                 registros.add(registro);
-                
+
             }
-            // Indice;Data_Hora;T1_C;T2_C;Bateria_V;Rede;Porta;Alarme;Compressor;Status -> csv
+            // Indice;Data_Hora;T1_C;T2_C;Bateria_V;Rede;Porta;Alarme;Compressor;Status ->
+            // csv
             // id,temperatura,rede,energia,compressor,alarme,data_hora -> entidade
         } catch (IOException e) {
             e.printStackTrace();
@@ -77,48 +79,55 @@ public class DataLoggerService {
 
     public LocalDateTime corrigirDataHora(String dataStr) {
 
-    DateTimeFormatter formatter =
-            DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
-    // separa data e hora
-    String[] partesDataHora = dataStr.split(" ");
+        // separa data e hora
+        String[] partesDataHora = dataStr.split(" ");
 
-    String data = partesDataHora[0];
-    String hora = partesDataHora[1];
+        String data = partesDataHora[0];
+        String hora = partesDataHora[1];
 
-    // separa HH:mm:ss
-    String[] partesHora = hora.split(":");
+        // separa HH:mm:ss
+        String[] partesHora = hora.split(":");
 
-    int horas = Integer.parseInt(partesHora[0]);
-    int minutos = Integer.parseInt(partesHora[1]);
-    int segundos = Integer.parseInt(partesHora[2]);
+        int horas = Integer.parseInt(partesHora[0]);
+        int minutos = Integer.parseInt(partesHora[1]);
+        int segundos = Integer.parseInt(partesHora[2]);
 
+        String dataBase = data + " " +
+                String.format("%02d:%02d:%02d", horas, minutos, 0);
 
-    String dataBase = data + " " +
-            String.format("%02d:%02d:%02d", horas, minutos, 0);
+        LocalDateTime dataHora = LocalDateTime.parse(dataBase, formatter);
 
-    LocalDateTime dataHora =
-            LocalDateTime.parse(dataBase, formatter);
+        dataHora = dataHora.plusSeconds(segundos);
 
-
-    dataHora = dataHora.plusSeconds(segundos);
-
-    return dataHora;
-}
-
-
-public void salvarRegistro(List<RegistroDatalloger> registros){
-
-    for (RegistroDatalloger registro : registros) {
-
-        List<RegistroDatalloger> registroBanco = registroRepository.listar();
-        
-
-        
-        
+        return dataHora;
     }
 
-}
+    public void salvarRegistro(List<RegistroDatalloger> registros) {
 
-}
+        try {
 
+            for (RegistroDatalloger registro : registros) {
+
+                List<RegistroDatalloger> registrosBanco = registroRepository.listar();
+
+                registro.setData_hora(LocalDateTime.now());
+
+                registrosBanco.add(registro);
+
+                registroRepository.salvar(registrosBanco);
+                TimeUnit.SECONDS.sleep(5);
+
+            }
+
+        } catch (Exception e) {
+            throw new RuntimeException("Erro ao inserir registro no json");
+        }
+
+    }
+
+   public void limparBanco(){
+        registroRepository.limpar();
+    }
+}
