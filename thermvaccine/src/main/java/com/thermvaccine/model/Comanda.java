@@ -22,7 +22,7 @@ public class Comanda {
     private Caixa caixa;
     private Lote lote;
 
- 
+  
     public Comanda(long id, String data_emissao, String cep, int numEndereco, StatusComanda status, Lote lote, Caixa caixa){
         this.id = id;
         this.data_emissao = LocalDateTime.parse(data_emissao, FORMATTER);

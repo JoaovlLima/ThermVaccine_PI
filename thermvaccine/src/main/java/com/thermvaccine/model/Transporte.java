@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Transporte {
-
+ 
     private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
     private String placa;
