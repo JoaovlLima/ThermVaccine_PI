@@ -7,7 +7,7 @@ public class Usuario {
     private String nome;
     private String senha;
     private String cargo;
-    // private Empresa empresa;
+    private Empresa empresa;
 
     public Usuario(String re, String nome, String senha, String cargo){
         this.re = re;
@@ -38,9 +38,9 @@ public class Usuario {
         return cargo;
     }
 
-    // public String getEmpresa() {
-    //     return empresa;
-    // }
+    public Empresa getEmpresa() {
+        return empresa;
+    }
 
 
 
@@ -56,9 +56,9 @@ public class Usuario {
         this.cargo = cargo;
     }
 
-    // public void setEmpresa(String empresa) {
-    //     this.empresa = empresa;
-    // }
+    public void setEmpresa(Empresa empresa) {
+        this.empresa = empresa;
+    }
 
 
 

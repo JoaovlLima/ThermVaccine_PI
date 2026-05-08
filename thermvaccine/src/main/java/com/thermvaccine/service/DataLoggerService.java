@@ -17,8 +17,8 @@ public class DataLoggerService {
 
     private final RegistroRepository registroRepository;
 
-    public DataLoggerService(RegistroRepository registroRepository){
-        this.registroRepository = registroRepository;
+    public DataLoggerService(){
+        this.registroRepository = new RegistroRepository();
     }
 
     public List<RegistroDatalloger> leituraArquivo() {
@@ -42,12 +42,12 @@ public class DataLoggerService {
 
                 String[] valores = linha.split(";");
 
-                // LocalDateTime data_hora;
-                // try {
-                //     data_hora = LocalDateTime.parse(valores[1], formatter);
-                // } catch (DateTimeParseException e) {
-                //     data_hora = corrigirDataHora(valores[1]);
-                // }
+                LocalDateTime data_hora;
+                try {
+                    data_hora = LocalDateTime.parse(valores[1], formatter);
+                } catch (DateTimeParseException e) {
+                    data_hora = corrigirDataHora(valores[1]);
+                }
 
                 Long id = Long.parseLong(valores[0]);
                 
@@ -60,14 +60,13 @@ public class DataLoggerService {
                 boolean compressor = Integer.parseInt(valores[8]) == 1;
 
                 RegistroDatalloger registro = new RegistroDatalloger(id, temperatura, rede, energia, compressor,
-                        alarme);
+                        alarme,data_hora);
 
                 registros.add(registro);
                 
             }
             // Indice;Data_Hora;T1_C;T2_C;Bateria_V;Rede;Porta;Alarme;Compressor;Status -> csv
             // id,temperatura,rede,energia,compressor,alarme,data_hora -> entidade
-            System.out.println("Media primeira Temp: "+registros.get(0).getTemperatura());
         } catch (IOException e) {
             e.printStackTrace();
 

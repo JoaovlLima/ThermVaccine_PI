@@ -1,10 +1,11 @@
 package com.thermvaccine.model;
+
 import java.time.format.DateTimeFormatter;
 import java.time.LocalDateTime;
 
 public class Lote {
 
-    private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+    private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
     private long id;
     private int quantidade;

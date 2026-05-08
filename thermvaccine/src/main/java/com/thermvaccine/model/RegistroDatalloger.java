@@ -20,13 +20,14 @@ public class RegistroDatalloger {
     
 
     public RegistroDatalloger(Long id, float temperatura, Boolean rede, float energia,
-         Boolean compressor, Boolean alarme){
+         Boolean compressor, Boolean alarme, LocalDateTime data_hora){
             this.id = id;
             this.temperatura = temperatura;
             this.rede = rede;
             this.energia = energia;
             this.compressor = compressor;
             this.alarme = alarme;
+            this.data_hora = data_hora;
          }
 
 }
