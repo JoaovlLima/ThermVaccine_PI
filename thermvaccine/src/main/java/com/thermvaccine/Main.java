@@ -20,7 +20,9 @@ public class Main {
 
         dataLoggerService.salvarRegistro(registros);
 
-        CalculoVidaUtilService.calcular(registros);
+        System.out.println("ESTA COM THREAD");
+
+        // CalculoVidaUtilService.calcular(registros);
         
     }
 }

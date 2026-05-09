@@ -106,7 +106,9 @@ public class DataLoggerService {
 
     public void salvarRegistro(List<RegistroDatalloger> registros) {
 
-        try {
+        Thread thread = new Thread(() -> {
+            
+            try {
 
             for (RegistroDatalloger registro : registros) {
 
@@ -123,11 +125,14 @@ public class DataLoggerService {
 
         } catch (Exception e) {
             throw new RuntimeException("Erro ao inserir registro no json");
-        }
+        }});
+        
+        thread.start();
 
     }
 
    public void limparBanco(){
         registroRepository.limpar();
     }
+        
 }
