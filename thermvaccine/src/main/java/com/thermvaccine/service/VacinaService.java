@@ -11,7 +11,7 @@ public class VacinaService {
         this.vacinaRepository = new VacinaRepository();
     }
 
-    void exibirDados(Vacina vacina){
+    public void exibirDados(Vacina vacina){
         //System.out.printf("ID: %d\n", this.vacina.getId());
         System.out.printf("Nome: %s\n", vacina.getNome());
         System.out.printf("Temperatura mínima suportada: %f\n", vacina.getTempe_min());
