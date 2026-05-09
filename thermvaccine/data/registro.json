@@ -5,5 +5,637 @@
   "energia" : 13.3,
   "compressor" : false,
   "alarme" : false,
-  "data_hora" : "2026-05-08T21:15:14.291706399"
+  "data_hora" : "2026-05-08T21:30:42.332720876"
+}, {
+  "id" : 2,
+  "temperatura" : 4.6499996,
+  "rede" : true,
+  "energia" : 13.4,
+  "compressor" : false,
+  "alarme" : false,
+  "data_hora" : "2026-05-08T21:30:47.365138069"
+}, {
+  "id" : 3,
+  "temperatura" : 4.6,
+  "rede" : true,
+  "energia" : 13.3,
+  "compressor" : true,
+  "alarme" : false,
+  "data_hora" : "2026-05-08T21:30:52.368145049"
+}, {
+  "id" : 4,
+  "temperatura" : 4.6,
+  "rede" : true,
+  "energia" : 13.3,
+  "compressor" : false,
+  "alarme" : false,
+  "data_hora" : "2026-05-08T21:30:57.371522125"
+}, {
+  "id" : 5,
+  "temperatura" : 4.6,
+  "rede" : true,
+  "energia" : 13.4,
+  "compressor" : false,
+  "alarme" : false,
+  "data_hora" : "2026-05-08T21:31:02.375621156"
+}, {
+  "id" : 6,
+  "temperatura" : 4.6499996,
+  "rede" : true,
+  "energia" : 13.4,
+  "compressor" : false,
+  "alarme" : false,
+  "data_hora" : "2026-05-08T21:31:07.380881204"
+}, {
+  "id" : 7,
+  "temperatura" : 4.6499996,
+  "rede" : true,
+  "energia" : 13.3,
+  "compressor" : false,
+  "alarme" : false,
+  "data_hora" : "2026-05-08T21:31:12.386589523"
+}, {
+  "id" : 8,
+  "temperatura" : 4.55,
+  "rede" : true,
+  "energia" : 13.3,
+  "compressor" : false,
+  "alarme" : false,
+  "data_hora" : "2026-05-08T21:31:17.39225322"
+}, {
+  "id" : 9,
+  "temperatura" : 4.5,
+  "rede" : true,
+  "energia" : 13.3,
+  "compressor" : false,
+  "alarme" : false,
+  "data_hora" : "2026-05-08T21:31:22.397976345"
+}, {
+  "id" : 10,
+  "temperatura" : 4.55,
+  "rede" : true,
+  "energia" : 13.3,
+  "compressor" : false,
+  "alarme" : false,
+  "data_hora" : "2026-05-08T21:31:27.403913464"
+}, {
+  "id" : 11,
+  "temperatura" : 4.5,
+  "rede" : true,
+  "energia" : 13.3,
+  "compressor" : false,
+  "alarme" : false,
+  "data_hora" : "2026-05-08T21:31:32.410602336"
+}, {
+  "id" : 12,
+  "temperatura" : 4.5,
+  "rede" : true,
+  "energia" : 13.4,
+  "compressor" : false,
+  "alarme" : false,
+  "data_hora" : "2026-05-08T21:31:37.415878074"
+}, {
+  "id" : 13,
+  "temperatura" : 4.5,
+  "rede" : true,
+  "energia" : 13.4,
+  "compressor" : false,
+  "alarme" : false,
+  "data_hora" : "2026-05-08T21:31:42.420666974"
+}, {
+  "id" : 14,
+  "temperatura" : 4.45,
+  "rede" : true,
+  "energia" : 13.3,
+  "compressor" : false,
+  "alarme" : false,
+  "data_hora" : "2026-05-08T21:31:47.425312894"
+}, {
+  "id" : 15,
+  "temperatura" : 4.7,
+  "rede" : true,
+  "energia" : 13.4,
+  "compressor" : false,
+  "alarme" : false,
+  "data_hora" : "2026-05-08T21:31:52.430870355"
+}, {
+  "id" : 16,
+  "temperatura" : 4.75,
+  "rede" : true,
+  "energia" : 14.0,
+  "compressor" : true,
+  "alarme" : false,
+  "data_hora" : "2026-05-08T21:31:57.436213326"
+}, {
+  "id" : 17,
+  "temperatura" : 4.8500004,
+  "rede" : true,
+  "energia" : 13.3,
+  "compressor" : true,
+  "alarme" : false,
+  "data_hora" : "2026-05-08T21:32:02.448718782"
+}, {
+  "id" : 18,
+  "temperatura" : 4.8999996,
+  "rede" : true,
+  "energia" : 13.3,
+  "compressor" : true,
+  "alarme" : false,
+  "data_hora" : "2026-05-08T21:32:07.453936943"
+}, {
+  "id" : 19,
+  "temperatura" : 4.5,
+  "rede" : true,
+  "energia" : 13.3,
+  "compressor" : false,
+  "alarme" : false,
+  "data_hora" : "2026-05-08T21:32:12.458965462"
+}, {
+  "id" : 20,
+  "temperatura" : 4.45,
+  "rede" : true,
+  "energia" : 13.3,
+  "compressor" : false,
+  "alarme" : false,
+  "data_hora" : "2026-05-08T21:32:17.464176416"
+}, {
+  "id" : 21,
+  "temperatura" : 4.6499996,
+  "rede" : true,
+  "energia" : 13.3,
+  "compressor" : false,
+  "alarme" : false,
+  "data_hora" : "2026-05-08T21:32:22.469530703"
+}, {
+  "id" : 22,
+  "temperatura" : 4.6,
+  "rede" : true,
+  "energia" : 13.3,
+  "compressor" : false,
+  "alarme" : false,
+  "data_hora" : "2026-05-08T21:32:27.474130132"
+}, {
+  "id" : 23,
+  "temperatura" : 4.85,
+  "rede" : true,
+  "energia" : 13.3,
+  "compressor" : false,
+  "alarme" : false,
+  "data_hora" : "2026-05-08T21:32:32.478536257"
+}, {
+  "id" : 24,
+  "temperatura" : 4.8,
+  "rede" : true,
+  "energia" : 13.3,
+  "compressor" : false,
+  "alarme" : false,
+  "data_hora" : "2026-05-08T21:32:37.484542098"
+}, {
+  "id" : 25,
+  "temperatura" : 4.95,
+  "rede" : true,
+  "energia" : 13.9,
+  "compressor" : true,
+  "alarme" : false,
+  "data_hora" : "2026-05-08T21:32:42.490120507"
+}, {
+  "id" : 26,
+  "temperatura" : 4.95,
+  "rede" : true,
+  "energia" : 13.7,
+  "compressor" : true,
+  "alarme" : false,
+  "data_hora" : "2026-05-08T21:32:47.495947864"
+}, {
+  "id" : 27,
+  "temperatura" : 5.1000004,
+  "rede" : true,
+  "energia" : 13.3,
+  "compressor" : true,
+  "alarme" : false,
+  "data_hora" : "2026-05-08T21:32:52.49909619"
+}, {
+  "id" : 28,
+  "temperatura" : 5.15,
+  "rede" : true,
+  "energia" : 13.7,
+  "compressor" : true,
+  "alarme" : false,
+  "data_hora" : "2026-05-08T21:32:57.503111979"
+}, {
+  "id" : 29,
+  "temperatura" : 5.0,
+  "rede" : true,
+  "energia" : 13.3,
+  "compressor" : false,
+  "alarme" : false,
+  "data_hora" : "2026-05-08T21:33:02.507776239"
+}, {
+  "id" : 30,
+  "temperatura" : 4.85,
+  "rede" : true,
+  "energia" : 13.4,
+  "compressor" : false,
+  "alarme" : false,
+  "data_hora" : "2026-05-08T21:33:07.510989907"
+}, {
+  "id" : 31,
+  "temperatura" : 4.75,
+  "rede" : true,
+  "energia" : 13.3,
+  "compressor" : false,
+  "alarme" : false,
+  "data_hora" : "2026-05-08T21:33:12.516196147"
+}, {
+  "id" : 32,
+  "temperatura" : 4.7,
+  "rede" : true,
+  "energia" : 13.4,
+  "compressor" : false,
+  "alarme" : false,
+  "data_hora" : "2026-05-08T21:33:17.519753153"
+}, {
+  "id" : 33,
+  "temperatura" : 4.55,
+  "rede" : true,
+  "energia" : 13.4,
+  "compressor" : false,
+  "alarme" : false,
+  "data_hora" : "2026-05-08T21:33:22.524326398"
+}, {
+  "id" : 34,
+  "temperatura" : 4.5,
+  "rede" : true,
+  "energia" : 13.3,
+  "compressor" : false,
+  "alarme" : false,
+  "data_hora" : "2026-05-08T21:33:27.526986257"
+}, {
+  "id" : 35,
+  "temperatura" : 4.45,
+  "rede" : true,
+  "energia" : 13.4,
+  "compressor" : false,
+  "alarme" : false,
+  "data_hora" : "2026-05-08T21:33:32.530325544"
+}, {
+  "id" : 36,
+  "temperatura" : 4.3999996,
+  "rede" : true,
+  "energia" : 13.4,
+  "compressor" : false,
+  "alarme" : false,
+  "data_hora" : "2026-05-08T21:33:37.533496164"
+}, {
+  "id" : 37,
+  "temperatura" : 4.45,
+  "rede" : true,
+  "energia" : 13.4,
+  "compressor" : false,
+  "alarme" : false,
+  "data_hora" : "2026-05-08T21:33:42.53729979"
+}, {
+  "id" : 38,
+  "temperatura" : 4.5,
+  "rede" : true,
+  "energia" : 13.3,
+  "compressor" : false,
+  "alarme" : false,
+  "data_hora" : "2026-05-08T21:33:47.540743122"
+}, {
+  "id" : 39,
+  "temperatura" : 4.5,
+  "rede" : true,
+  "energia" : 13.4,
+  "compressor" : false,
+  "alarme" : false,
+  "data_hora" : "2026-05-08T21:33:52.544656715"
+}, {
+  "id" : 40,
+  "temperatura" : 4.7,
+  "rede" : true,
+  "energia" : 14.0,
+  "compressor" : true,
+  "alarme" : false,
+  "data_hora" : "2026-05-08T21:33:57.554311621"
+}, {
+  "id" : 41,
+  "temperatura" : 4.8500004,
+  "rede" : true,
+  "energia" : 13.6,
+  "compressor" : true,
+  "alarme" : false,
+  "data_hora" : "2026-05-08T21:34:02.560273913"
+}, {
+  "id" : 42,
+  "temperatura" : 5.05,
+  "rede" : true,
+  "energia" : 13.3,
+  "compressor" : true,
+  "alarme" : false,
+  "data_hora" : "2026-05-08T21:34:07.563551437"
+}, {
+  "id" : 43,
+  "temperatura" : 5.1000004,
+  "rede" : true,
+  "energia" : 13.3,
+  "compressor" : true,
+  "alarme" : false,
+  "data_hora" : "2026-05-08T21:34:12.567072106"
+}, {
+  "id" : 44,
+  "temperatura" : 5.1499996,
+  "rede" : true,
+  "energia" : 14.0,
+  "compressor" : true,
+  "alarme" : false,
+  "data_hora" : "2026-05-08T21:34:17.571169212"
+}, {
+  "id" : 45,
+  "temperatura" : 5.1,
+  "rede" : true,
+  "energia" : 13.3,
+  "compressor" : false,
+  "alarme" : false,
+  "data_hora" : "2026-05-08T21:34:22.574563935"
+}, {
+  "id" : 46,
+  "temperatura" : 5.0,
+  "rede" : true,
+  "energia" : 13.3,
+  "compressor" : false,
+  "alarme" : false,
+  "data_hora" : "2026-05-08T21:34:27.576724043"
+}, {
+  "id" : 47,
+  "temperatura" : 4.95,
+  "rede" : true,
+  "energia" : 13.3,
+  "compressor" : false,
+  "alarme" : false,
+  "data_hora" : "2026-05-08T21:34:32.578802994"
+}, {
+  "id" : 48,
+  "temperatura" : 4.8,
+  "rede" : true,
+  "energia" : 13.3,
+  "compressor" : false,
+  "alarme" : false,
+  "data_hora" : "2026-05-08T21:34:37.582117994"
+}, {
+  "id" : 49,
+  "temperatura" : 4.65,
+  "rede" : true,
+  "energia" : 13.4,
+  "compressor" : false,
+  "alarme" : false,
+  "data_hora" : "2026-05-08T21:34:42.586632714"
+}, {
+  "id" : 50,
+  "temperatura" : 4.6499996,
+  "rede" : true,
+  "energia" : 13.3,
+  "compressor" : false,
+  "alarme" : false,
+  "data_hora" : "2026-05-08T21:34:47.590273539"
+}, {
+  "id" : 51,
+  "temperatura" : 4.45,
+  "rede" : true,
+  "energia" : 13.3,
+  "compressor" : false,
+  "alarme" : false,
+  "data_hora" : "2026-05-08T21:34:52.59452593"
+}, {
+  "id" : 52,
+  "temperatura" : 4.3999996,
+  "rede" : true,
+  "energia" : 13.4,
+  "compressor" : false,
+  "alarme" : false,
+  "data_hora" : "2026-05-08T21:34:57.598389979"
+}, {
+  "id" : 53,
+  "temperatura" : 4.3999996,
+  "rede" : true,
+  "energia" : 13.3,
+  "compressor" : false,
+  "alarme" : false,
+  "data_hora" : "2026-05-08T21:35:02.601009758"
+}, {
+  "id" : 54,
+  "temperatura" : 4.45,
+  "rede" : true,
+  "energia" : 13.4,
+  "compressor" : false,
+  "alarme" : false,
+  "data_hora" : "2026-05-08T21:35:07.604032027"
+}, {
+  "id" : 55,
+  "temperatura" : 4.55,
+  "rede" : true,
+  "energia" : 13.3,
+  "compressor" : false,
+  "alarme" : false,
+  "data_hora" : "2026-05-08T21:35:12.606477241"
+}, {
+  "id" : 56,
+  "temperatura" : 4.85,
+  "rede" : true,
+  "energia" : 14.1,
+  "compressor" : true,
+  "alarme" : false,
+  "data_hora" : "2026-05-08T21:35:17.609533831"
+}, {
+  "id" : 57,
+  "temperatura" : 4.95,
+  "rede" : true,
+  "energia" : 13.8,
+  "compressor" : true,
+  "alarme" : false,
+  "data_hora" : "2026-05-08T21:35:22.612862911"
+}, {
+  "id" : 58,
+  "temperatura" : 5.05,
+  "rede" : true,
+  "energia" : 13.3,
+  "compressor" : true,
+  "alarme" : false,
+  "data_hora" : "2026-05-08T21:35:27.615755005"
+}, {
+  "id" : 59,
+  "temperatura" : 5.1,
+  "rede" : true,
+  "energia" : 14.1,
+  "compressor" : true,
+  "alarme" : false,
+  "data_hora" : "2026-05-08T21:35:32.620331062"
+}, {
+  "id" : 60,
+  "temperatura" : 5.05,
+  "rede" : true,
+  "energia" : 13.3,
+  "compressor" : false,
+  "alarme" : false,
+  "data_hora" : "2026-05-08T21:35:37.625551883"
+}, {
+  "id" : 61,
+  "temperatura" : 5.1499996,
+  "rede" : true,
+  "energia" : 14.5,
+  "compressor" : true,
+  "alarme" : false,
+  "data_hora" : "2026-05-08T21:35:42.628949099"
+}, {
+  "id" : 62,
+  "temperatura" : 5.05,
+  "rede" : true,
+  "energia" : 13.4,
+  "compressor" : false,
+  "alarme" : false,
+  "data_hora" : "2026-05-08T21:35:47.632072878"
+}, {
+  "id" : 63,
+  "temperatura" : 4.95,
+  "rede" : true,
+  "energia" : 13.4,
+  "compressor" : false,
+  "alarme" : false,
+  "data_hora" : "2026-05-08T21:35:52.635624418"
+}, {
+  "id" : 64,
+  "temperatura" : 4.85,
+  "rede" : true,
+  "energia" : 13.3,
+  "compressor" : false,
+  "alarme" : false,
+  "data_hora" : "2026-05-08T21:35:57.639927398"
+}, {
+  "id" : 65,
+  "temperatura" : 4.8,
+  "rede" : true,
+  "energia" : 13.4,
+  "compressor" : false,
+  "alarme" : false,
+  "data_hora" : "2026-05-08T21:36:02.64311289"
+}, {
+  "id" : 66,
+  "temperatura" : 4.65,
+  "rede" : true,
+  "energia" : 13.4,
+  "compressor" : false,
+  "alarme" : false,
+  "data_hora" : "2026-05-08T21:36:07.645954156"
+}, {
+  "id" : 67,
+  "temperatura" : 4.5,
+  "rede" : true,
+  "energia" : 13.3,
+  "compressor" : false,
+  "alarme" : false,
+  "data_hora" : "2026-05-08T21:36:12.649403329"
+}, {
+  "id" : 68,
+  "temperatura" : 4.5,
+  "rede" : true,
+  "energia" : 13.3,
+  "compressor" : false,
+  "alarme" : false,
+  "data_hora" : "2026-05-08T21:36:17.653476858"
+}, {
+  "id" : 69,
+  "temperatura" : 4.5,
+  "rede" : true,
+  "energia" : 13.3,
+  "compressor" : false,
+  "alarme" : false,
+  "data_hora" : "2026-05-08T21:36:22.656962827"
+}, {
+  "id" : 70,
+  "temperatura" : 4.45,
+  "rede" : true,
+  "energia" : 13.3,
+  "compressor" : false,
+  "alarme" : false,
+  "data_hora" : "2026-05-08T21:36:27.660608308"
+}, {
+  "id" : 71,
+  "temperatura" : 4.3999996,
+  "rede" : true,
+  "energia" : 13.3,
+  "compressor" : false,
+  "alarme" : false,
+  "data_hora" : "2026-05-08T21:36:32.663685278"
+}, {
+  "id" : 72,
+  "temperatura" : 4.45,
+  "rede" : true,
+  "energia" : 13.3,
+  "compressor" : false,
+  "alarme" : false,
+  "data_hora" : "2026-05-08T21:36:37.66714668"
+}, {
+  "id" : 73,
+  "temperatura" : 4.5,
+  "rede" : true,
+  "energia" : 13.3,
+  "compressor" : false,
+  "alarme" : false,
+  "data_hora" : "2026-05-08T21:36:42.670485032"
+}, {
+  "id" : 74,
+  "temperatura" : 4.75,
+  "rede" : true,
+  "energia" : 13.5,
+  "compressor" : true,
+  "alarme" : false,
+  "data_hora" : "2026-05-08T21:36:47.673702586"
+}, {
+  "id" : 75,
+  "temperatura" : 4.9,
+  "rede" : true,
+  "energia" : 13.3,
+  "compressor" : true,
+  "alarme" : false,
+  "data_hora" : "2026-05-08T21:36:52.677430355"
+}, {
+  "id" : 76,
+  "temperatura" : 4.85,
+  "rede" : true,
+  "energia" : 14.2,
+  "compressor" : true,
+  "alarme" : false,
+  "data_hora" : "2026-05-08T21:36:57.680789863"
+}, {
+  "id" : 77,
+  "temperatura" : 4.8999996,
+  "rede" : true,
+  "energia" : 13.4,
+  "compressor" : true,
+  "alarme" : false,
+  "data_hora" : "2026-05-08T21:37:02.684124702"
+}, {
+  "id" : 78,
+  "temperatura" : 5.05,
+  "rede" : true,
+  "energia" : 13.3,
+  "compressor" : true,
+  "alarme" : false,
+  "data_hora" : "2026-05-08T21:37:07.687119618"
+}, {
+  "id" : 79,
+  "temperatura" : 5.1,
+  "rede" : true,
+  "energia" : 13.5,
+  "compressor" : true,
+  "alarme" : false,
+  "data_hora" : "2026-05-08T21:37:12.690291125"
+}, {
+  "id" : 80,
+  "temperatura" : 5.05,
+  "rede" : true,
+  "energia" : 13.3,
+  "compressor" : false,
+  "alarme" : false,
+  "data_hora" : "2026-05-08T21:37:17.693283596"
 } ]
