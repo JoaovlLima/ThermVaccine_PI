@@ -3,6 +3,7 @@ import java.time.Duration;
 import java.util.List;
 
 import com.thermvaccine.model.RegistroDatalloger;
+import com.thermvaccine.repository.RegistroRepository;
 
 
 public class CalculoVidaUtilService {
@@ -13,13 +14,36 @@ public class CalculoVidaUtilService {
     public static final double MRNA_INICIAL = 100.0;
     public static final double THRESHOLD_PERCENT = 95.0;
 
+    private static final RegistroRepository repository = new RegistroRepository();
 
-    public static double calcular(List<RegistroDatalloger> registros){
+    public static void iniciar(){
+        int tamanhoAnterior = 0;
+
+        while (true){
+            List<RegistroDatalloger> registros = repository.listar();
+
+            if(registros.size() > tamanhoAnterior) {
+                tamanhoAnterior = registros.size();
+                double percentual = calcular(registros.subList(0, registros.size() - 1));
+                System.out.printf("mRNA intacto: %.6f%%%n", percentual);
+
+            }
+
+            try {
+                Thread.sleep(5000);
+            }catch (InterruptedException e){
+                Thread.currentThread().interrupt();
+                break;
+            }
+
+        } 
+
+    }
+
+
+    public static double calcular(List<RegistroDatalloger> registros){ // O cálculo é devagar pq está fazendo com o padrão de 5 segundos entre registros
 
         double MRNA_Atual = MRNA_INICIAL;
-    
-
-        System.out.printf("mRNA intacto: %.2f%%\n", MRNA_INICIAL);
 
         for(int i = 0; i < registros.size() - 1; i++){
 
@@ -32,7 +56,6 @@ public class CalculoVidaUtilService {
 
             ).toSeconds();
 
-
             if (deltaTSegundos <= 0) continue;
 
             double tempKelvin = atual.getTemperatura() + 273.15;
@@ -40,15 +63,13 @@ public class CalculoVidaUtilService {
             MRNA_Atual = MRNA_Atual * Math.exp(-k * deltaTSegundos);
 
             double percentualIntacto = (MRNA_Atual / MRNA_INICIAL) * 100.0;
-            System.out.printf("mRNA intacto: %.2f%%\n", percentualIntacto);
 
             if(percentualIntacto < THRESHOLD_PERCENT){
-                return percentualIntacto;
+                break;
             }
         }
 
-        double percentualFinal = (MRNA_Atual / MRNA_INICIAL) * 100;
-        return percentualFinal;
+        return (MRNA_Atual / MRNA_INICIAL) * 100.0;
 
     }
 }

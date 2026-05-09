@@ -8,7 +8,7 @@ import com.thermvaccine.service.DataLoggerService;
 
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
        
         DataLoggerService dataLoggerService = new DataLoggerService();
 
@@ -22,7 +22,7 @@ public class Main {
 
         System.out.println("ESTA COM THREAD");
 
-        // CalculoVidaUtilService.calcular(registros);
+        CalculoVidaUtilService.iniciar();
         
     }
 }

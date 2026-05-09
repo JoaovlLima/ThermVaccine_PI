@@ -43,6 +43,7 @@ public class RegistroRepository {
                     new TypeReference<List<RegistroDatalloger>>() {}
             );
 
+
         } catch (IOException e) {
             e.printStackTrace();
             return new ArrayList<>();
