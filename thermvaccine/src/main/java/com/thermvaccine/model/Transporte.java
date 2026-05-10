@@ -52,4 +52,9 @@ public class Transporte {
     public void setCaixa(List<Caixa> caixa) {
         this.caixa = caixa;
     }
+
+    public void addUmaCaixa(Caixa caixa){
+        this.caixa.add(caixa);
+    }
+
 }
