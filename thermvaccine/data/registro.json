@@ -5,7 +5,7 @@
   "energia" : 13.3,
   "compressor" : false,
   "alarme" : false,
-  "data_hora" : "2026-05-08T21:46:14.8145245"
+  "data_hora" : "2026-05-10T01:08:36.2856207"
 }, {
   "id" : 2,
   "temperatura" : 4.6499996,
@@ -13,7 +13,7 @@
   "energia" : 13.4,
   "compressor" : false,
   "alarme" : false,
-  "data_hora" : "2026-05-08T21:46:19.8637653"
+  "data_hora" : "2026-05-10T01:08:41.3147313"
 }, {
   "id" : 3,
   "temperatura" : 4.6,
@@ -21,45 +21,5 @@
   "energia" : 13.3,
   "compressor" : true,
   "alarme" : false,
-  "data_hora" : "2026-05-08T21:46:24.8673367"
-}, {
-  "id" : 4,
-  "temperatura" : 4.6,
-  "rede" : true,
-  "energia" : 13.3,
-  "compressor" : false,
-  "alarme" : false,
-  "data_hora" : "2026-05-08T21:46:29.8774166"
-}, {
-  "id" : 5,
-  "temperatura" : 4.6,
-  "rede" : true,
-  "energia" : 13.4,
-  "compressor" : false,
-  "alarme" : false,
-  "data_hora" : "2026-05-08T21:46:34.8874691"
-}, {
-  "id" : 6,
-  "temperatura" : 4.6499996,
-  "rede" : true,
-  "energia" : 13.4,
-  "compressor" : false,
-  "alarme" : false,
-  "data_hora" : "2026-05-08T21:46:39.8910199"
-}, {
-  "id" : 7,
-  "temperatura" : 4.6499996,
-  "rede" : true,
-  "energia" : 13.3,
-  "compressor" : false,
-  "alarme" : false,
-  "data_hora" : "2026-05-08T21:46:44.9175015"
-}, {
-  "id" : 8,
-  "temperatura" : 4.55,
-  "rede" : true,
-  "energia" : 13.3,
-  "compressor" : false,
-  "alarme" : false,
-  "data_hora" : "2026-05-08T21:46:49.9225869"
+  "data_hora" : "2026-05-10T01:08:46.3171768"
 } ]

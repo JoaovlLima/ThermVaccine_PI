@@ -1,17 +1,47 @@
 package com.thermvaccine.model;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
+
 public class Caixa {
 
-    private long id;
+    private String id;
     private int qtd_max_vac;
+    private List<Comanda> comandas = new ArrayList<>();
+    private boolean disponivel;
 
-    public Caixa(long id, int qtd_max_vac){
-        this.id = id;
+    public Caixa(int qtd_max_vac){
+        this.id = UUID.randomUUID().toString();
         this.qtd_max_vac = qtd_max_vac;
+        this.disponivel = true;
+    }
+
+    public Caixa(int qtd_max_vac, List<Comanda> comandas){
+        this.id = UUID.randomUUID().toString();
+        this.qtd_max_vac = qtd_max_vac;
+        this.comandas = comandas;
     }
   
 
-    public long getId() {
+    public void inserirComandaUnidade(Comanda comanda){
+        this.comandas.add(comanda);
+    }
+
+    public void inserirComandas(List<Comanda> comandas){
+        this.comandas = comandas;
+    }
+
+
+    public boolean getDisponivel(){
+        return disponivel;
+    }
+
+    public void setDiponivel(boolean disponivel){
+        this.disponivel = disponivel;
+    }
+
+    public String getId() {
         return id;
     }
 

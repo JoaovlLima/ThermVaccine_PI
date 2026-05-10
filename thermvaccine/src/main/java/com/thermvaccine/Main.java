@@ -2,7 +2,7 @@ package com.thermvaccine;
 
 import java.util.List;
 
-import com.thermvaccine.model.RegistroDatalloger;
+import com.thermvaccine.model.RegistroDatalogger;
 import com.thermvaccine.service.CalculoVidaUtilService;
 import com.thermvaccine.service.DataLoggerService;
 
@@ -14,7 +14,7 @@ public class Main {
 
         dataLoggerService.limparBanco();
         
-        List<RegistroDatalloger> registros = dataLoggerService.leituraArquivo();
+        List<RegistroDatalogger> registros = dataLoggerService.leituraArquivo();
 
         System.out.println("---------------------");
 
