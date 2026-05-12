@@ -2,7 +2,9 @@ package com.thermvaccine.model;
 
 import java.time.format.DateTimeFormatter;
 import java.time.LocalDateTime;
+import lombok.NoArgsConstructor;
 
+@NoArgsConstructor
 public class Comanda {
 
     private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
@@ -14,7 +16,7 @@ public class Comanda {
     }
 
 
-    private long id;
+    private String id;
     private LocalDateTime data_emissao;
     private String cep;
     private int numEndereco;
@@ -23,7 +25,7 @@ public class Comanda {
     private Lote lote;
 
   
-    public Comanda(long id, String data_emissao, String cep, int numEndereco, StatusComanda status, Lote lote, Caixa caixa){
+    public Comanda(String id, String data_emissao, String cep, int numEndereco, StatusComanda status, Lote lote, Caixa caixa){
         this.id = id;
         this.data_emissao = LocalDateTime.parse(data_emissao, FORMATTER);
         this.cep = cep;
@@ -33,7 +35,7 @@ public class Comanda {
         this.caixa = caixa;
     }
 
-    public long getId() {
+    public String getId() {
         return id;
     }
 

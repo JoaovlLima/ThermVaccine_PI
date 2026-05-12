@@ -10,7 +10,7 @@ import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.thermvaccine.model.RegistroDatalloger;
+import com.thermvaccine.model.RegistroDatalogger;
 import com.thermvaccine.repository.RegistroRepository;
 
 public class DataLoggerService {
@@ -21,10 +21,10 @@ public class DataLoggerService {
         this.registroRepository = new RegistroRepository();
     }
 
-    public List<RegistroDatalloger> leituraArquivo() {
+    public List<RegistroDatalogger> leituraArquivo() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
-        List<RegistroDatalloger> registros = new ArrayList<>();
+        List<RegistroDatalogger> registros = new ArrayList<>();
 
         InputStream input = getClass()
                 .getClassLoader()
@@ -59,7 +59,7 @@ public class DataLoggerService {
                 boolean alarme = Integer.parseInt(valores[7]) == 1;
                 boolean compressor = Integer.parseInt(valores[8]) == 1;
 
-                RegistroDatalloger registro = new RegistroDatalloger(id, temperatura, rede, energia, compressor,
+                RegistroDatalogger registro = new RegistroDatalogger(id, temperatura, rede, energia, compressor,
                         alarme,data_hora);
 
                 registros.add(registro);
@@ -107,11 +107,11 @@ public class DataLoggerService {
 }
 
 
-public void salvarRegistro(List<RegistroDatalloger> registros){
+public void salvarRegistro(List<RegistroDatalogger> registros){
 
-    for (RegistroDatalloger registro : registros) {
+    for (RegistroDatalogger registro : registros) {
 
-        List<RegistroDatalloger> registroBanco = registroRepository.listar();
+        List<RegistroDatalogger> registroBanco = registroRepository.listar();
         
 
         

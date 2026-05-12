@@ -2,7 +2,7 @@ package com.thermvaccine.repository;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.thermvaccine.model.RegistroDatalloger;
+import com.thermvaccine.model.RegistroDatalogger;
 
 import java.io.File;
 import java.io.IOException;
@@ -15,7 +15,7 @@ public class RegistroRepository {
     private final File arquivo = new File("data/registro.json");
 
     // READ FILE
-    public List<RegistroDatalloger> listar() {
+    public List<RegistroDatalogger> listar() {
         try {
             if (!arquivo.exists()) {
                 return new ArrayList<>();
@@ -23,7 +23,7 @@ public class RegistroRepository {
 
             return mapper.readValue(
                     arquivo,
-                    new TypeReference<List<RegistroDatalloger>>() {}
+                    new TypeReference<List<RegistroDatalogger>>() {}
             );
 
         } catch (IOException e) {
@@ -33,7 +33,7 @@ public class RegistroRepository {
     }
 
     // SAVE FILE
-    public void salvar(List<RegistroDatalloger> registro) {
+    public void salvar(List<RegistroDatalogger> registro) {
         try {
             mapper.writerWithDefaultPrettyPrinter()
                     .writeValue(arquivo, registro);

@@ -4,7 +4,9 @@ import java.time.format.DateTimeFormatter;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import lombok.NoArgsConstructor;
 
+@NoArgsConstructor
 public class Transporte {
  
     private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");

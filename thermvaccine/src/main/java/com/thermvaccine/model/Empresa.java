@@ -1,5 +1,8 @@
 package com.thermvaccine.model;
 
+import lombok.NoArgsConstructor;
+
+@NoArgsConstructor
 public class Empresa {
 
     private String cnpj;

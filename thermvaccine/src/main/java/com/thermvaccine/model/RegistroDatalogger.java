@@ -6,7 +6,7 @@ import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
-public class RegistroDatalloger {
+public class RegistroDatalogger {
 
     private Long id;
     
@@ -19,7 +19,7 @@ public class RegistroDatalloger {
 
     
 
-    public RegistroDatalloger(Long id, float temperatura, Boolean rede, float energia,
+    public RegistroDatalogger(Long id, float temperatura, Boolean rede, float energia,
          Boolean compressor, Boolean alarme, LocalDateTime data_hora){
             this.id = id;
             this.temperatura = temperatura;

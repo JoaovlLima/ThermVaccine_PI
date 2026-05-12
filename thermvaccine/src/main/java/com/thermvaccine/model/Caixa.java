@@ -1,17 +1,21 @@
 package com.thermvaccine.model;
 
+import lombok.NoArgsConstructor;
+
+@NoArgsConstructor
 public class Caixa {
 
-    private long id;
+    private String id;
     private int qtd_max_vac;
 
-    public Caixa(long id, int qtd_max_vac){
+
+    public Caixa(String id, int qtd_max_vac){
         this.id = id;
         this.qtd_max_vac = qtd_max_vac;
     }
   
 
-    public long getId() {
+    public String getId() {
         return id;
     }
 
