@@ -179,6 +179,7 @@ public class DataLoggerService {
 
     }
 
+
    public void limparBanco(){
         registroRepository.limpar();
     }

@@ -22,7 +22,9 @@ public class Main {
 
         System.out.println("ESTA COM THREAD");
 
-        // CalculoVidaUtilService.calcular(registros);
+        CalculoVidaUtilService.calcular(registros);
+
+        
         
     }
 }
