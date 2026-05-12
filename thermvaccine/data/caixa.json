@@ -1,0 +1,32 @@
+[
+  {
+    "id": "mesa-01",
+    "qtd_max_vac": 4,
+    "comandas": [],
+    "disponivel": true
+  },
+  {
+    "id": "mesa-02",
+    "qtd_max_vac": 2,
+    "comandas": [],
+    "disponivel": false
+  },
+  {
+    "id": "mesa-03",
+    "qtd_max_vac": 6,
+    "comandas": [],
+    "disponivel": true
+  },
+  {
+    "id": "mesa-04",
+    "qtd_max_vac": 8,
+    "comandas": [],
+    "disponivel": true
+  },
+  {
+    "id": "mesa-05",
+    "qtd_max_vac": 3,
+    "comandas": [],
+    "disponivel": false
+  }
+]

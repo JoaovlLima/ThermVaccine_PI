@@ -61,12 +61,21 @@ public class CaixaService {
         try {
             List<Caixa> caixasDb = caixaRepository.listar();
 
+            if(caixasDb.isEmpty()){
+                System.out.println("Não há caixas cadastradas");
+                return List.of();
+            }
             List<Caixa> caixasDisponiveis = new ArrayList<>();
 
             for (Caixa caixa : caixasDb) {
                 if (caixa.getDisponivel()) {
                     caixasDisponiveis.add(caixa);
                 }
+            }
+
+            if(caixasDisponiveis.isEmpty()){
+                System.out.println("Não há caixas disponiveis");
+                return List.of();
             }
 
             return caixasDisponiveis;
