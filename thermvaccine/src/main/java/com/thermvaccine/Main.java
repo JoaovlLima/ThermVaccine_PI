@@ -3,8 +3,11 @@ package com.thermvaccine;
 import java.util.List;
 
 import com.thermvaccine.model.RegistroDatalogger;
+<<<<<<< HEAD
 import com.thermvaccine.model.Vacina;
 import com.thermvaccine.model.Comanda.StatusComanda;
+=======
+>>>>>>> c671817f3ace0d144b46c239d51b0de9f4c81104
 import com.thermvaccine.service.CalculoVidaUtilService;
 import com.thermvaccine.service.DataLoggerService;
 
@@ -34,16 +37,18 @@ public class Main {
 
         System.out.println("---------------------");
 
-        CalculoVidaUtilService.calcular(registros);
+        dataLoggerService.salvarRegistro(registros);
+
+        System.out.println("ESTA COM THREAD");
+
+        // CalculoVidaUtilService.calcular(registros);
         
 
 
         System.out.println("---------------------");
 
         
-        VacinaService vs = new VacinaService();
-
-        
+        VacinaService vs = new VacinaService();       
         LoteService ls = new LoteService();
 
 
@@ -56,7 +61,7 @@ public class Main {
         Caixa cx = new Caixa(1, 10);
 
         List<Comanda> comandas = new ArrayList<>();
-        Comanda cm = new Comanda(123123123, "2026-05-08 20:11:54", "13503120", 1181, StatusComanda.EM_TRANSITO, l, cx);
+        Comanda cm = new Comanda("13503120", 1181, l);
         comandas.add(cm);
 
         TransporteService ts = new TransporteService();

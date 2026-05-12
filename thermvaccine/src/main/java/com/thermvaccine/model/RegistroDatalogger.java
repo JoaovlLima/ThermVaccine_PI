@@ -30,4 +30,15 @@ public class RegistroDatalogger {
             this.data_hora = data_hora;
          }
 
+         public RegistroDatalogger(Long id, float temperatura, Boolean rede, float energia,
+         Boolean compressor, Boolean alarme){
+            this.id = id;
+            this.temperatura = temperatura;
+            this.rede = rede;
+            this.energia = energia;
+            this.compressor = compressor;
+            this.alarme = alarme;
+         }
+
+
 }
