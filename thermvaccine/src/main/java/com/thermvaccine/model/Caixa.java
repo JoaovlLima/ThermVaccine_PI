@@ -6,6 +6,15 @@ import java.util.UUID;
 
 public class Caixa {
 
+    public List<Comanda> getComandas() {
+        return comandas;
+    }
+
+    public void setComandas(List<Comanda> comandas) {
+        this.comandas = comandas;
+    }
+
+
     private String id;
     private int qtd_max_vac;
     private List<Comanda> comandas = new ArrayList<>();
