@@ -1,0 +1,32 @@
+[
+  {
+    "id": "cx1",
+    "qtd_max_vac": 4,
+    "comandas": [],
+    "disponivel": true
+  },
+  {
+    "id": "cx2",
+    "qtd_max_vac": 2,
+    "comandas": [],
+    "disponivel": false
+  },
+  {
+    "id": "cx3",
+    "qtd_max_vac": 6,
+    "comandas": [],
+    "disponivel": true
+  },
+  {
+    "id": "cx4",
+    "qtd_max_vac": 8,
+    "comandas": [],
+    "disponivel": true
+  },
+  {
+    "id": "cx5",
+    "qtd_max_vac": 3,
+    "comandas": [],
+    "disponivel": false
+  }
+]

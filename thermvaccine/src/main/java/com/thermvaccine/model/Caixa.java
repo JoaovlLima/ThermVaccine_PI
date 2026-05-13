@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+import lombok.NoArgsConstructor;
+
+@NoArgsConstructor
 public class Caixa {
 
     private String id;
@@ -23,6 +26,21 @@ public class Caixa {
         this.comandas = comandas;
     }
   
+     public List<Comanda> getComandas() {
+        return comandas;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+     public void setDisponivel(boolean disponivel) {
+         this.disponivel = disponivel;
+     }
+
+    public void setComandas(List<Comanda> comandas) {
+        this.comandas = comandas;
+    }
 
     public void inserirComandaUnidade(Comanda comanda){
         this.comandas.add(comanda);

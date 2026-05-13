@@ -2,12 +2,8 @@ package com.thermvaccine;
 
 import java.util.List;
 
+import com.thermvaccine.controller.CaixaController;
 import com.thermvaccine.model.RegistroDatalogger;
-<<<<<<< HEAD
-import com.thermvaccine.model.Vacina;
-import com.thermvaccine.model.Comanda.StatusComanda;
-=======
->>>>>>> c671817f3ace0d144b46c239d51b0de9f4c81104
 import com.thermvaccine.service.CalculoVidaUtilService;
 import com.thermvaccine.service.DataLoggerService;
 
@@ -30,16 +26,22 @@ import java.util.ArrayList;
 public class Main {
 
     public static void main(String[] args) {
+
+        CaixaController caixaController = new CaixaController();
+
+        caixaController.escolhaCaixa();
        
-        DataLoggerService dataLoggerService = new DataLoggerService();
+        // DataLoggerService dataLoggerService = new DataLoggerService();
 
-        List<RegistroDatalogger> registros = dataLoggerService.leituraArquivo();
+        // dataLoggerService.limparBanco();
+        
+        // List<RegistroDatalogger> registros = dataLoggerService.leituraArquivo();
 
-        System.out.println("---------------------");
+        // System.out.println("---------------------");
 
-        dataLoggerService.salvarRegistro(registros);
+        // dataLoggerService.salvarRegistro(registros);
 
-        System.out.println("ESTA COM THREAD");
+        // System.out.println("ESTA COM THREAD");
 
         // CalculoVidaUtilService.calcular(registros);
         
