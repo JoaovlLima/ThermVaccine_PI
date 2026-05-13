@@ -13,7 +13,7 @@ public class Main {
 
         CaixaController caixaController = new CaixaController();
 
-        caixaController.criacaoCaixa();
+        caixaController.escolhaCaixa();
        
         // DataLoggerService dataLoggerService = new DataLoggerService();
 

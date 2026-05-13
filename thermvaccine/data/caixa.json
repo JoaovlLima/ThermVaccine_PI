@@ -1,30 +1,30 @@
 [
   {
-    "id": "mesa-01",
+    "id": "cx1",
     "qtd_max_vac": 4,
     "comandas": [],
     "disponivel": true
   },
   {
-    "id": "mesa-02",
+    "id": "cx2",
     "qtd_max_vac": 2,
     "comandas": [],
     "disponivel": false
   },
   {
-    "id": "mesa-03",
+    "id": "cx3",
     "qtd_max_vac": 6,
     "comandas": [],
     "disponivel": true
   },
   {
-    "id": "mesa-04",
+    "id": "cx4",
     "qtd_max_vac": 8,
     "comandas": [],
     "disponivel": true
   },
   {
-    "id": "mesa-05",
+    "id": "cx5",
     "qtd_max_vac": 3,
     "comandas": [],
     "disponivel": false

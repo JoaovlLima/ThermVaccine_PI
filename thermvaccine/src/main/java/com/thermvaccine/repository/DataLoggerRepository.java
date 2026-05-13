@@ -60,12 +60,14 @@ public class DataLoggerRepository {
     public void editar(DataLogger dataLoggerAtualizada){
         try {
             List<DataLogger> dataLoggers = listar();
+            
 
             for (int i = 0; i < dataLoggers.size(); i++) {
                 if(dataLoggers.get(i).getId().equals(dataLoggerAtualizada.getId())){
                     dataLoggers.set(i, dataLoggerAtualizada);
                 }
             }
+
 
             salvar(dataLoggers);
          } catch (Exception e) {

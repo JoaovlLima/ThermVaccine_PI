@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Scanner;
 
 import com.thermvaccine.model.Caixa;
+import com.thermvaccine.model.Comanda;
+import com.thermvaccine.model.DataLogger;
 import com.thermvaccine.service.CaixaService;
 
 public class CaixaController {
@@ -14,7 +16,7 @@ public class CaixaController {
         this.caixaService = new CaixaService();
     }
 
-    public void criacaoCaixa(){
+    public Caixa escolhaCaixa(){
 
 
         Scanner sc = new Scanner(System.in);
@@ -22,7 +24,7 @@ public class CaixaController {
         List<Caixa> caixas = caixaService.listarCaixasDisponiveis();
 
         if(caixas.isEmpty()){
-            return;
+            return null;
         }
 
         System.out.println("\nOpções disponiveis: ");
@@ -36,11 +38,26 @@ public class CaixaController {
 
         if(escolhaCaixa >= 1 && escolhaCaixa <= caixas.size()){
             System.out.println("Você escolheu : "+caixas.get(escolhaCaixa-1).getId());
+            return caixas.get(escolhaCaixa-1); 
         }else{
             System.out.println("Opção invalida");
             System.out.println("SIZE :"+caixas.size());
-            return;
+            return null;
         }
 
     }
+
+    public void vincularDatalogger(Caixa caixa, DataLogger dataLogger){
+
+        caixaService.vincularDatalogger(dataLogger, caixa);
+
+    }
+ 
+
+    public void inserirComandas(Caixa caixa, List<Comanda> comandas){
+
+        caixaService.inserirComandas(caixa, comandas);;
+    }
+
+
 }
