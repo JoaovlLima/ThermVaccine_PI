@@ -1,23 +1,18 @@
 package com.thermvaccine.repository;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.SerializationFeature;
-import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
-import com.thermvaccine.model.RegistroDatalogger;
-
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RegistroRepository {
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.thermvaccine.model.HistoricoCaixa;
 
-    private final ObjectMapper mapper = new ObjectMapper()
-        .registerModule(new JavaTimeModule())
-        .disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
+public class HistoricoCaixaRepository {
+    private final ObjectMapper mapper = new ObjectMapper();
 
-    private final File arquivo = new File("/home/taviz/VsCode/PI - ThermVaccine/ThermVaccine_PI/thermvaccine/data/registro.json");
+    private final File arquivo = new File("thermvaccine\\data\\HistoricoCaixa.json");
 
 
     // CLEANER
@@ -32,7 +27,7 @@ public class RegistroRepository {
 }
 
     // READ FILE
-    public List<RegistroDatalogger> listar() {
+    public List<HistoricoCaixa> listar() {
         try {
             if (!arquivo.exists()) {
                 return new ArrayList<>();
@@ -40,9 +35,8 @@ public class RegistroRepository {
 
             return mapper.readValue(
                     arquivo,
-                    new TypeReference<List<RegistroDatalogger>>() {}
+                    new TypeReference<List<HistoricoCaixa>>() {}
             );
-
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -51,10 +45,10 @@ public class RegistroRepository {
     }
 
     // SAVE FILE
-    public void salvar(List<RegistroDatalogger> registro) {
+    public void salvar(List<HistoricoCaixa> historicoCaixa) {
         try {
             mapper.writerWithDefaultPrettyPrinter()
-                    .writeValue(arquivo, registro);
+                    .writeValue(arquivo, historicoCaixa);
 
         } catch (IOException e) {
             e.printStackTrace();

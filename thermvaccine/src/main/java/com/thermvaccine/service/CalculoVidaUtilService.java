@@ -2,8 +2,8 @@ package com.thermvaccine.service;
 import java.time.Duration;
 import java.util.List;
 
-import com.thermvaccine.model.RegistroDatalloger;
 import com.thermvaccine.repository.RegistroRepository;
+import com.thermvaccine.model.RegistroDatalogger;
 
 
 public class CalculoVidaUtilService {
@@ -20,7 +20,7 @@ public class CalculoVidaUtilService {
         int tamanhoAnterior = 0;
 
         while (true){
-            List<RegistroDatalloger> registros = repository.listar();
+            List<RegistroDatalogger> registros = repository.listar();
 
             if(registros.size() > tamanhoAnterior) {
                 tamanhoAnterior = registros.size();
@@ -41,14 +41,14 @@ public class CalculoVidaUtilService {
     }
 
 
-    public static double calcular(List<RegistroDatalloger> registros){ // O cálculo é devagar pq está fazendo com o padrão de 5 segundos entre registros
+    public static double calcular(List<RegistroDatalogger> registros){
 
         double MRNA_Atual = MRNA_INICIAL;
 
         for(int i = 0; i < registros.size() - 1; i++){
 
-            RegistroDatalloger atual = registros.get(i);
-            RegistroDatalloger proximo = registros.get(i + 1);
+            RegistroDatalogger atual = registros.get(i);
+            RegistroDatalogger proximo = registros.get(i + 1);
             
             double deltaTSegundos = Duration.between(
                 atual.getData_hora(),

@@ -11,21 +11,69 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-import com.thermvaccine.model.RegistroDatalloger;
+import com.thermvaccine.model.DataLogger;
+import com.thermvaccine.model.RegistroDatalogger;
+import com.thermvaccine.repository.DataLoggerRepository;
 import com.thermvaccine.repository.RegistroRepository;
 
 public class DataLoggerService {
 
     private final RegistroRepository registroRepository;
+    private final DataLoggerRepository dataLoggerRepository;
 
     public DataLoggerService() {
         this.registroRepository = new RegistroRepository();
+        this.dataLoggerRepository = new DataLoggerRepository();
     }
 
-    public List<RegistroDatalloger> leituraArquivo() {
+
+    public void criarDataLogger(){
+        try {
+            
+            List<DataLogger> dataLoggersDb = dataLoggerRepository.listar();
+
+            DataLogger dataLoggerNovo = new DataLogger("ModeloTest", List.of());
+
+            dataLoggersDb.add(dataLoggerNovo);
+
+            dataLoggerRepository.salvar(dataLoggersDb);
+
+        } catch (Exception e) {
+            throw new RuntimeException("Erro ao salvar DataLogger: "+e);
+        }
+    }
+
+    public List<DataLogger> dataLoggersDisponiveis(){
+
+        try {
+            
+            List<DataLogger> dataLoggersDb = dataLoggerRepository.listar();
+
+            List<DataLogger> dataLoggersDiponiveis = new ArrayList<>();
+
+            for (DataLogger dataLogger : dataLoggersDb) {
+
+                if(dataLogger.isDisponivel()){
+                    dataLoggersDiponiveis.add(dataLogger);
+                }
+
+            }
+
+            return dataLoggersDiponiveis;
+
+        } catch (Exception e) {
+            throw new RuntimeException("Erro ao listar dataLogger disponiveis: "+e);
+        }
+
+    }
+
+
+
+
+    public List<RegistroDatalogger> leituraArquivo() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
-        List<RegistroDatalloger> registros = new ArrayList<>();
+        List<RegistroDatalogger> registros = new ArrayList<>();
 
         InputStream input = getClass()
                 .getClassLoader()
@@ -60,7 +108,7 @@ public class DataLoggerService {
                 boolean alarme = Integer.parseInt(valores[7]) == 1;
                 boolean compressor = Integer.parseInt(valores[8]) == 1;
 
-                RegistroDatalloger registro = new RegistroDatalloger(id, temperatura, rede, energia, compressor,
+                RegistroDatalogger registro = new RegistroDatalogger(id, temperatura, rede, energia, compressor,
                         alarme);
 
                 registros.add(registro);
@@ -104,15 +152,15 @@ public class DataLoggerService {
         return dataHora;
     }
 
-    public void salvarRegistro(List<RegistroDatalloger> registros) {
+    public void salvarRegistro(List<RegistroDatalogger> registros) {
 
         Thread thread = new Thread(() -> {
             
             try {
 
-            for (RegistroDatalloger registro : registros) {
+            for (RegistroDatalogger registro : registros) {
 
-                List<RegistroDatalloger> registrosBanco = registroRepository.listar();
+                List<RegistroDatalogger> registrosBanco = registroRepository.listar();
 
                 registro.setData_hora(LocalDateTime.now());
 
