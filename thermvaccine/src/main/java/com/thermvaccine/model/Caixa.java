@@ -67,15 +67,6 @@ public class Caixa {
         return qtd_max_vac;
     }
 
-    public List<Comanda> getComandas() {
-        return comandas;
-    }
-
-    public void setComandas(List<Comanda> comandas) {
-        this.comandas = comandas;
-    }
-
-
     public void setQtd_max_vac(int qtd_max_vac) {
         this.qtd_max_vac = qtd_max_vac;
     }

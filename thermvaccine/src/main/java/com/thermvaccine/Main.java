@@ -27,72 +27,74 @@ public class Main {
 
     public static void main(String[] args) {
 
-        CaixaController caixaController = new CaixaController();
+        // CaixaController caixaController = new CaixaController();
 
-        caixaController.escolhaCaixa();
+        // caixaController.escolhaCaixa();
        
-        // DataLoggerService dataLoggerService = new DataLoggerService();
+        DataLoggerService dataLoggerService = new DataLoggerService();
 
         // dataLoggerService.limparBanco();
         
-        // List<RegistroDatalogger> registros = dataLoggerService.leituraArquivo();
+        List<RegistroDatalogger> registrosTest = dataLoggerService.leituraArquivo();
 
-        // System.out.println("---------------------");
+        System.out.println("---------------------");
 
-        // dataLoggerService.salvarRegistro(registros);
+        dataLoggerService.salvarRegistro(registrosTest,"DL003");
 
-        // System.out.println("ESTA COM THREAD");
+        System.out.println("ESTA COM THREAD");
+
+        
 
         // CalculoVidaUtilService.calcular(registros);
         
 
 
-        System.out.println("---------------------");
+        // System.out.println("---------------------");
 
         
-        VacinaService vs = new VacinaService();       
-        LoteService ls = new LoteService();
+        // VacinaService vs = new VacinaService();       
+        // LoteService ls = new LoteService();
 
 
-        Usuario u = new Usuario("abcdef", "Abc", "abc123", "p");
-        Vacina v = new Vacina("teste", 2, 8);
-        Lote l = new Lote(5, "abc", "2027-09-08 22:22:22", u, v);
+        // Usuario u = new Usuario("abcdef", "Abc", "abc123", "p");
+        // Vacina v = new Vacina("teste", 2, 8);
+        // Lote l = new Lote(5, "abc", "2027-09-08 22:22:22", u, v);
 
-        Empresa e = new Empresa("3232323232", "abcx", "qwerty");
-        Transporte t = new Transporte("ewp1234", 5, "2020-02-02 11:11:12");
-        Caixa cx = new Caixa(1, 10);
+        // Empresa e = new Empresa("3232323232", "abcx", "qwerty");
+        // Transporte t = new Transporte("ewp1234", 5, "2020-02-02 11:11:12");
+        // Caixa cx = new Caixa(1, 10);
 
-        List<Comanda> comandas = new ArrayList<>();
-        Comanda cm = new Comanda("13503120", 1181, l);
-        comandas.add(cm);
+        // List<Comanda> comandas = new ArrayList<>();
+        // Comanda cm = new Comanda("13503120", 1181, l);
+        // comandas.add(cm);
 
-        TransporteService ts = new TransporteService();
-        CaixaService cs = new CaixaService();
+        // TransporteService ts = new TransporteService();
+        // CaixaService cs = new CaixaService();
 
-        vs.exibirDados(v);
+        // vs.exibirDados(v);
 
-        System.out.println("---------------------");
+        // System.out.println("---------------------");
 
-        ls.exibirDados(l);
+        // ls.exibirDados(l);
 
-        System.out.println("---------------------");
+        // System.out.println("---------------------");
 
 
-        u.setEmpresa(e);
-        System.out.println(u.getEmpresa().getNome());
+        // u.setEmpresa(e);
+        // System.out.println(u.getEmpresa().getNome());
 
-        System.out.println("---------------------");
-        ts.exibirDados(t);
+        // System.out.println("---------------------");
+        // ts.exibirDados(t);
         
 
-        System.out.println("---------------------");
+        // System.out.println("---------------------");
 
-        t.addUmaCaixa(cx);
-        ts.exibirCaixas(cx);
+        // t.addUmaCaixa(cx);
+        // ts.exibirCaixas(cx);
 
-        System.out.println("---------------------");
+        // System.out.println("---------------------");
 
-        cs.exibirComanda(cx, comandas);
+        // cs.exibirComanda(cx, comandas);
 
 
 
