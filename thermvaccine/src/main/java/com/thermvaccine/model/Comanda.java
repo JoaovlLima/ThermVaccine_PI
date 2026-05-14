@@ -1,22 +1,23 @@
 package com.thermvaccine.model;
 
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.time.LocalDateTime;
+import lombok.NoArgsConstructor;
 
+@NoArgsConstructor
 public class Comanda {
 
-    private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
     public enum StatusComanda{
+        EM_AGUARDO,
         EM_TRANSITO,
         ENTREGUE,
         CANCELADO
     }
 
 
-    private long id;
+    private String id;
     private LocalDateTime data_emissao;
     private String cep;
     private int numEndereco;
@@ -25,16 +26,16 @@ public class Comanda {
 
 
   
-    public Comanda(long id, String data_emissao, String cep, int numEndereco, StatusComanda status, List<Lote_coman> lote_coman){
-        this.id = id;
-        this.data_emissao = LocalDateTime.parse(data_emissao, FORMATTER);
+    public Comanda(String cep, int numEndereco, List<Lote_coman> lote_coman){
+        //this.id = id;
+        this.data_emissao = LocalDateTime.now();
         this.cep = cep;
         this.numEndereco = numEndereco;
-        this.status = status;
+        this.status = StatusComanda.EM_AGUARDO;
         this.lote_coman = lote_coman;
     }
 
-    public long getId() {
+    public String getId() {
         return id;
     }
 

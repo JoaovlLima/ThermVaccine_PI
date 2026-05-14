@@ -1,8 +1,8 @@
 package com.thermvaccine.service;
 
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
-import java.time.format.DateTimeFormatter;
 import com.thermvaccine.model.Caixa;
 import com.thermvaccine.model.Comanda;
 import com.thermvaccine.model.DataLogger;
@@ -13,6 +13,9 @@ import com.thermvaccine.repository.DataLoggerRepository;
 import com.thermvaccine.repository.HistoricoCaixaRepository;
 
 public class CaixaService {
+
+    private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+
     private final CaixaRepository caixaRepository;
     private final HistoricoCaixaRepository historicoCaixaRepository;
     private final DataLoggerRepository dataLoggerRepository;
@@ -22,8 +25,6 @@ public class CaixaService {
         this.historicoCaixaRepository = new HistoricoCaixaRepository();
         this.dataLoggerRepository = new DataLoggerRepository();
     }
-
-    private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
     public void exibirComanda(Caixa caixa) {
 

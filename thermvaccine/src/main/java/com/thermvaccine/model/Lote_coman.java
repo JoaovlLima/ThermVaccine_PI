@@ -8,4 +8,5 @@ import lombok.Data;
 public class Lote_coman {
     private Lote lote;
     private int qtd;
+
 }
