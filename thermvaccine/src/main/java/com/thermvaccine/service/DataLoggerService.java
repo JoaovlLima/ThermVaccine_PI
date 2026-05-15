@@ -97,8 +97,8 @@ public class DataLoggerService {
 
     }
 
-     public void limparBanco(){
-        registroRepository.limpar();
+     public void limparRegistros(String idDataLogger){
+        dataLoggerRepository.limparRegistros(idDataLogger);
     }
 
 
@@ -193,7 +193,7 @@ public class DataLoggerService {
 
         List<RegistroDatalogger> reg = dataLogger.getRegistroDatalogger();
 
-        
+
     }
 
   

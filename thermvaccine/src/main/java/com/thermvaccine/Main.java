@@ -34,6 +34,8 @@ public class Main {
         DataLoggerService dataLoggerService = new DataLoggerService();
 
         // dataLoggerService.limparBanco();
+
+        dataLoggerService.limparRegistros("DL003");
         
         List<RegistroDatalogger> registrosTest = dataLoggerService.leituraArquivo();
 
@@ -43,7 +45,7 @@ public class Main {
 
         System.out.println("ESTA COM THREAD");
 
-        
+
 
         // CalculoVidaUtilService.calcular(registros);
         

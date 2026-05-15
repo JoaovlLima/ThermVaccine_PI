@@ -71,6 +71,7 @@ public class DataLoggerRepository {
             for (int i = 0; i < dataLoggers.size(); i++) {
                 if(dataLoggers.get(i).getId().equals(dataLoggerAtualizada.getId())){
                     dataLoggers.set(i, dataLoggerAtualizada);
+                    break;
                 }
             }
 
@@ -93,5 +94,23 @@ public class DataLoggerRepository {
         }
 
         return null;
+    }
+
+    public void limparRegistros(String idDataLogger){
+        List<DataLogger> dataLoggersDb = listar();
+
+        for (int i = 0; i < dataLoggersDb.size(); i++) {
+
+            if(dataLoggersDb.get(i).getId().equals(idDataLogger)){
+
+                DataLogger dataLogger = dataLoggersDb.get(i);
+                dataLogger.setRegistroDatalogger(List.of());
+                dataLoggersDb.set(i, dataLogger);
+                break;
+            }
+            
+        }
+
+        salvar(dataLoggersDb);
     }
 }
