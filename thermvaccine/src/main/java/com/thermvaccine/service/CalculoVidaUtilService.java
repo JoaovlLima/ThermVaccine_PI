@@ -3,7 +3,10 @@ import java.time.Duration;
 import java.util.List;
 
 import com.thermvaccine.repository.RegistroRepository;
+import com.thermvaccine.repository.DataLoggerRepository;
+import com.thermvaccine.model.DataLogger;
 import com.thermvaccine.model.RegistroDatalogger;
+import com.thermvaccine.repository.DataLoggerRepository;
 
 
 public class CalculoVidaUtilService {
@@ -14,13 +17,20 @@ public class CalculoVidaUtilService {
     public static final double MRNA_INICIAL = 100.0;
     public static final double THRESHOLD_PERCENT = 95.0;
 
-    private static final RegistroRepository repository = new RegistroRepository();
+    private static final DataLoggerRepository repository = new DataLoggerRepository();
 
-    public static void iniciar(){
+    public static void iniciar(String idDataLogger){
         int tamanhoAnterior = 0;
 
         while (true){
-            List<RegistroDatalogger> registros = repository.listar();
+            DataLogger dataLogger = repository.findById(idDataLogger);
+
+            if (dataLogger == null) {
+                System.out.println("DataLogger não encontrado: " + idDataLogger);
+                break;
+            }
+
+            List<RegistroDatalogger> registros = dataLogger.getRegistroDatalogger();
 
             if(registros.size() > tamanhoAnterior) {
                 tamanhoAnterior = registros.size();
@@ -35,9 +45,7 @@ public class CalculoVidaUtilService {
                 Thread.currentThread().interrupt();
                 break;
             }
-
         } 
-
     }
 
 

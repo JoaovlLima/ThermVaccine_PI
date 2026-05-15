@@ -45,7 +45,7 @@ public class Main {
 
         
 
-        CalculoVidaUtilService.iniciar();
+        CalculoVidaUtilService.iniciar("DL003");
         
 
 
