@@ -6,21 +6,23 @@ import com.thermvaccine.repository.RegistroRepository;
 import com.thermvaccine.repository.DataLoggerRepository;
 import com.thermvaccine.model.DataLogger;
 import com.thermvaccine.model.RegistroDatalogger;
+import com.thermvaccine.model.Vacina;
 import com.thermvaccine.repository.DataLoggerRepository;
 
 
 public class CalculoVidaUtilService {
 
     public static final double R = 8.3144;
-    public static final double EA = 100000.0;
-    public static final double A = 6.04e12;
     public static final double MRNA_INICIAL = 100.0;
-    public static final double THRESHOLD_PERCENT = 95.0;
 
     private static final DataLoggerRepository repository = new DataLoggerRepository();
 
-    public static void iniciar(String idDataLogger){
+    public static void iniciar(String idDataLogger, Vacina vacina){
         int tamanhoAnterior = 0;
+
+        double ea = vacina.getEa();
+        double a = vacina.getA();
+        double threshold = vacina.getThreshold();
 
         while (true){
             DataLogger dataLogger = repository.findById(idDataLogger);
@@ -34,7 +36,7 @@ public class CalculoVidaUtilService {
 
             if(registros.size() > tamanhoAnterior) {
                 tamanhoAnterior = registros.size();
-                double percentual = calcular(registros.subList(0, registros.size() - 1));
+                double percentual = calcular(registros.subList(0, registros.size() - 1), ea, a, threshold);
                 System.out.printf("mRNA intacto: %.6f%%%n", percentual);
 
             }
@@ -49,7 +51,7 @@ public class CalculoVidaUtilService {
     }
 
 
-    public static double calcular(List<RegistroDatalogger> registros){
+    public static double calcular(List<RegistroDatalogger> registros, double ea, double a, double threshold){
 
         double MRNA_Atual = MRNA_INICIAL;
 
@@ -67,12 +69,12 @@ public class CalculoVidaUtilService {
             if (deltaTSegundos <= 0) continue;
 
             double tempKelvin = atual.getTemperatura() + 273.15;
-            double k = A * Math.exp(-EA / (R * tempKelvin));
+            double k = a * Math.exp(-ea / (R * tempKelvin));
             MRNA_Atual = MRNA_Atual * Math.exp(-k * deltaTSegundos);
 
             double percentualIntacto = (MRNA_Atual / MRNA_INICIAL) * 100.0;
 
-            if(percentualIntacto < THRESHOLD_PERCENT){
+            if(percentualIntacto < threshold){
                 break;
             }
         }

@@ -1,6 +1,7 @@
 package com.thermvaccine;
 
 import java.util.List;
+import java.util.ArrayList;
 
 import com.thermvaccine.controller.CaixaController;
 import com.thermvaccine.model.RegistroDatalogger;
@@ -17,10 +18,11 @@ import com.thermvaccine.model.Transporte;
 import com.thermvaccine.model.Caixa;
 import com.thermvaccine.model.Comanda;
 import com.thermvaccine.model.DataLogger;
+import com.thermvaccine.model.Vacina;
 import com.thermvaccine.service.TransporteService;
 import com.thermvaccine.service.CaixaService;
 
-import java.util.ArrayList;
+
 
 
 public class Main {
@@ -32,6 +34,10 @@ public class Main {
         // caixaController.escolhaCaixa();
        
         DataLoggerService dataLoggerService = new DataLoggerService();
+        VacinaService vacinaService = new VacinaService();
+
+        Vacina moderna = new Vacina("Moderna mRNA-1273", -20f, 8f, 100000.0, 6.04e12, 95.0);
+        vacinaService.criar(moderna);
 
         // dataLoggerService.limparBanco();
 
@@ -39,17 +45,17 @@ public class Main {
         List<RegistroDatalogger> registrosTest = dataLoggerService.leituraArquivo();
 
 
-
-        dataLoggerService.criarDataLogger(); // Não uso o limpar Registro aqui pois é sempre aleatório, então sempre gera um novo, mas da pra gerar um e depois usar ele sempre
+        dataLoggerService.criarDataLogger(); 
 
         List<DataLogger> lista = dataLoggerService.dataLoggersDisponiveis();
         String idGerado = lista.get(lista.size() - 1).getId();
         System.out.println("DataLogger criado com ID: " + idGerado);
+        System.out.println("Vacina criada: " + moderna);
         
         
         dataLoggerService.salvarRegistro(registrosTest, idGerado);
         System.out.println("ESTA COM THREAD");
-        CalculoVidaUtilService.iniciar(idGerado);
+        CalculoVidaUtilService.iniciar(idGerado, moderna);
         
 
 
