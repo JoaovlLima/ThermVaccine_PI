@@ -3,24 +3,25 @@ package com.thermvaccine;
 import java.util.List;
 import java.util.ArrayList;
 
-import com.thermvaccine.controller.CaixaController;
-import com.thermvaccine.model.RegistroDatalogger;
-import com.thermvaccine.service.CalculoVidaUtilService;
-import com.thermvaccine.service.DataLoggerService;
-
-import com.thermvaccine.service.VacinaService;
-import com.thermvaccine.model.Lote;
-import com.thermvaccine.service.LoteService;
-
-import com.thermvaccine.model.Usuario;
-import com.thermvaccine.model.Empresa;
-import com.thermvaccine.model.Transporte;
 import com.thermvaccine.model.Caixa;
 import com.thermvaccine.model.Comanda;
 import com.thermvaccine.model.DataLogger;
+import com.thermvaccine.model.Empresa;
+import com.thermvaccine.model.Lote;
+import com.thermvaccine.model.RegistroDatalogger;
+import com.thermvaccine.model.Transporte;
+import com.thermvaccine.model.Usuario;
 import com.thermvaccine.model.Vacina;
-import com.thermvaccine.service.TransporteService;
+
+import com.thermvaccine.controller.CaixaController;
+
+import com.thermvaccine.service.CalculoVidaUtilService;
 import com.thermvaccine.service.CaixaService;
+import com.thermvaccine.service.DataLoggerService;
+import com.thermvaccine.service.LoteService;
+import com.thermvaccine.service.TransporteService;
+import com.thermvaccine.service.VacinaService;
+
 
 
 
@@ -29,42 +30,39 @@ public class Main {
 
     public static void main(String[] args) throws InterruptedException {
 
-        // CaixaController caixaController = new CaixaController();
-
-        // caixaController.escolhaCaixa();
-       
+        // ── SERVICES ─────────────────────────────────────────────
         DataLoggerService dataLoggerService = new DataLoggerService();
         VacinaService vacinaService = new VacinaService();
 
+        // ── VACINA ────────────────────────────────────────────────
         Vacina moderna = new Vacina("Moderna mRNA-1273", -20f, 8f, 100000.0, 6.04e12, 95.0);
         vacinaService.criar(moderna);
 
+        // ── DATALOGGER ────────────────────────────────────────────
         // dataLoggerService.limparBanco();
-
-    
-        List<RegistroDatalogger> registrosTest = dataLoggerService.leituraArquivo();
-
-
-        dataLoggerService.criarDataLogger(); 
+        dataLoggerService.criarDataLogger();
 
         List<DataLogger> lista = dataLoggerService.dataLoggersDisponiveis();
         String idGerado = lista.get(lista.size() - 1).getId();
         System.out.println("DataLogger criado com ID: " + idGerado);
-        System.out.println("Vacina criada: " + moderna);
-        
-        
+        System.out.println("Vacina criada: " + moderna.getNome());
+
+        // ── SIMULAÇÃO VIA CSV ─────────────────────────────────────
+        List<RegistroDatalogger> registrosTest = dataLoggerService.leituraArquivo();
         dataLoggerService.salvarRegistro(registrosTest, idGerado);
         System.out.println("ESTA COM THREAD");
+
+        // ── MONITORAMENTO ─────────────────────────────────────────
         CalculoVidaUtilService.iniciar(idGerado, moderna);
-        
 
 
-        // System.out.println("---------------------");
+        // ── TESTES ANTIGOS ───────────────────────────
 
-        
-        // VacinaService vs = new VacinaService();       
+        // CaixaController caixaController = new CaixaController();
+        // caixaController.escolhaCaixa();
+
+        // VacinaService vs = new VacinaService();
         // LoteService ls = new LoteService();
-
 
         // Usuario u = new Usuario("abcdef", "Abc", "abc123", "p");
         // Vacina v = new Vacina("teste", 2, 8);
@@ -82,30 +80,15 @@ public class Main {
         // CaixaService cs = new CaixaService();
 
         // vs.exibirDados(v);
-
-        // System.out.println("---------------------");
-
         // ls.exibirDados(l);
-
-        // System.out.println("---------------------");
-
 
         // u.setEmpresa(e);
         // System.out.println(u.getEmpresa().getNome());
 
-        // System.out.println("---------------------");
         // ts.exibirDados(t);
-        
-
-        // System.out.println("---------------------");
-
         // t.addUmaCaixa(cx);
         // ts.exibirCaixas(cx);
-
-        // System.out.println("---------------------");
-
         // cs.exibirComanda(cx, comandas);
-
 
 
     }
