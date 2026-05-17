@@ -16,7 +16,7 @@ import com.thermvaccine.model.Empresa;
 import com.thermvaccine.model.Transporte;
 import com.thermvaccine.model.Caixa;
 import com.thermvaccine.model.Comanda;
-
+import com.thermvaccine.model.DataLogger;
 import com.thermvaccine.service.TransporteService;
 import com.thermvaccine.service.CaixaService;
 
@@ -35,19 +35,21 @@ public class Main {
 
         // dataLoggerService.limparBanco();
 
-        dataLoggerService.limparRegistros("DL003");
-        
+    
         List<RegistroDatalogger> registrosTest = dataLoggerService.leituraArquivo();
 
-        System.out.println("---------------------");
 
-        dataLoggerService.salvarRegistro(registrosTest,"DL003");
 
+        dataLoggerService.criarDataLogger(); // Não uso o limpar Registro aqui pois é sempre aleatório, então sempre gera um novo, mas da pra gerar um e depois usar ele sempre
+
+        List<DataLogger> lista = dataLoggerService.dataLoggersDisponiveis();
+        String idGerado = lista.get(lista.size() - 1).getId();
+        System.out.println("DataLogger criado com ID: " + idGerado);
+        
+        
+        dataLoggerService.salvarRegistro(registrosTest, idGerado);
         System.out.println("ESTA COM THREAD");
-
-
-
-        CalculoVidaUtilService.iniciar("DL003");
+        CalculoVidaUtilService.iniciar(idGerado);
         
 
 

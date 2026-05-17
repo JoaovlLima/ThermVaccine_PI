@@ -11,13 +11,13 @@ public class Vacina {
     private float tempe_max;
 
 
+
     public Vacina(String nome, float tempe_min, float tempe_max){
         //id = autofill do SQL?
         this.nome = nome;
         this.tempe_min = tempe_min;
         this.tempe_max = tempe_max;
     }
-
 
 
     public String getId() {
