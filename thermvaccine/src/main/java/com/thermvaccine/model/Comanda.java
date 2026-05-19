@@ -9,21 +9,30 @@ import lombok.NoArgsConstructor;
 public class Comanda {
 
 
+    private String id;
+    private LocalDateTime data_emissao;
+    private String cep;
+    private int numEndereco;
+    private StatusComanda status;
+    
+    private String idCaixa;
+    private List<Lote_coman> lote_coman = new ArrayList<>();
+
+
+    public String getIdCaixa() {
+        return idCaixa;
+    }
+
+    public void setIdCaixa(String idCaixa) {
+        this.idCaixa = idCaixa;
+    }
+
     public enum StatusComanda{
         EM_AGUARDO,
         EM_TRANSITO,
         ENTREGUE,
         CANCELADO
     }
-
-
-    private String id;
-    private LocalDateTime data_emissao;
-    private String cep;
-    private int numEndereco;
-    private StatusComanda status;
-    private List<Lote_coman> lote_coman = new ArrayList<>();
-
 
   
     public Comanda(String cep, int numEndereco, List<Lote_coman> lote_coman){
