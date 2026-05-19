@@ -36,7 +36,7 @@ public class CalculoVidaUtilService {
 
             if(registros.size() > tamanhoAnterior) {
                 tamanhoAnterior = registros.size();
-                double percentual = calcular(registros.subList(0, registros.size() - 1), ea, a, threshold);
+                double percentual = calcularRegistros(registros.subList(0, registros.size() - 1), ea, a, threshold);
                 System.out.printf("mRNA intacto: %.6f%%%n", percentual);
 
             }
@@ -51,7 +51,7 @@ public class CalculoVidaUtilService {
     }
 
 
-    public static double calcular(List<RegistroDatalogger> registros, double ea, double a, double threshold){
+    public static double calcularRegistros(List<RegistroDatalogger> registros, double ea, double a, double threshold){
 
         double MRNA_Atual = MRNA_INICIAL;
 
@@ -68,11 +68,12 @@ public class CalculoVidaUtilService {
 
             if (deltaTSegundos <= 0) continue;
 
-            double tempKelvin = atual.getTemperatura() + 273.15;
-            double k = a * Math.exp(-ea / (R * tempKelvin));
-            MRNA_Atual = MRNA_Atual * Math.exp(-k * deltaTSegundos);
+            // Corto a função daqui pra baixo, essa função atual fica pra listar os registros e aplicar os segundos, a que vou chamar, calcular, fica a parte para melhor utilização (modular)
 
-            double percentualIntacto = (MRNA_Atual / MRNA_INICIAL) * 100.0;
+        
+                MRNA_Atual = calcular(deltaTSegundos, ea, a, threshold, MRNA_Atual, registros.get(i).getTemperatura());
+                
+                double percentualIntacto = (MRNA_Atual / MRNA_INICIAL) * 100.0;
 
             if(percentualIntacto < threshold){
                 break;
@@ -81,5 +82,18 @@ public class CalculoVidaUtilService {
 
         return (MRNA_Atual / MRNA_INICIAL) * 100.0;
 
+        // Termina aqui - Lembrar de aplicar no lote a data de descongelamento, fazer toda lógica de aplicar com média de temperatura mínima e máxima
+        // Além 
+        // só de criar comanda já chamaria o calcularVidaUtilAtual
+
+    }
+
+    public static Double calcular(double deltaTSegundos, double ea, double a, double threshold, double MRNA_Atual, double temp){
+         
+        double tempKelvin = temp + 273.15;
+            double k = a * Math.exp(-ea / (R * tempKelvin));
+            MRNA_Atual = MRNA_Atual * Math.exp(-k * deltaTSegundos);
+
+            return MRNA_Atual;
     }
 }

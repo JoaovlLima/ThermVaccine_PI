@@ -23,9 +23,6 @@ import com.thermvaccine.service.TransporteService;
 import com.thermvaccine.service.VacinaService;
 
 
-
-
-
 public class Main {
 
     public static void main(String[] args) throws InterruptedException {
@@ -38,22 +35,17 @@ public class Main {
         Vacina moderna = new Vacina("Moderna mRNA-1273", -20f, 8f, 100000.0, 6.04e12, 95.0);
         vacinaService.criar(moderna);
 
-        // ── DATALOGGER ────────────────────────────────────────────
-        // dataLoggerService.limparBanco();
-        dataLoggerService.criarDataLogger();
-
-        List<DataLogger> lista = dataLoggerService.dataLoggersDisponiveis();
-        String idGerado = lista.get(lista.size() - 1).getId();
-        System.out.println("DataLogger criado com ID: " + idGerado);
+        // ── DATALOGGER ────────────────────────────────────────────       
         System.out.println("Vacina criada: " + moderna.getNome());
+        dataLoggerService.limparRegistros("755e2bb1-0d94-459f-b92b-abdff43879da");
 
         // ── SIMULAÇÃO VIA CSV ─────────────────────────────────────
         List<RegistroDatalogger> registrosTest = dataLoggerService.leituraArquivo();
-        dataLoggerService.salvarRegistro(registrosTest, idGerado);
+        dataLoggerService.salvarRegistro(registrosTest, "755e2bb1-0d94-459f-b92b-abdff43879da");
         System.out.println("ESTA COM THREAD");
 
         // ── MONITORAMENTO ─────────────────────────────────────────
-        CalculoVidaUtilService.iniciar(idGerado, moderna);
+        CalculoVidaUtilService.iniciar("755e2bb1-0d94-459f-b92b-abdff43879da", moderna);
 
 
         // ── TESTES ANTIGOS ───────────────────────────
