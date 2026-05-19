@@ -26,4 +26,12 @@ public class ComandaService {
     }
     
     //criar Comanda criacaoComandas(): while ate n querer mais cadastrar. apenas p ir coletando os atributos e retornar uma List<Comanda> pra consumir no Caixa
+
+    
+
+
 }
+
+
+
+
