@@ -23,4 +23,9 @@ public class DataLogger {
         this.disponivel = true;
     }
 
+
+    public void inserirRegistro(RegistroDatalogger registroDatalogger){
+        this.registroDatalogger.add(registroDatalogger);
+    }
+
 }

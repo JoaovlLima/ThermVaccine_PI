@@ -1,0 +1,32 @@
+[ {
+  "id" : "DL001",
+  "modelo" : "DL-5000X",
+  "disponivel" : true,
+  "registroDatalogger" : [ ]
+}, {
+  "id" : "DL002",
+  "modelo" : "DL-3500A",
+  "disponivel" : false,
+  "registroDatalogger" : [ ]
+}, {
+  "id" : "DL003",
+  "modelo" : "DL-7200Pro",
+  "disponivel" : true,
+  "registroDatalogger" : [ {
+    "id" : 1,
+    "temperatura" : 4.6,
+    "rede" : true,
+    "energia" : 13.3,
+    "compressor" : false,
+    "alarme" : false,
+    "data_hora" : "2026-05-15T19:34:36.1706308"
+  }, {
+    "id" : 2,
+    "temperatura" : 4.6499996,
+    "rede" : true,
+    "energia" : 13.4,
+    "compressor" : false,
+    "alarme" : false,
+    "data_hora" : "2026-05-15T19:34:41.1955391"
+  } ]
+} ]

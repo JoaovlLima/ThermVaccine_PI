@@ -7,11 +7,17 @@ import java.util.List;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.thermvaccine.model.Caixa;
 import com.thermvaccine.model.DataLogger;
 
 public class DataLoggerRepository {
-    private final ObjectMapper mapper = new ObjectMapper();
+
+
+    private final ObjectMapper mapper = new ObjectMapper()
+        .registerModule(new JavaTimeModule())
+        .disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
 
     private final File arquivo = new File("thermvaccine\\data\\dataLogger.json");
 
@@ -60,16 +66,51 @@ public class DataLoggerRepository {
     public void editar(DataLogger dataLoggerAtualizada){
         try {
             List<DataLogger> dataLoggers = listar();
+            
 
             for (int i = 0; i < dataLoggers.size(); i++) {
                 if(dataLoggers.get(i).getId().equals(dataLoggerAtualizada.getId())){
                     dataLoggers.set(i, dataLoggerAtualizada);
+                    break;
                 }
             }
+
 
             salvar(dataLoggers);
          } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    // FIND ID
+    public DataLogger findById(String idDataLogger){
+
+        List<DataLogger> dataLoggersDb = listar();
+
+        for (int i = 0; i < dataLoggersDb.size(); i++) {
+            if(dataLoggersDb.get(i).getId().equals(idDataLogger)){
+                return dataLoggersDb.get(i);
+            }
+        }
+
+        return null;
+    }
+
+    public void limparRegistros(String idDataLogger){
+        List<DataLogger> dataLoggersDb = listar();
+
+        for (int i = 0; i < dataLoggersDb.size(); i++) {
+
+            if(dataLoggersDb.get(i).getId().equals(idDataLogger)){
+
+                DataLogger dataLogger = dataLoggersDb.get(i);
+                dataLogger.setRegistroDatalogger(List.of());
+                dataLoggersDb.set(i, dataLogger);
+                break;
+            }
+            
+        }
+
+        salvar(dataLoggersDb);
     }
 }

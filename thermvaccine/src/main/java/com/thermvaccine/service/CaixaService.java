@@ -1,17 +1,21 @@
 package com.thermvaccine.service;
 
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
-import java.time.format.DateTimeFormatter;
 import com.thermvaccine.model.Caixa;
 import com.thermvaccine.model.Comanda;
 import com.thermvaccine.model.DataLogger;
 import com.thermvaccine.model.HistoricoCaixa;
+import com.thermvaccine.model.Lote_coman;
 import com.thermvaccine.repository.CaixaRepository;
 import com.thermvaccine.repository.DataLoggerRepository;
 import com.thermvaccine.repository.HistoricoCaixaRepository;
 
 public class CaixaService {
+
+    private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+
     private final CaixaRepository caixaRepository;
     private final HistoricoCaixaRepository historicoCaixaRepository;
     private final DataLoggerRepository dataLoggerRepository;
@@ -22,24 +26,18 @@ public class CaixaService {
         this.dataLoggerRepository = new DataLoggerRepository();
     }
 
-    private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+    public void exibirComanda(Caixa caixa) {
 
-    public void exibirComanda(Caixa caixa, List<Comanda> comandas) {
-
-        for (Comanda comanda : comandas) {
-            if (comanda.getCaixa().getId() == caixa.getId()) {
-
+        for (Comanda comanda : caixa.getComandas()) {
                 System.out.printf("ID: %s\n", comanda.getId());
                 System.out.printf("Data de emissao: %s\n", comanda.getData_emissao().format(FORMATTER));
                 System.out.printf("Status: %s\n", comanda.getStatus());
                 System.out.printf("Local de entrega: CEP - %s | Numero da residencia - %d\n", comanda.getCep(),
                         comanda.getNumEndereco());
-                System.out.printf("Referente ao lote: %d", comanda.getLote().getId());
 
             }
         }
 
-    }
 
     public void criarCaixa(int qtd_max_vac) {
 
@@ -64,12 +62,21 @@ public class CaixaService {
         try {
             List<Caixa> caixasDb = caixaRepository.listar();
 
+            if(caixasDb.isEmpty()){
+                System.out.println("Não há caixas cadastradas");
+                return List.of();
+            }
             List<Caixa> caixasDisponiveis = new ArrayList<>();
 
             for (Caixa caixa : caixasDb) {
                 if (caixa.getDisponivel()) {
                     caixasDisponiveis.add(caixa);
                 }
+            }
+
+            if(caixasDisponiveis.isEmpty()){
+                System.out.println("Não há caixas disponiveis");
+                return List.of();
             }
 
             return caixasDisponiveis;
@@ -85,6 +92,22 @@ public class CaixaService {
 
             if(!caixa.getDisponivel()){
                 System.out.println("Caixa indisponivel");
+                return;
+            }
+
+            //Logica para saber se a caixa suporta a qtd
+            int qtdTotal=0;
+            for (Comanda comanda : comandas) {
+                for (Lote_coman lote_coman : comanda.getLote_coman()) {
+
+                    qtdTotal+= lote_coman.getQtd();
+                    
+                }
+                
+            }
+
+            if(qtdTotal > caixa.getQtd_max_vac()){
+                System.out.println("Caixa não suporta quantidade de vacina");
                 return;
             }
             caixa.inserirComandas(comandas);

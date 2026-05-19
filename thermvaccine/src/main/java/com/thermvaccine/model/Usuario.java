@@ -1,8 +1,11 @@
 package com.thermvaccine.model;
 
+import lombok.NoArgsConstructor;
+
+@NoArgsConstructor
 public class Usuario {
     //extend pessoa?
-    private long id;
+    private String id;
     private String re;
     private String nome;
     private String senha;
@@ -25,7 +28,7 @@ public class Usuario {
     }
 
 
-    public long getId() {
+    public String getId() {
         return id;
     }
 

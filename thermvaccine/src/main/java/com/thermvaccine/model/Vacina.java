@@ -1,8 +1,11 @@
 package com.thermvaccine.model;
 
+import lombok.NoArgsConstructor;
+
+@NoArgsConstructor
 public class Vacina {
 
-    private int id;
+    private String id;
     private String nome;
     private float tempe_min;
     private float tempe_max;
@@ -17,7 +20,7 @@ public class Vacina {
 
 
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 

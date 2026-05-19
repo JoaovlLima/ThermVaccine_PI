@@ -40,7 +40,7 @@ public class VacinaService {
     }
 
     //UPDATE 
-    public void atualizar(int id, String novoNome){
+    public void atualizar(String id, String novoNome){
         
         List<Vacina> vacinas = vacinaRepository.listar();
 
@@ -53,7 +53,7 @@ public class VacinaService {
     }
 
     //DELETE
-    public void deletar(int id){
+    public void deletar(String id){
 
         List<Vacina> vacinas = vacinaRepository.listar();
 
