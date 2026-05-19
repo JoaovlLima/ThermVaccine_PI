@@ -38,9 +38,9 @@ public class Caixa {
          this.disponivel = disponivel;
      }
 
-    public void setComandas(List<Comanda> comandas) {
-        this.comandas = comandas;
-    }
+    // public void setComandas(List<Comanda> comandas) {
+    //     this.comandas = comandas;
+    // }
 
     public void inserirComandaUnidade(Comanda comanda){
         this.comandas.add(comanda);
@@ -66,15 +66,6 @@ public class Caixa {
     public int getQtd_max_vac() {
         return qtd_max_vac;
     }
-
-    public List<Comanda> getComandas() {
-        return comandas;
-    }
-
-    public void setComandas(List<Comanda> comandas) {
-        this.comandas = comandas;
-    }
-
 
     public void setQtd_max_vac(int qtd_max_vac) {
         this.qtd_max_vac = qtd_max_vac;

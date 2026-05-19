@@ -19,13 +19,14 @@ public class CaixaController {
     public Caixa escolhaCaixa(){
 
 
-        Scanner sc = new Scanner(System.in);
 
         List<Caixa> caixas = caixaService.listarCaixasDisponiveis();
 
         if(caixas.isEmpty()){
             return null;
         }
+
+        Scanner sc = new Scanner(System.in);
 
         System.out.println("\nOpções disponiveis: ");
         for (int i = 0; i < caixas.size(); i++) {
@@ -35,16 +36,18 @@ public class CaixaController {
         
         System.out.println("\nEscolha uma opção: ");
         int escolhaCaixa = sc.nextInt();
+        sc.close();
 
         if(escolhaCaixa >= 1 && escolhaCaixa <= caixas.size()){
             System.out.println("Você escolheu : "+caixas.get(escolhaCaixa-1).getId());
             return caixas.get(escolhaCaixa-1); 
-        }else{
-            System.out.println("Opção invalida");
-            System.out.println("SIZE :"+caixas.size());
-            return null;
         }
+        
+        System.out.println("Opção invalida");
+        System.out.println("SIZE :"+caixas.size());
+        return null;
 
+        
     }
 
     public void vincularDatalogger(Caixa caixa, DataLogger dataLogger){
@@ -59,5 +62,7 @@ public class CaixaController {
         caixaService.inserirComandas(caixa, comandas);;
     }
 
+
+    
 
 }
