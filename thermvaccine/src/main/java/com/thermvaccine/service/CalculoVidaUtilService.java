@@ -1,5 +1,7 @@
 package com.thermvaccine.service;
 import java.time.Duration;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import com.thermvaccine.repository.RegistroRepository;
@@ -85,6 +87,21 @@ public class CalculoVidaUtilService {
         // Termina aqui - Lembrar de aplicar no lote a data de descongelamento, fazer toda lógica de aplicar com média de temperatura mínima e máxima
         // Além 
         // só de criar comanda já chamaria o calcularVidaUtilAtual
+
+    }
+
+    public static Double calcularMRNADisponivel(Vacina vacina,  LocalDateTime data_descon){
+
+        
+        double deltaTSegundos = Duration.between(
+            data_descon,
+            LocalDateTime.now()
+
+        ).toSeconds();
+
+        double temp_med = (vacina.getTempe_max() + vacina.getTempe_min()) / 2;
+
+        return calcular(deltaTSegundos, vacina.getEa(), vacina.getA(), vacina.getThreshold(), MRNA_INICIAL, temp_med);
 
     }
 
