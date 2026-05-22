@@ -67,8 +67,42 @@ public class DataLoggerService {
 
     }
 
+    
+    public void salvarRegistro(List<RegistroDatalogger> registros, String idDatalogger) {
+        
+        
+
+        Thread thread = new Thread(() -> {
+            
+            try {
+
+            DataLogger dataLogger = dataLoggerRepository.findById(idDatalogger);
+            for (RegistroDatalogger registro : registros) {   
+                
+
+                registro.setData_hora(LocalDateTime.now());
+
+                dataLogger.inserirRegistro(registro);
+
+                dataLoggerRepository.editar(dataLogger);
+                TimeUnit.SECONDS.sleep(5);
+
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }});
+        
+        thread.start();
+
+    }
+
+     public void limparRegistros(String idDataLogger){
+        dataLoggerRepository.limparRegistros(idDataLogger);
+    }
 
 
+    // FUNCÕES AUXILIARES
 
     public List<RegistroDatalogger> leituraArquivo() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
@@ -151,36 +185,17 @@ public class DataLoggerService {
 
         return dataHora;
     }
+    
 
-    public void salvarRegistro(List<RegistroDatalogger> registros) {
+    public void test(String idDatalogger){
 
-        Thread thread = new Thread(() -> {
-            
-            try {
+        DataLogger dataLogger = dataLoggerRepository.findById(idDatalogger);
 
-            for (RegistroDatalogger registro : registros) {
+        List<RegistroDatalogger> reg = dataLogger.getRegistroDatalogger();
 
-                List<RegistroDatalogger> registrosBanco = registroRepository.listar();
-
-                registro.setData_hora(LocalDateTime.now());
-
-                registrosBanco.add(registro);
-
-                registroRepository.salvar(registrosBanco);
-                TimeUnit.SECONDS.sleep(5);
-
-            }
-
-        } catch (Exception e) {
-            throw new RuntimeException("Erro ao inserir registro no json");
-        }});
-        
-        thread.start();
 
     }
 
-   public void limparBanco(){
-        registroRepository.limpar();
-    }
+  
         
 }

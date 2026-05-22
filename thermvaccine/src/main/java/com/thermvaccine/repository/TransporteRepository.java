@@ -9,17 +9,16 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
-import com.thermvaccine.model.Caixa;
-import com.thermvaccine.model.DataLogger;
+import com.thermvaccine.model.Comanda;
+import com.thermvaccine.model.Transporte;
 
-public class DataLoggerRepository {
-
-
+public class TransporteRepository {
+    
     private final ObjectMapper mapper = new ObjectMapper()
         .registerModule(new JavaTimeModule())
         .disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
 
-    private final File arquivo = new File("thermvaccine\\data\\dataLogger.json");
+    private final File arquivo = new File("thermvaccine\\data\\transporte.json");
 
 
     // CLEANER
@@ -34,7 +33,7 @@ public class DataLoggerRepository {
 }
 
     // READ FILE
-    public List<DataLogger> listar() {
+    public List<Transporte> listar() {
         try {
             if (!arquivo.exists()) {
                 return new ArrayList<>();
@@ -42,7 +41,7 @@ public class DataLoggerRepository {
 
             return mapper.readValue(
                     arquivo,
-                    new TypeReference<List<DataLogger>>() {}
+                    new TypeReference<List<Transporte>>() {}
             );
 
         } catch (IOException e) {
@@ -52,10 +51,10 @@ public class DataLoggerRepository {
     }
 
     // SAVE FILE
-    public void salvar(List<DataLogger> dataLogger) {
+    public void salvar(List<Transporte> transporte) {
         try {
             mapper.writerWithDefaultPrettyPrinter()
-                    .writeValue(arquivo, dataLogger);
+                    .writeValue(arquivo, transporte);
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -63,54 +62,39 @@ public class DataLoggerRepository {
     }
 
     // EDIT FILE
-    public void editar(DataLogger dataLoggerAtualizada){
+    public void editar(Transporte transporteAtualizada){
         try {
-            List<DataLogger> dataLoggers = listar();
+            List<Transporte> transportes = listar();
             
 
-            for (int i = 0; i < dataLoggers.size(); i++) {
-                if(dataLoggers.get(i).getId().equals(dataLoggerAtualizada.getId())){
-                    dataLoggers.set(i, dataLoggerAtualizada);
+            for (int i = 0; i < transportes.size(); i++) {
+                if(transportes.get(i).getPlaca().equals(transporteAtualizada.getPlaca())){
+                    transportes.set(i, transporteAtualizada);
                     break;
                 }
             }
 
 
-            salvar(dataLoggers);
+            salvar(transportes);
          } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
     // FIND ID
-    public DataLogger findById(String idDataLogger){
+    public Transporte findByPlaca(String placa){
 
-        List<DataLogger> dataLoggersDb = listar();
+        List<Transporte> TransporteDb = listar();
 
-        for (int i = 0; i < dataLoggersDb.size(); i++) {
-            if(dataLoggersDb.get(i).getId().equals(idDataLogger)){
-                return dataLoggersDb.get(i);
+        for (int i = 0; i < TransporteDb.size(); i++) {
+            if(TransporteDb.get(i).getPlaca().equals(placa)){
+                return TransporteDb.get(i);
             }
         }
 
         return null;
     }
 
-    public void limparRegistros(String idDataLogger){
-        List<DataLogger> dataLoggersDb = listar();
+    
 
-        for (int i = 0; i < dataLoggersDb.size(); i++) {
-
-            if(dataLoggersDb.get(i).getId().equals(idDataLogger)){
-
-                DataLogger dataLogger = dataLoggersDb.get(i);
-                dataLogger.setRegistroDatalogger(List.of());
-                dataLoggersDb.set(i, dataLogger);
-                break;
-            }
-            
-        }
-
-        salvar(dataLoggersDb);
-    }
 }

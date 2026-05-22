@@ -9,17 +9,16 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
-import com.thermvaccine.model.Caixa;
-import com.thermvaccine.model.DataLogger;
-
-public class DataLoggerRepository {
+import com.thermvaccine.model.Comanda;
 
 
+public class ComandaRepository {
+    
     private final ObjectMapper mapper = new ObjectMapper()
         .registerModule(new JavaTimeModule())
         .disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
 
-    private final File arquivo = new File("thermvaccine\\data\\dataLogger.json");
+    private final File arquivo = new File("thermvaccine\\data\\comanda.json");
 
 
     // CLEANER
@@ -34,7 +33,7 @@ public class DataLoggerRepository {
 }
 
     // READ FILE
-    public List<DataLogger> listar() {
+    public List<Comanda> listar() {
         try {
             if (!arquivo.exists()) {
                 return new ArrayList<>();
@@ -42,7 +41,7 @@ public class DataLoggerRepository {
 
             return mapper.readValue(
                     arquivo,
-                    new TypeReference<List<DataLogger>>() {}
+                    new TypeReference<List<Comanda>>() {}
             );
 
         } catch (IOException e) {
@@ -52,10 +51,10 @@ public class DataLoggerRepository {
     }
 
     // SAVE FILE
-    public void salvar(List<DataLogger> dataLogger) {
+    public void salvar(List<Comanda> Comanda) {
         try {
             mapper.writerWithDefaultPrettyPrinter()
-                    .writeValue(arquivo, dataLogger);
+                    .writeValue(arquivo, Comanda);
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -63,54 +62,53 @@ public class DataLoggerRepository {
     }
 
     // EDIT FILE
-    public void editar(DataLogger dataLoggerAtualizada){
+    public void editar(Comanda comandaAtualizada){
         try {
-            List<DataLogger> dataLoggers = listar();
+            List<Comanda> comandas = listar();
             
 
-            for (int i = 0; i < dataLoggers.size(); i++) {
-                if(dataLoggers.get(i).getId().equals(dataLoggerAtualizada.getId())){
-                    dataLoggers.set(i, dataLoggerAtualizada);
+            for (int i = 0; i < comandas.size(); i++) {
+                if(comandas.get(i).getId().equals(comandaAtualizada.getId())){
+                    comandas.set(i, comandaAtualizada);
                     break;
                 }
             }
 
 
-            salvar(dataLoggers);
+            salvar(comandas);
          } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
     // FIND ID
-    public DataLogger findById(String idDataLogger){
+    public Comanda findById(String idComanda){
 
-        List<DataLogger> dataLoggersDb = listar();
+        List<Comanda> comandaDb = listar();
 
-        for (int i = 0; i < dataLoggersDb.size(); i++) {
-            if(dataLoggersDb.get(i).getId().equals(idDataLogger)){
-                return dataLoggersDb.get(i);
+        for (int i = 0; i < comandaDb.size(); i++) {
+            if(comandaDb.get(i).getId().equals(idComanda)){
+                return comandaDb.get(i);
             }
         }
 
         return null;
     }
 
-    public void limparRegistros(String idDataLogger){
-        List<DataLogger> dataLoggersDb = listar();
+  public List<Comanda> comandasPorIdCaixa(String idCaixa){
 
-        for (int i = 0; i < dataLoggersDb.size(); i++) {
+    List<Comanda> comandasBd = listar();
 
-            if(dataLoggersDb.get(i).getId().equals(idDataLogger)){
+    List<Comanda> comandasPorCaixa = null;
 
-                DataLogger dataLogger = dataLoggersDb.get(i);
-                dataLogger.setRegistroDatalogger(List.of());
-                dataLoggersDb.set(i, dataLogger);
-                break;
-            }
-            
+    for (Comanda comanda : comandasBd) {
+        
+        if(comanda.getIdCaixa().equals(idCaixa)){
+            comandasPorCaixa.add(comanda);
         }
-
-        salvar(dataLoggersDb);
     }
+
+    return comandasPorCaixa;
+    
+  }
 }

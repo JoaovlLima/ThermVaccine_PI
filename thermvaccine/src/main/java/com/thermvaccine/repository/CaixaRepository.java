@@ -10,6 +10,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.thermvaccine.model.Caixa;
+import com.thermvaccine.model.Comanda;
 
 public class CaixaRepository {
 
@@ -92,4 +93,20 @@ public class CaixaRepository {
              throw new RuntimeException("Erro ao pegar Caixa");
         }
     }
+
+    public List<Caixa> caixasPorPlacaTransporte(String placa){
+    List<Caixa> caixasBd = listar();
+
+    List<Caixa> caixasPorTransporte = null;
+
+    for (Caixa caixa : caixasBd) {
+        
+        if(caixa.getIdTransporte().equals(placa)){
+            caixasPorTransporte.add(caixa);
+        }
+    } 
+
+    return caixasPorTransporte;
+    
+  }
 }
