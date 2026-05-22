@@ -12,9 +12,11 @@ public class Lote {
     private String id;
     private int quantidade;
     private String fabricante;
+    private LocalDateTime data_descongelamento;
     private LocalDateTime validade;
     private Usuario usuario;
     private Vacina vacina;
+
 
     public Lote(/*String id,*/int quantidade, String fabricante, String validade, Usuario usuario, Vacina vacina){
         //this.id = id;
@@ -72,5 +74,13 @@ public class Lote {
         this.vacina = vacina;
     }
 
+    public LocalDateTime getData_descongelamento() {
+        return data_descongelamento;
+    }
+
+
+    public void setData_descongelamento(LocalDateTime data_descongelamento) {
+        this.data_descongelamento = data_descongelamento;
+    }
 
 }

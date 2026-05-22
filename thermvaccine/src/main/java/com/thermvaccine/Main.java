@@ -3,6 +3,7 @@ package com.thermvaccine;
 import java.util.List;
 
 import com.thermvaccine.controller.CaixaController;
+import com.thermvaccine.controller.TransporteController;
 import com.thermvaccine.model.RegistroDatalogger;
 import com.thermvaccine.service.CalculoVidaUtilService;
 import com.thermvaccine.service.DataLoggerService;
@@ -31,19 +32,21 @@ public class Main {
 
         // caixaController.escolhaCaixa();
        
-        DataLoggerService dataLoggerService = new DataLoggerService();
+        // DataLoggerService dataLoggerService = new DataLoggerService();
 
-        // dataLoggerService.limparBanco();
 
-        dataLoggerService.limparRegistros("DL003");
+        // dataLoggerService.limparRegistros("DL003");
         
-        List<RegistroDatalogger> registrosTest = dataLoggerService.leituraArquivo();
+        // List<RegistroDatalogger> registrosTest = dataLoggerService.leituraArquivo();
 
-        System.out.println("---------------------");
+        // System.out.println("---------------------");
 
-        dataLoggerService.salvarRegistro(registrosTest,"DL003");
+        // dataLoggerService.salvarRegistro(registrosTest,"DL003");
 
-        System.out.println("ESTA COM THREAD");
+        // System.out.println("ESTA COM THREAD");
+
+        TransporteController transporteController = new TransporteController();
+        transporteController.escolhaTransporte();
 
 
 

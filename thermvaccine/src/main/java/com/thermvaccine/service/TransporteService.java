@@ -5,6 +5,7 @@ import com.thermvaccine.repository.CaixaRepository;
 import com.thermvaccine.repository.RegistroRepository;
 import com.thermvaccine.repository.TransporteRepository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.thermvaccine.model.Caixa;
@@ -24,6 +25,36 @@ public class TransporteService {
         System.out.printf("Capacidade: %d\n", transp.getCapacidade());
         System.out.printf("Data Saida: %s\n", transp.getData_saida());
         //System.out.printf("Data Chegada: %s\n", transp.getData_chegada());
+    }
+
+    public Transporte criarTransporte(String placa, int capacidade){
+
+        List<Transporte> transportesDb = transporteRepository.listar();
+        Transporte transporte = new Transporte(placa, capacidade);
+        transportesDb.add(transporte);
+        transporteRepository.salvar(transportesDb);
+        return transporte;
+
+    }
+
+    public List<Transporte> listarTransportes(){
+        
+        return transporteRepository.listar();
+    }
+
+    public List<Transporte> listarTransportesDisponiveis(){
+
+        List<Transporte> transportesDb = transporteRepository.listar();
+        List<Transporte> transportesDisponiveis = new ArrayList<>();
+        for (Transporte transporte : transportesDb) {
+
+            if(transporte.getDisponivel()){
+                transportesDisponiveis.add(transporte);
+            }
+            
+        }
+        
+        return transportesDisponiveis;
     }
 
    
