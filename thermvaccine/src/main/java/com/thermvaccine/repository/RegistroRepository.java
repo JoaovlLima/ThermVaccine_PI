@@ -17,7 +17,7 @@ public class RegistroRepository {
         .registerModule(new JavaTimeModule())
         .disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
 
-    private final File arquivo = new File("thermvaccine\\data\\registro.json");
+    private final File arquivo = new File("/home/taviz/VsCode/PI - ThermVaccine/ThermVaccine_PI/thermvaccine/data/registro.json");
 
 
     // CLEANER
@@ -42,6 +42,7 @@ public class RegistroRepository {
                     arquivo,
                     new TypeReference<List<RegistroDatalogger>>() {}
             );
+
 
         } catch (IOException e) {
             e.printStackTrace();
