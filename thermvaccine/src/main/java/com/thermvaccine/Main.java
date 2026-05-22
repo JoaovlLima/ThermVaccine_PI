@@ -3,6 +3,22 @@ package com.thermvaccine;
 import java.util.List;
 import java.util.ArrayList;
 
+<<<<<<< HEAD
+=======
+import com.thermvaccine.controller.CaixaController;
+import com.thermvaccine.controller.TransporteController;
+import com.thermvaccine.model.RegistroDatalogger;
+import com.thermvaccine.service.CalculoVidaUtilService;
+import com.thermvaccine.service.DataLoggerService;
+
+import com.thermvaccine.service.VacinaService;
+import com.thermvaccine.model.Lote;
+import com.thermvaccine.service.LoteService;
+
+import com.thermvaccine.model.Usuario;
+import com.thermvaccine.model.Empresa;
+import com.thermvaccine.model.Transporte;
+>>>>>>> 77a143eade1aef6817137dc4be03afd89a197cfc
 import com.thermvaccine.model.Caixa;
 import com.thermvaccine.model.Comanda;
 import com.thermvaccine.model.DataLogger;
@@ -27,6 +43,7 @@ public class Main {
 
     public static void main(String[] args) throws InterruptedException {
 
+<<<<<<< HEAD
         // ── SERVICES ─────────────────────────────────────────────
         DataLoggerService dataLoggerService = new DataLoggerService();
         VacinaService vacinaService = new VacinaService();
@@ -43,6 +60,27 @@ public class Main {
         List<RegistroDatalogger> registrosTest = dataLoggerService.leituraArquivo();
         dataLoggerService.salvarRegistro(registrosTest, "755e2bb1-0d94-459f-b92b-abdff43879da");
         System.out.println("ESTA COM THREAD");
+=======
+        // CaixaController caixaController = new CaixaController();
+
+        // caixaController.escolhaCaixa();
+       
+        // DataLoggerService dataLoggerService = new DataLoggerService();
+
+
+        // dataLoggerService.limparRegistros("DL003");
+        
+        // List<RegistroDatalogger> registrosTest = dataLoggerService.leituraArquivo();
+
+        // System.out.println("---------------------");
+
+        // dataLoggerService.salvarRegistro(registrosTest,"DL003");
+
+        // System.out.println("ESTA COM THREAD");
+
+        TransporteController transporteController = new TransporteController();
+        transporteController.escolhaTransporte();
+>>>>>>> 77a143eade1aef6817137dc4be03afd89a197cfc
 
         // ── MONITORAMENTO ─────────────────────────────────────────
         CalculoVidaUtilService.iniciar("755e2bb1-0d94-459f-b92b-abdff43879da", moderna);
