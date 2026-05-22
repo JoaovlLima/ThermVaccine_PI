@@ -11,7 +11,14 @@ import com.thermvaccine.model.Vacina;
 
 public class ComandaService {
 
-    private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+
+    private final CalculoVidaUtilService calculoVidaUtilService;
+
+    public ComandaService(){
+        this.calculoVidaUtilService = new CalculoVidaUtilService();
+    }
+
+    private final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
     public void exibirDados(Comanda comanda){
         System.out.printf("ID: %d\n", comanda.getId());
@@ -32,14 +39,14 @@ public class ComandaService {
     
     //criar Comanda criacaoComandas(): while ate n querer mais cadastrar. apenas p ir coletando os atributos e retornar uma List<Comanda> pra consumir no Caixa
 
-public static List<Lote_coman> calcularMrnaDisponivel(List<Lote_coman> lote_comans){
+public List<Lote_coman> calcularMrnaDisponivel(List<Lote_coman> lote_comans){
 
     for (Lote_coman lote_coman : lote_comans) {
         
         Vacina vacina = lote_coman.getLote().getVacina();
         LocalDateTime data_descon = lote_coman.getLote().getData_descongelamento();
 
-        double MRNA_Disponivel = CalculoVidaUtilService.calcularMRNADisponivel(vacina, data_descon);
+        double MRNA_Disponivel = calculoVidaUtilService.calcularMRNADisponivel(vacina, data_descon);
 
         System.out.println("LOTE : "+lote_coman.getLote().getId());
         System.out.println("MRNA Disponivel: "+MRNA_Disponivel);
