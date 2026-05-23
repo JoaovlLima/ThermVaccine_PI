@@ -12,14 +12,14 @@ import com.thermvaccine.model.Vacina;
 import com.thermvaccine.repository.DataLoggerRepository;
 
 
-public class CalculoVidaUtilService {
+public class CalculoVidaUtilService implements Icalculo{
 
     public static final double R = 8.3144;
     public static final double MRNA_INICIAL = 100.0;
 
     private static final DataLoggerRepository repository = new DataLoggerRepository();
 
-    public static void iniciar(String idDataLogger, Vacina vacina){
+    public void iniciar(String idDataLogger, Vacina vacina){
         int tamanhoAnterior = 0;
 
         double ea = vacina.getEa();
@@ -53,7 +53,7 @@ public class CalculoVidaUtilService {
     }
 
 
-    public static double calcularRegistros(List<RegistroDatalogger> registros, double ea, double a, double threshold){
+    public double calcularRegistros(List<RegistroDatalogger> registros, double ea, double a, double threshold){
 
         double MRNA_Atual = MRNA_INICIAL;
 
@@ -83,14 +83,9 @@ public class CalculoVidaUtilService {
         }
 
         return (MRNA_Atual / MRNA_INICIAL) * 100.0;
-
-        // Termina aqui - Lembrar de aplicar no lote a data de descongelamento, fazer toda lógica de aplicar com média de temperatura mínima e máxima
-        // Além 
-        // só de criar comanda já chamaria o calcularVidaUtilAtual
-
     }
 
-    public static Double calcularMRNADisponivel(Vacina vacina,  LocalDateTime data_descon){
+    public Double calcularMRNADisponivel(Vacina vacina,  LocalDateTime data_descon){
 
         
         double deltaTSegundos = Duration.between(
@@ -105,7 +100,7 @@ public class CalculoVidaUtilService {
 
     }
 
-    public static Double calcular(double deltaTSegundos, double ea, double a, double threshold, double MRNA_Atual, double temp){
+    public Double calcular(double deltaTSegundos, double ea, double a, double threshold, double MRNA_Atual, double temp){
          
         double tempKelvin = temp + 273.15;
             double k = a * Math.exp(-ea / (R * tempKelvin));

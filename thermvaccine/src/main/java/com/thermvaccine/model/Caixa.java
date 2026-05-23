@@ -12,7 +12,6 @@ public class Caixa {
     private String id;
     private int qtd_max_vac;
     private boolean disponivel;
-
     private String idTransporte;
 
     public Caixa(int qtd_max_vac){
@@ -28,6 +27,7 @@ public class Caixa {
 
 
     public void setIdTransporte(String idTransporte) {
+        this.disponivel = false;
         this.idTransporte = idTransporte;
     }
 
@@ -37,6 +37,9 @@ public class Caixa {
     }
 
      public void setDisponivel(boolean disponivel) {
+        if(disponivel == true){
+            this.idTransporte = null;
+        }
          this.disponivel = disponivel;
      }
 

@@ -12,7 +12,7 @@ import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.thermvaccine.model.Comanda;
 import com.thermvaccine.model.Transporte;
 
-public class TransporteRepository {
+public class TransporteRepository implements IRepository<Transporte> {
     
     private final ObjectMapper mapper = new ObjectMapper()
         .registerModule(new JavaTimeModule())
@@ -81,8 +81,8 @@ public class TransporteRepository {
         }
     }
 
-    // FIND ID
-    public Transporte findByPlaca(String placa){
+    // FIND ID (PLACA)
+    public Transporte findById(String placa){
 
         List<Transporte> TransporteDb = listar();
 

@@ -3,8 +3,7 @@ package com.thermvaccine.model;
 import lombok.NoArgsConstructor;
 
 @NoArgsConstructor
-public class Usuario {
-    //extend pessoa?
+public abstract class Usuario {
     private String id;
     private String re;
     private String nome;
@@ -13,6 +12,9 @@ public class Usuario {
     private Empresa empresa;
     private Tier tier;
 
+    //transformar essa em abstract (classe pai do polimorfismo)
+    //extender em outras 3 classes do tier: logista, qualidade e adm
+    // atr plus q diferenciam eles?: 
 
     public enum Tier{
         LOG,QUA,ADM

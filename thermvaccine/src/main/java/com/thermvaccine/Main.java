@@ -45,7 +45,7 @@ public class Main {
         System.out.println("ESTA COM THREAD");
 
         // ── MONITORAMENTO ─────────────────────────────────────────
-        CalculoVidaUtilService.iniciar("755e2bb1-0d94-459f-b92b-abdff43879da", moderna);
+        // CalculoVidaUtilService.iniciar("755e2bb1-0d94-459f-b92b-abdff43879da", moderna);
 
 
         // ── TESTES ANTIGOS ───────────────────────────

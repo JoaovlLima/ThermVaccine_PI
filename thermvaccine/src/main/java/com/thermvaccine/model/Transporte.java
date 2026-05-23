@@ -15,13 +15,25 @@ public class Transporte {
     private int capacidade;
     private LocalDateTime data_saida;
     private LocalDateTime data_chegada;
-    private List<Caixa> caixa = new ArrayList<>();
+    private Boolean disponivel;
 
 
-    public Transporte(String placa, int capacidade, String data_saida){
+    public Transporte(String placa, int capacidade){
         this.placa = placa;
         this.capacidade = capacidade;
-        this.data_saida = LocalDateTime.parse(data_saida, FORMATTER);
+        this.disponivel = true;
+        this.data_saida = null;
+        this.data_chegada = null;
+    }
+
+
+    public Boolean getDisponivel() {
+        return disponivel;
+    }
+
+
+    public void setDisponivel(Boolean disponivel) {
+        this.disponivel = disponivel;
     }
 
 
@@ -34,29 +46,21 @@ public class Transporte {
     }
 
     public String getData_saida() {
+        if(this.data_saida == null){
+            return null;
+        }
         return data_saida.format(FORMATTER);
     }
 
     public String getData_chegada() {
+        if(this.data_chegada == null){
+            return null;
+        }
         return data_chegada.format(FORMATTER);
     }
 
-    public List<Caixa> getCaixa() {
-        return caixa;
-    }
-
-
-
     public void setData_chegada(LocalDateTime data_chegada) {
         this.data_chegada = data_chegada;
-    }
-
-    public void setCaixa(List<Caixa> caixa) {
-        this.caixa = caixa;
-    }
-
-    public void addUmaCaixa(Caixa caixa){
-        this.caixa.add(caixa);
     }
 
 }

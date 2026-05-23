@@ -12,7 +12,7 @@ import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.thermvaccine.model.Caixa;
 import com.thermvaccine.model.DataLogger;
 
-public class DataLoggerRepository {
+public class DataLoggerRepository implements IRepository<DataLogger> {
 
 
     private final ObjectMapper mapper = new ObjectMapper()

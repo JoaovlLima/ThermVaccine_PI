@@ -11,8 +11,9 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.thermvaccine.model.Caixa;
 import com.thermvaccine.model.Comanda;
+import com.thermvaccine.model.DataLogger;
 
-public class CaixaRepository {
+public class CaixaRepository implements IRepository<Caixa> {
 
     private final ObjectMapper mapper = new ObjectMapper();
 
@@ -92,6 +93,20 @@ public class CaixaRepository {
         } catch (Exception e) {
              throw new RuntimeException("Erro ao pegar Caixa");
         }
+    }
+
+     // FIND ID
+    public Caixa findById(String idCaixa){
+
+        List<Caixa> caixasDb = listar();
+
+        for (int i = 0; i < caixasDb.size(); i++) {
+            if(caixasDb.get(i).getId().equals(idCaixa)){
+                return caixasDb.get(i);
+            }
+        }
+
+        return null;
     }
 
     public List<Caixa> caixasPorPlacaTransporte(String placa){
