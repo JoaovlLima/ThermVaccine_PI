@@ -12,14 +12,14 @@ import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.thermvaccine.model.Caixa;
 import com.thermvaccine.model.DataLogger;
 
-public class DataLoggerRepository {
+public class DataLoggerRepository implements IRepository<DataLogger> {
 
 
     private final ObjectMapper mapper = new ObjectMapper()
         .registerModule(new JavaTimeModule())
         .disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
 
-    private final File arquivo = new File("thermvaccine\\data\\dataLogger.json");
+    private final File arquivo = new File("/home/taviz/VsCode/PI - ThermVaccine/ThermVaccine_PI/thermvaccine/data/dataLogger.json");
 
 
     // CLEANER

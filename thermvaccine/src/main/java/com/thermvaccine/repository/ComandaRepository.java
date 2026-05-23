@@ -12,7 +12,7 @@ import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.thermvaccine.model.Comanda;
 
 
-public class ComandaRepository {
+public class ComandaRepository implements IRepository<Comanda> {
     
     private final ObjectMapper mapper = new ObjectMapper()
         .registerModule(new JavaTimeModule())
