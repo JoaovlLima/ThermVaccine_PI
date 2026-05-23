@@ -1,26 +1,48 @@
 package com.thermvaccine.model;
 
-public class Usuario {
-    //extend pessoa?
-    private long id;
+import lombok.NoArgsConstructor;
+
+@NoArgsConstructor
+public abstract class Usuario {
+    private String id;
     private String re;
     private String nome;
     private String senha;
     private String cargo;
     private Empresa empresa;
+    private Tier tier;
 
-    public Usuario(String re, String nome, String senha, String cargo){
+    //transformar essa em abstract (classe pai do polimorfismo)
+    //extender em outras 3 classes do tier: logista, qualidade e adm
+    // atr plus q diferenciam eles?: 
+
+    public enum Tier{
+        LOG,QUA,ADM
+    }
+
+    public Usuario(String re, String nome, String senha, String cargo, Tier tier){
         this.re = re;
         this.nome = nome;
         this.senha = senha;
         this.cargo = cargo;
+        this.tier = tier;
 
     }
 
 
-    public long getId() {
+    public String getId() {
         return id;
     }
+
+    public Tier getTier() {
+        return tier;
+    }
+
+
+    public void setTier(Tier tier) {
+        this.tier = tier;
+    }
+
 
     public String getRe() {
         return re;

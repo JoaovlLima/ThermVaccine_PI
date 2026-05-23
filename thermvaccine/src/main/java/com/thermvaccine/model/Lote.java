@@ -2,19 +2,24 @@ package com.thermvaccine.model;
 
 import java.time.format.DateTimeFormatter;
 import java.time.LocalDateTime;
+import lombok.NoArgsConstructor;
 
+@NoArgsConstructor
 public class Lote {
 
     private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
-    private long id;
+    private String id;
     private int quantidade;
     private String fabricante;
+    private LocalDateTime data_descongelamento;
     private LocalDateTime validade;
     private Usuario usuario;
     private Vacina vacina;
 
-    public Lote(int quantidade, String fabricante, String validade, Usuario usuario, Vacina vacina){
+
+    public Lote(/*String id,*/int quantidade, String fabricante, String validade, Usuario usuario, Vacina vacina){
+        //this.id = id;
         this.quantidade = quantidade;
         this.fabricante = fabricante;
         this.validade = LocalDateTime.parse(validade, FORMATTER);
@@ -23,7 +28,7 @@ public class Lote {
     }
 
 
-    public long getId() {
+    public String getId() {
         return id;
     }
 
@@ -69,5 +74,13 @@ public class Lote {
         this.vacina = vacina;
     }
 
+    public LocalDateTime getData_descongelamento() {
+        return data_descongelamento;
+    }
+
+
+    public void setData_descongelamento(LocalDateTime data_descongelamento) {
+        this.data_descongelamento = data_descongelamento;
+    }
 
 }

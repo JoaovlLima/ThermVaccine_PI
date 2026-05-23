@@ -1,0 +1,13 @@
+[ {
+  "placa" : "213456",
+  "capacidade" : 20,
+  "data_saida" : null,
+  "data_chegada" : null,
+  "disponivel" : false
+}, {
+  "placa" : "654321",
+  "capacidade" : 15,
+  "data_saida" : null,
+  "data_chegada" : null,
+  "disponivel" : true
+} ]

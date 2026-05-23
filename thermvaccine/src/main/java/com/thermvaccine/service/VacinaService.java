@@ -11,7 +11,7 @@ public class VacinaService {
         this.vacinaRepository = new VacinaRepository();
     }
 
-    void exibirDados(Vacina vacina){
+    public void exibirDados(Vacina vacina){
         //System.out.printf("ID: %d\n", this.vacina.getId());
         System.out.printf("Nome: %s\n", vacina.getNome());
         System.out.printf("Temperatura mínima suportada: %f\n", vacina.getTempe_min());
@@ -40,7 +40,7 @@ public class VacinaService {
     }
 
     //UPDATE 
-    public void atualizar(int id, String novoNome){
+    public void atualizar(String id, String novoNome){
         
         List<Vacina> vacinas = vacinaRepository.listar();
 
@@ -53,7 +53,7 @@ public class VacinaService {
     }
 
     //DELETE
-    public void deletar(int id){
+    public void deletar(String id){
 
         List<Vacina> vacinas = vacinaRepository.listar();
 
