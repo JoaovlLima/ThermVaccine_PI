@@ -12,7 +12,7 @@ import com.thermvaccine.model.Vacina;
 import com.thermvaccine.repository.DataLoggerRepository;
 
 
-public class CalculoVidaUtilService implements Icalculo{
+public class CalculoVidaUtilService implements ICalculo{
 
     public static final double R = 8.3144;
     public static final double MRNA_INICIAL = 100.0;
