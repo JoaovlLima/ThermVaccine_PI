@@ -23,6 +23,7 @@ public class CaixaController {
         List<Caixa> caixas = caixaService.listarCaixasDisponiveis();
 
         if(caixas.isEmpty()){
+            System.out.println("Não há nenhuma caixa disponível");
             return null;
         }
 
@@ -39,12 +40,12 @@ public class CaixaController {
         sc.close();
 
         if(escolhaCaixa >= 1 && escolhaCaixa <= caixas.size()){
-            System.out.println("Você escolheu : "+caixas.get(escolhaCaixa-1).getId());
+            System.out.println("Você escolheu: "+caixas.get(escolhaCaixa-1).getId());
             return caixas.get(escolhaCaixa-1); 
         }
         
         System.out.println("Opção invalida");
-        System.out.println("SIZE :"+caixas.size());
+        System.out.println("SIZE: "+caixas.size());
         return null;
 
         
@@ -59,7 +60,7 @@ public class CaixaController {
 
     public void inserirComandas(Caixa caixa, List<Comanda> comandas){
 
-        caixaService.inserirComandas(caixa, comandas);;
+        caixaService.inserirComandas(caixa, comandas);
     }
 
 
