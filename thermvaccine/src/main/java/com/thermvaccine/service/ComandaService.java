@@ -2,20 +2,25 @@ package com.thermvaccine.service;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.thermvaccine.model.Comanda;
 import com.thermvaccine.model.Lote;
 import com.thermvaccine.model.Lote_coman;
 import com.thermvaccine.model.Vacina;
+import com.thermvaccine.model.Comanda.StatusComanda;
+import com.thermvaccine.repository.ComandaRepository;
 
 public class ComandaService {
 
 
     private final CalculoVidaUtilService calculoVidaUtilService;
+    private final ComandaRepository comandaRepository;
 
     public ComandaService(){
         this.calculoVidaUtilService = new CalculoVidaUtilService();
+        this.comandaRepository = new ComandaRepository();
     }
 
     private final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
@@ -56,6 +61,40 @@ public List<Lote_coman> calcularMrnaDisponivel(List<Lote_coman> lote_comans){
 
     return lote_comans;
 
+}
+
+public List<Comanda> listarComandasDisponiveis(){
+
+    List<Comanda> comandasDb = comandaRepository.listar();
+    List<Comanda> comandasDisponiveis = new ArrayList<Comanda>();
+
+    for (Comanda comanda : comandasDb) {
+        if(comanda.getStatus() == StatusComanda.EM_AGUARDO){
+            comandasDisponiveis.add(comanda);
+        }
+    }
+
+    return comandasDisponiveis;
+
+    
+}
+
+public void editarComanda(Comanda comanda){
+
+    comandaRepository.editar(comanda);
+}
+
+public int qtdTotalComanda(List<Comanda> comandas){
+    int totalComanda = 0;
+    for (Comanda comanda : comandas) {
+        
+        for(Lote_coman lote_coman : comanda.getLote_coman()) {
+            
+            totalComanda+=lote_coman.getQtd();
+        }
+    }
+
+    return totalComanda;
 }
 
 

@@ -2,6 +2,7 @@ package com.thermvaccine.service;
 
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import com.thermvaccine.model.Caixa;
 import com.thermvaccine.model.Comanda;
@@ -21,12 +22,14 @@ public class CaixaService {
     private final HistoricoCaixaRepository historicoCaixaRepository;
     private final DataLoggerRepository dataLoggerRepository;
     private final ComandaRepository comandaRepository;
+    private final ComandaService comandaService;
 
     public CaixaService() {
         this.caixaRepository = new CaixaRepository();
         this.historicoCaixaRepository = new HistoricoCaixaRepository();
         this.dataLoggerRepository = new DataLoggerRepository();
         this.comandaRepository = new ComandaRepository();
+        this.comandaService = new ComandaService();
     }
 
     public void exibirComanda(Caixa caixa) {
@@ -91,7 +94,28 @@ public class CaixaService {
 
     }
 
-    
+    public List<Caixa> acharCaixas(List<Comanda> comandas){
+        
+        int qtdMax = comandaService.qtdTotalComanda(comandas);
+        
+        List<Caixa> caixaDb = listarCaixasDisponiveis();
+
+        List<Caixa> caixasEscolhidas = null;
+        int capCaixa = 0;
+        for (Caixa caixa : caixaDb) {
+            
+            caixasEscolhidas.add(caixa);
+            capCaixa +=caixa.getQtd_max_vac();
+            if(qtdMax >= capCaixa){
+                break;
+            }
+        }
+
+        return caixasEscolhidas;
+        
+
+    }
+
     public void inserirComandas(Caixa caixa, List<Comanda> comandas) {
 
             if(!caixa.getDisponivel()){

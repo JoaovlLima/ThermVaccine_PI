@@ -16,35 +16,18 @@ public class CaixaController {
         this.caixaService = new CaixaService();
     }
 
-    public Caixa escolhaCaixa(){
+    public Caixa vincularCaixa(List<Comanda> comandas, int qtdMax){
 
+        List<Caixa> caixas = caixaService.acharCaixas(comandas);
 
-
-        List<Caixa> caixas = caixaService.listarCaixasDisponiveis();
-
+        
         if(caixas.isEmpty()){
+            System.out.println("Não há nenhuma caixa disponível");
             return null;
         }
 
         Scanner sc = new Scanner(System.in);
 
-        System.out.println("\nOpções disponiveis: ");
-        for (int i = 0; i < caixas.size(); i++) {
-
-            System.out.println("\n"+(i+1)+"-Caixa "+(i+1)+" | Quantidade de espaço: "+caixas.get(i).getQtd_max_vac());
-        }
-        
-        System.out.println("\nEscolha uma opção: ");
-        int escolhaCaixa = sc.nextInt();
-        sc.close();
-
-        if(escolhaCaixa >= 1 && escolhaCaixa <= caixas.size()){
-            System.out.println("Você escolheu : "+caixas.get(escolhaCaixa-1).getId());
-            return caixas.get(escolhaCaixa-1); 
-        }
-        
-        System.out.println("Opção invalida");
-        System.out.println("SIZE :"+caixas.size());
         return null;
 
         
@@ -59,7 +42,7 @@ public class CaixaController {
 
     public void inserirComandas(Caixa caixa, List<Comanda> comandas){
 
-        caixaService.inserirComandas(caixa, comandas);;
+        caixaService.inserirComandas(caixa, comandas);
     }
 
 
