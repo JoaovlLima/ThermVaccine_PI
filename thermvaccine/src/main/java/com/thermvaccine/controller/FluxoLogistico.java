@@ -1,7 +1,11 @@
 package com.thermvaccine.controller;
 
+import java.util.List;
 import java.util.Scanner;
 
+import com.thermvaccine.model.Caixa;
+import com.thermvaccine.model.Comanda;
+import com.thermvaccine.model.Transporte;
 import com.thermvaccine.model.UserLogistica;
 import com.thermvaccine.utils.ConsoleUtils;
 import com.thermvaccine.controller.CaixaController;
@@ -59,10 +63,21 @@ public class FluxoLogistico {
             case 4: // Cadastrar Transporte
 
                 ConsoleUtils.clearScreen();
-                traspController.criarTransporte();
+                //Escolher comanda
+                List<Comanda> comandas = traspController.escolhaComanda();
 
+                //Escolher Transporte
+                Transporte transporte = traspController.escolhaTransporte();
+
+                //Achar Caixas pela capacidade
+                List<Caixa> caixas = caixaController.acharCaixas(comandas, transporte.getCapacidade());
+
+                //Vincular Datalogger
+                caixaController.vincularDatalogger(caixas);
+
+                
                 continue;
-            
+               
             case 5: // Escolher Transporte
 
                 ConsoleUtils.clearScreen();

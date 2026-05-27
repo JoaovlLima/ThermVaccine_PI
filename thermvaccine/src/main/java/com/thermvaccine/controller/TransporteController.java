@@ -20,29 +20,8 @@ public class TransporteController {
         
     }
 
-    public void iniciarTransporte(){
-
-        // Escolher Transporte
-
-        Transporte transporte = escolhaTransporte();
-
-        int capacidadeTotal = transporte.getCapacidade();
-
-        
-
-        // Escolher comanda;
-
-        List<Comanda> comandaEscolhida = escolhaComanda();
-
-        // Vincular caixa
-
-
-    }
-
     public Transporte escolhaTransporte(){
         Scanner sc = new Scanner(System.in);
-
-
         
         List<Transporte> transportes = transporteService.listarTransportesDisponiveis();
         if(transportes.size() ==0){

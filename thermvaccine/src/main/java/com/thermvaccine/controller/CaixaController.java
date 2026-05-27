@@ -16,26 +16,25 @@ public class CaixaController {
         this.caixaService = new CaixaService();
     }
 
-    public Caixa vincularCaixa(List<Comanda> comandas, int qtdMax){
+    public List<Caixa> acharCaixas(List<Comanda> comandas, int qtdMax){
 
         List<Caixa> caixas = caixaService.acharCaixas(comandas);
 
-        
+
         if(caixas.isEmpty()){
             System.out.println("Não há nenhuma caixa disponível");
             return null;
         }
 
-        Scanner sc = new Scanner(System.in);
+        return caixas;
 
-        return null;
-
-        
     }
 
-    public void vincularDatalogger(Caixa caixa, DataLogger dataLogger){
-
-        caixaService.vincularDatalogger(dataLogger, caixa);
+    public void vincularDatalogger(List<Caixa> caixas){
+        
+            caixaService.vincularDatalogger(caixas);
+    
+        
 
     }
  
