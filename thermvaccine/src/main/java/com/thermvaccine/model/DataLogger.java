@@ -11,8 +11,8 @@ import lombok.NoArgsConstructor;
 public class DataLogger {
     private String id; 
     private String modelo; 
-    private boolean disponivel;
-    private List<RegistroDatalogger> registroDatalogger;
+    private boolean disponivel; 
+    private List<RegistroDatalogger> registroDatalogger; 
 
     
 

@@ -77,13 +77,13 @@ public class DataLoggerService {
             try {
 
             DataLogger dataLogger = dataLoggerRepository.findById(idDatalogger);
+            
             for (RegistroDatalogger registro : registros) {   
                 
 
                 registro.setData_hora(LocalDateTime.now());
 
                 dataLogger.inserirRegistro(registro);
-
                 dataLoggerRepository.editar(dataLogger);
                 TimeUnit.SECONDS.sleep(5);
 

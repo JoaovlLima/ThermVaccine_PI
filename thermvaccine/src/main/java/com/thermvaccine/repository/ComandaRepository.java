@@ -60,7 +60,7 @@ public class ComandaRepository implements IRepository<Comanda> {
             e.printStackTrace();
         }
     }
-
+    
     // EDIT FILE
     public void editar(Comanda comandaAtualizada){
         try {
