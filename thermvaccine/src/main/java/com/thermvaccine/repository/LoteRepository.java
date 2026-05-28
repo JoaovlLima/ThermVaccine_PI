@@ -9,17 +9,16 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
-import com.thermvaccine.model.Caixa;
 import com.thermvaccine.model.DataLogger;
+import com.thermvaccine.model.Lote;
 
-public class DataLoggerRepository implements IRepository<DataLogger> {
-
-
+public class LoteRepository {
+    
     private final ObjectMapper mapper = new ObjectMapper()
         .registerModule(new JavaTimeModule())
         .disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
 
-    private final File arquivo = new File("thermvaccine\\data\\dataLogger.json");
+    private final File arquivo = new File("thermvaccine\\data\\lote.json");
 
 
     // CLEANER
@@ -34,7 +33,7 @@ public class DataLoggerRepository implements IRepository<DataLogger> {
 }
 
     // READ FILE
-    public List<DataLogger> listar() {
+    public List<Lote> listar() {
         try {
             if (!arquivo.exists()) {
                 return new ArrayList<>();
@@ -42,7 +41,7 @@ public class DataLoggerRepository implements IRepository<DataLogger> {
 
             return mapper.readValue(
                     arquivo,
-                    new TypeReference<List<DataLogger>>() {}
+                    new TypeReference<List<Lote>>() {}
             );
 
         } catch (IOException e) {
@@ -52,10 +51,10 @@ public class DataLoggerRepository implements IRepository<DataLogger> {
     }
 
     // SAVE FILE
-    public void salvar(List<DataLogger> dataLogger) {
+    public void salvar(List<Lote> lotes) {
         try {
             mapper.writerWithDefaultPrettyPrinter()
-                    .writeValue(arquivo, dataLogger);
+                    .writeValue(arquivo, lotes);
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -63,54 +62,38 @@ public class DataLoggerRepository implements IRepository<DataLogger> {
     }
 
     // EDIT FILE
-    public void editar(DataLogger dataLoggerAtualizada){
+    public void editar(Lote loteAtualizada){
         try {
-            List<DataLogger> dataLoggers = listar();
+            List<Lote> lotes = listar();
             
 
-            for (int i = 0; i < dataLoggers.size(); i++) {
-                if(dataLoggers.get(i).getId().equals(dataLoggerAtualizada.getId())){
-                    dataLoggers.set(i, dataLoggerAtualizada);
+            for (int i = 0; i < lotes.size(); i++) {
+                if(lotes.get(i).getId().equals(loteAtualizada.getId())){
+                    lotes.set(i, loteAtualizada);
                     break;
                 }
             }
 
 
-            salvar(dataLoggers);
+            salvar(lotes);
          } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
     // FIND ID
-    public DataLogger findById(String idDataLogger){
+    public Lote findById(String idLote){
 
-        List<DataLogger> dataLoggersDb = listar();
+        List<Lote> lotesDb = listar();
 
-        for (int i = 0; i < dataLoggersDb.size(); i++) {
-            if(dataLoggersDb.get(i).getId().equals(idDataLogger)){
-                return dataLoggersDb.get(i);
+        for (int i = 0; i < lotesDb.size(); i++) {
+            if(lotesDb.get(i).getId().equals(idLote)){
+                return lotesDb.get(i);
             }
         }
 
         return null;
     }
 
-    public void limparRegistros(String idDataLogger){
-        List<DataLogger> dataLoggersDb = listar();
-
-        for (int i = 0; i < dataLoggersDb.size(); i++) {
-
-            if(dataLoggersDb.get(i).getId().equals(idDataLogger)){
-
-                DataLogger dataLogger = dataLoggersDb.get(i);
-                dataLogger.setRegistroDatalogger(List.of());
-                dataLoggersDb.set(i, dataLogger);
-                break;
-            }
-            
-        }
-
-        salvar(dataLoggersDb);
-    }
+   
 }

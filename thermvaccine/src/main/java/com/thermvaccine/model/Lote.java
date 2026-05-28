@@ -1,6 +1,10 @@
 package com.thermvaccine.model;
 
 import java.time.format.DateTimeFormatter;
+import java.util.UUID;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.time.LocalDateTime;
 import lombok.NoArgsConstructor;
 
@@ -14,15 +18,17 @@ public class Lote {
     private String fabricante;
     private LocalDateTime data_descongelamento;
     private LocalDateTime validade;
+
     private Usuario usuario;
     private Vacina vacina;
 
 
-    public Lote(/*String id,*/int quantidade, String fabricante, String validade, Usuario usuario, Vacina vacina){
-        //this.id = id;
+    public Lote(int quantidade, String fabricante, LocalDateTime validade, LocalDateTime data_descongelamento, Usuario usuario, Vacina vacina){
+        this.id = UUID.randomUUID().toString();
         this.quantidade = quantidade;
         this.fabricante = fabricante;
-        this.validade = LocalDateTime.parse(validade, FORMATTER);
+        this.validade = validade;
+        this.data_descongelamento = data_descongelamento;
         this.usuario = usuario;
         this.vacina = vacina;
     }
@@ -44,8 +50,8 @@ public class Lote {
         return usuario;
     }
 
-    public String getValidade(){
-        return validade.format(FORMATTER);
+    public LocalDateTime getValidade(){
+        return validade;
     }
 
     public Vacina getVacina() {

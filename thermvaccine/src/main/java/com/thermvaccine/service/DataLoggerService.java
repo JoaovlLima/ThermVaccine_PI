@@ -196,6 +196,11 @@ public class DataLoggerService {
 
     }
 
+    public void editarDatalogger(DataLogger dataLogger){
+
+        dataLoggerRepository.editar(dataLogger);
+    }
+
   
         
 }
