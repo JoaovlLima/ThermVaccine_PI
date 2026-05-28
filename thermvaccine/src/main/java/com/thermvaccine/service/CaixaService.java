@@ -101,10 +101,17 @@ public class CaixaService {
 
         List<Caixa> caixaDb = listarCaixasDisponiveis();
 
-        List<Caixa> caixasEscolhidas = null;
+        List<Caixa> caixasEscolhidas = new ArrayList<>();
+        List<Comanda> comandaCaixa = new ArrayList<>();
         int capCaixa = 0;
         for (Caixa caixa : caixaDb) {
-            
+            comandaCaixa = List.of();
+            int capCaixa2 = caixa.getQtd_max_vac();
+            for(Comanda comanda: comandas){
+                if(capCaixa2 >= comandaService.qtdTotalComanda(List.of(comanda))){
+                    
+                }
+            }
             caixasEscolhidas.add(caixa);
             capCaixa +=caixa.getQtd_max_vac();
             if(qtdMax >= capCaixa){

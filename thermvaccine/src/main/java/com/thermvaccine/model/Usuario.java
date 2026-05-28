@@ -3,7 +3,7 @@ package com.thermvaccine.model;
 import lombok.NoArgsConstructor;
 
 @NoArgsConstructor
-public abstract class Usuario {
+public class Usuario {
     private String id;
     private String re;
     private String nome;
