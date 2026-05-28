@@ -99,7 +99,7 @@ public class ComandaRepository implements IRepository<Comanda> {
 
     List<Comanda> comandasBd = listar();
 
-    List<Comanda> comandasPorCaixa = null;
+    List<Comanda> comandasPorCaixa = new ArrayList<>();;
 
     for (Comanda comanda : comandasBd) {
         

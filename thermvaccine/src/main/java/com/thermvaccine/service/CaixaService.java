@@ -177,4 +177,8 @@ public class CaixaService {
         
     }
 
+    public List<Caixa> caixasPorTransporte(String placa) {
+        return caixaRepository.caixasPorPlacaTransporte(placa);
+    }
+
 }

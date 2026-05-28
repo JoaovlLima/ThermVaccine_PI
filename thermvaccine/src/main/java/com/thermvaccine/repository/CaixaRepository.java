@@ -112,7 +112,7 @@ public class CaixaRepository implements IRepository<Caixa> {
     public List<Caixa> caixasPorPlacaTransporte(String placa){
     List<Caixa> caixasBd = listar();
 
-    List<Caixa> caixasPorTransporte = null;
+    List<Caixa> caixasPorTransporte = new ArrayList<>();
 
     for (Caixa caixa : caixasBd) {
         
@@ -120,7 +120,7 @@ public class CaixaRepository implements IRepository<Caixa> {
             caixasPorTransporte.add(caixa);
         }
     } 
-
+    
     return caixasPorTransporte;
     
   }

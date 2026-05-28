@@ -21,7 +21,7 @@ public class FluxoQualidade {
 
         System.out.println("╔══════════════════════════════════════╗");
         System.out.println("        ThermVaccine — Qualidade        ");
-        Sy
+        
 
     }
     
