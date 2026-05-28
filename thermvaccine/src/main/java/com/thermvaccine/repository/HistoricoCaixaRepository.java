@@ -54,4 +54,21 @@ public class HistoricoCaixaRepository {
             e.printStackTrace();
         }
     }
+
+    public void editar(HistoricoCaixa historicoCaixa){
+        try {
+            
+            List<HistoricoCaixa> historicoCaixasDb = listar();
+
+            for (int i = 0; i < historicoCaixasDb.size(); i++) {
+                if(historicoCaixasDb.get(i).getId() == historicoCaixa.getId()){
+                    historicoCaixasDb.set(i, historicoCaixa);
+                    break;
+                }
+            }
+
+        } catch (Exception e) {
+            throw e;
+        }
+    }
 }

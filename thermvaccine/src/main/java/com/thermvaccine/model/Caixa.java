@@ -1,7 +1,5 @@
 package com.thermvaccine.model;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.UUID;
 
 import lombok.NoArgsConstructor;
@@ -11,7 +9,7 @@ public class Caixa {
 
     private String id;
     private int qtd_max_vac;
-    private boolean disponivel;
+    private Boolean disponivel;
     private String idTransporte;
 
     public Caixa(int qtd_max_vac){
@@ -27,7 +25,9 @@ public class Caixa {
 
 
     public void setIdTransporte(String idTransporte) {
-        this.disponivel = false;
+        if(idTransporte != null){
+            this.disponivel = false;
+        }
         this.idTransporte = idTransporte;
     }
 
@@ -36,7 +36,7 @@ public class Caixa {
         this.id = id;
     }
 
-     public void setDisponivel(boolean disponivel) {
+     public void setDisponivel(Boolean disponivel) {
         if(disponivel == true){
             this.idTransporte = null;
         }
@@ -44,12 +44,8 @@ public class Caixa {
      }
 
 
-    public boolean getDisponivel(){
+    public Boolean getDisponivel(){
         return disponivel;
-    }
-
-    public void setDiponivel(boolean disponivel){
-        this.disponivel = disponivel;
     }
 
     public String getId() {

@@ -7,6 +7,7 @@ public interface IRepository<T> {
 
     void salvar(List<T> t);
 
+
     void editar(T t); 
     
     List<T> listar();

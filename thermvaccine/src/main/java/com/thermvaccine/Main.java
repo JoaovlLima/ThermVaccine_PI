@@ -27,22 +27,26 @@ public class Main {
 
     public static void main(String[] args) throws InterruptedException {
 
-        // ── SERVICES ─────────────────────────────────────────────
-        DataLoggerService dataLoggerService = new DataLoggerService();
-        VacinaService vacinaService = new VacinaService();
+        // // ── SERVICES ─────────────────────────────────────────────
+        // DataLoggerService dataLoggerService = new DataLoggerService();
+        // VacinaService vacinaService = new VacinaService();
 
-        // ── VACINA ────────────────────────────────────────────────
-        Vacina moderna = new Vacina("Moderna mRNA-1273", -20f, 8f, 100000.0, 6.04e12, 95.0);
-        vacinaService.criar(moderna);
+        // // ── VACINA ────────────────────────────────────────────────
+        // Vacina moderna = new Vacina("Moderna mRNA-1273", -20f, 8f, 100000.0, 6.04e12, 95.0);
+        // vacinaService.criar(moderna);
 
-        // ── DATALOGGER ────────────────────────────────────────────       
-        System.out.println("Vacina criada: " + moderna.getNome());
-        dataLoggerService.limparRegistros("755e2bb1-0d94-459f-b92b-abdff43879da");
+        // // ── DATALOGGER ────────────────────────────────────────────       
+        // System.out.println("Vacina criada: " + moderna.getNome());
+        // dataLoggerService.limparRegistros("755e2bb1-0d94-459f-b92b-abdff43879da");
 
-        // ── SIMULAÇÃO VIA CSV ─────────────────────────────────────
-        List<RegistroDatalogger> registrosTest = dataLoggerService.leituraArquivo();
-        dataLoggerService.salvarRegistro(registrosTest, "755e2bb1-0d94-459f-b92b-abdff43879da");
-        System.out.println("ESTA COM THREAD");
+        // // ── SIMULAÇÃO VIA CSV ─────────────────────────────────────
+        // List<RegistroDatalogger> registrosTest = dataLoggerService.leituraArquivo();
+        // dataLoggerService.salvarRegistro(registrosTest, "755e2bb1-0d94-459f-b92b-abdff43879da");
+        // System.out.println("ESTA COM THREAD");
+
+        TransporteService transporteService = new TransporteService();
+
+        transporteService.listarTransportesDisponiveis();
 
         // ── MONITORAMENTO ─────────────────────────────────────────
         // CalculoVidaUtilService.iniciar("755e2bb1-0d94-459f-b92b-abdff43879da", moderna);

@@ -8,16 +8,20 @@ import com.thermvaccine.repository.TransporteRepository;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.hibernate.sql.ast.tree.predicate.BooleanExpressionPredicate;
+
 import com.thermvaccine.model.Caixa;
 
 public class TransporteService {
 
     private final TransporteRepository transporteRepository;
     private final CaixaRepository caixaRepository;
+    private final CaixaService caixaService;
 
     public TransporteService(){
         this.transporteRepository = new TransporteRepository();
         this.caixaRepository = new CaixaRepository();
+        this.caixaService = new CaixaService();
     }
 
     public void exibirDados(Transporte transp){
@@ -47,8 +51,8 @@ public class TransporteService {
         List<Transporte> transportesDb = transporteRepository.listar();
         List<Transporte> transportesDisponiveis = new ArrayList<>();
         for (Transporte transporte : transportesDb) {
-
-            if(transporte.getDisponivel()){
+            if(transporte.getDisponivel() && 
+            transporte.getCapacidade() > caixaService.qtdCaixaTransportePlaca(transporte.getPlaca())){
                 transportesDisponiveis.add(transporte);
             }
             
@@ -57,8 +61,20 @@ public class TransporteService {
         return transportesDisponiveis;
     }
 
-   
-   
+
+    public void mudarStatus(String placa){
+
+        Transporte transporte = transporteRepository.findById(placa);
+        if(transporte == null){
+            throw new RuntimeException("Transporte Não encontrado");
+        }
+
+        Boolean status = transporte.getDisponivel() ? false : true;
+        transporte.setDisponivel(status);
+
+        transporteRepository.editar(transporte);
+    }
+
     public void exibirCaixas(Transporte transporte){
 
 

@@ -51,6 +51,13 @@ public class ComandaRepository implements IRepository<Comanda> {
     }
 
     // SAVE FILE
+
+    public void salvarUni(Comanda comanda){
+        List<Comanda> comandasBd = listar();
+        comandasBd.add(comanda);
+        salvar(comandasBd);
+    }
+
     public void salvar(List<Comanda> Comanda) {
         try {
             mapper.writerWithDefaultPrettyPrinter()

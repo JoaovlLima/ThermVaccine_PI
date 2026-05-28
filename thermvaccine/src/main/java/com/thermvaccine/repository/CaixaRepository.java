@@ -50,6 +50,7 @@ public class CaixaRepository implements IRepository<Caixa> {
     }
 
     // SAVE FILE
+
     public void salvar(List<Caixa> caixa) {
         try {
             mapper.writerWithDefaultPrettyPrinter()
@@ -112,11 +113,11 @@ public class CaixaRepository implements IRepository<Caixa> {
     public List<Caixa> caixasPorPlacaTransporte(String placa){
     List<Caixa> caixasBd = listar();
 
-    List<Caixa> caixasPorTransporte = null;
+    List<Caixa> caixasPorTransporte = new ArrayList<>();
 
     for (Caixa caixa : caixasBd) {
         
-        if(caixa.getIdTransporte().equals(placa)){
+        if(caixa.getIdTransporte() != null && caixa.getIdTransporte().equals(placa)){
             caixasPorTransporte.add(caixa);
         }
     } 
