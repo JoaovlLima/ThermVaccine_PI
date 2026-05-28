@@ -2,6 +2,7 @@ package com.thermvaccine.service;
 
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import com.thermvaccine.model.Caixa;
 import com.thermvaccine.model.Comanda;
@@ -19,14 +20,16 @@ public class CaixaService {
 
     private final CaixaRepository caixaRepository;
     private final HistoricoCaixaRepository historicoCaixaRepository;
-    private final DataLoggerRepository dataLoggerRepository;
+    private final DataLoggerService dataLoggerService;
     private final ComandaRepository comandaRepository;
+    private final ComandaService comandaService;
 
     public CaixaService() {
         this.caixaRepository = new CaixaRepository();
         this.historicoCaixaRepository = new HistoricoCaixaRepository();
-        this.dataLoggerRepository = new DataLoggerRepository();
+        this.dataLoggerService = new DataLoggerService();
         this.comandaRepository = new ComandaRepository();
+        this.comandaService = new ComandaService();
     }
 
     public void exibirComanda(Caixa caixa) {
@@ -91,7 +94,29 @@ public class CaixaService {
 
     }
 
-    
+    // Revisar Associar as comandas a suas devidas caixas
+    public List<Caixa> acharCaixas(List<Comanda> comandas){
+        
+        int qtdMax = comandaService.qtdTotalComanda(comandas);
+
+        List<Caixa> caixaDb = listarCaixasDisponiveis();
+
+        List<Caixa> caixasEscolhidas = null;
+        int capCaixa = 0;
+        for (Caixa caixa : caixaDb) {
+            
+            caixasEscolhidas.add(caixa);
+            capCaixa +=caixa.getQtd_max_vac();
+            if(qtdMax >= capCaixa){
+                break;
+            }
+        }
+
+        return caixasEscolhidas;
+        
+
+    }
+
     public void inserirComandas(Caixa caixa, List<Comanda> comandas) {
 
             if(!caixa.getDisponivel()){
@@ -126,20 +151,30 @@ public class CaixaService {
     }
 
    
-    public void vincularDatalogger(DataLogger dataLogger, Caixa caixa) {
+    public void vincularDatalogger(List<Caixa> caixas) {
+        List<DataLogger> dataLoggers = dataLoggerService.dataLoggersDisponiveis();
 
+        if(dataLoggers.size() < caixas.size()){
+            throw new RuntimeException("Dataloggers insuficientes");
+        }
         List<HistoricoCaixa> historicoCaixaDb = historicoCaixaRepository.listar();
 
-        HistoricoCaixa historicoCaixaNovo = new HistoricoCaixa(dataLogger, caixa, "abcd");
+        for (int i = 0; i < caixas.size(); i++) {
+            
+            HistoricoCaixa historicoCaixaNovo = new HistoricoCaixa(dataLoggers.get(i), caixas.get(i), "abcd");
+             historicoCaixaDb.add(historicoCaixaNovo);
+             
+             dataLoggers.get(i).setDisponivel(false);
+             dataLoggerService.editarDatalogger(dataLoggers.get(i));
 
-        historicoCaixaDb.add(historicoCaixaNovo);
+        }
+        
+
+       
 
         historicoCaixaRepository.salvar(historicoCaixaDb);
 
-        dataLogger.setDisponivel(false);
-
-        dataLoggerRepository.editar(dataLogger);
-
+        
     }
 
 }
