@@ -32,19 +32,34 @@ public class CaixaService {
         this.comandaService = new ComandaService();
     }
 
+    public DataLogger dataLoggerDaCaixa(String idCaixa){ // Datalogger associado à caixa - novo método
+        List<HistoricoCaixa> historico = historicoCaixaRepository.listar();
+        HistoricoCaixa ultimo = null;
+
+        for(HistoricoCaixa h : historico){
+            if(h.getCaixa() != null && idCaixa.equals(h.getCaixa().getId()))
+                ultimo = h;
+        }
+        return ultimo != null ? ultimo.getDataLogger() : null;
+    }
+
+    public List<Comanda> comandasDaCaixa(String idCaixa){ // Comandas que estão associadas à uma caixa - novo método 
+        return comandaRepository.comandasPorIdCaixa(idCaixa);
+    }
+
+
     public void exibirComanda(Caixa caixa) {
 
         List<Comanda> comandas = comandaRepository.comandasPorIdCaixa(caixa.getId());
         for (Comanda comanda : comandas) {
-                System.out.printf("ID: %s\n", comanda.getId());
-                System.out.printf("Data de emissao: %s\n", comanda.getData_emissao().format(FORMATTER));
-                System.out.printf("Status: %s\n", comanda.getStatus());
-                System.out.printf("Local de entrega: CEP - %s | Numero da residencia - %d\n", comanda.getCep(),
-                        comanda.getNumEndereco());
+            System.out.printf("ID: %s\n", comanda.getId());
+            System.out.printf("Data de emissao: %s\n", comanda.getData_emissao().format(FORMATTER));
+            System.out.printf("Status: %s\n", comanda.getStatus());
+            System.out.printf("Local de entrega: CEP - %s | Numero da residencia - %d\n", comanda.getCep(),
+                    comanda.getNumEndereco());
 
-            }
         }
-
+    }
 
     public void criarCaixa(int qtd_max_vac) {
 
@@ -63,25 +78,32 @@ public class CaixaService {
         }
     }
 
+    public void salvarTransporteCaixa(List<Caixa> caixas){
+
+        for (Caixa caixa : caixas) {
+            caixaRepository.editar(caixa);
+        }
+    }
 
     public List<Caixa> listarCaixasDisponiveis() {
 
         try {
             List<Caixa> caixasDb = caixaRepository.listar();
 
-            if(caixasDb.isEmpty()){
+            if (caixasDb.isEmpty()) {
                 System.out.println("Não há caixas cadastradas");
                 return List.of();
             }
             List<Caixa> caixasDisponiveis = new ArrayList<>();
 
             for (Caixa caixa : caixasDb) {
+               
                 if (caixa.getDisponivel()) {
                     caixasDisponiveis.add(caixa);
                 }
             }
 
-            if(caixasDisponiveis.isEmpty()){
+            if (caixasDisponiveis.isEmpty()) {
                 System.out.println("Não há caixas disponiveis");
                 return List.of();
             }
@@ -95,86 +117,105 @@ public class CaixaService {
     }
 
     // Revisar Associar as comandas a suas devidas caixas
-    public List<Caixa> acharCaixas(List<Comanda> comandas){
-        
+    public List<Caixa> acharCaixas(List<Comanda> comandas) {
+
         int qtdMax = comandaService.qtdTotalComanda(comandas);
 
         List<Caixa> caixaDb = listarCaixasDisponiveis();
+        List<Caixa> caixasEscolhidas = new ArrayList<>();
+        int capTotal = 0;
 
-        List<Caixa> caixasEscolhidas = null;
-        int capCaixa = 0;
         for (Caixa caixa : caixaDb) {
-            
+            int capRestante = caixa.getQtd_max_vac();
+
+            for (Comanda comanda : comandas) {
+                int qtdComanda = comandaService.qtdTotalComanda(List.of(comanda));
+
+                if (comanda.getIdCaixa() == null && capRestante >= qtdComanda) {
+                    comanda.setIdCaixa(caixa.getId());
+                    capRestante -= qtdComanda;
+                }
+                
+            }
+
             caixasEscolhidas.add(caixa);
-            capCaixa +=caixa.getQtd_max_vac();
-            if(qtdMax >= capCaixa){
+            capTotal += caixa.getQtd_max_vac();
+
+            if (capTotal >= qtdMax) {
                 break;
             }
         }
 
         return caixasEscolhidas;
-        
-
     }
 
     public void inserirComandas(Caixa caixa, List<Comanda> comandas) {
 
-            if(!caixa.getDisponivel()){
-                System.out.println("Caixa indisponivel");
-                return;
+        if (!caixa.getDisponivel()) {
+            System.out.println("Caixa indisponivel");
+            return;
+        }
+
+        // Logica para saber se a caixa suporta a qtd
+        int qtdTotal = 0;
+        for (Comanda comanda : comandas) {
+            for (Lote_coman lote_coman : comanda.getLote_coman()) {
+
+                qtdTotal += lote_coman.getQtd();
+
             }
 
-            //Logica para saber se a caixa suporta a qtd
-            int qtdTotal=0;
-            for (Comanda comanda : comandas) {
-                for (Lote_coman lote_coman : comanda.getLote_coman()) {
+        }
 
-                    qtdTotal+= lote_coman.getQtd();
-                    
-                }
-                
-            }
+        if (qtdTotal > caixa.getQtd_max_vac()) {
+            System.out.println("Caixa não suporta quantidade de vacina");
+            return;
+        }
 
-            if(qtdTotal > caixa.getQtd_max_vac()){
-                System.out.println("Caixa não suporta quantidade de vacina");
-                return;
-            }
+        // Inserindo id caixa nas comandas
+        for (Comanda comanda : comandas) {
+            comanda.setIdCaixa(caixa.getId());
+        }
 
-            //Inserindo id caixa nas comandas
-            for (Comanda comanda : comandas) {
-                comanda.setIdCaixa(caixa.getId());
-            }
-
-
-            caixaRepository.editar(caixa);
+        caixaRepository.editar(caixa);
 
     }
 
-   
-    public void vincularDatalogger(List<Caixa> caixas) {
+    public List<HistoricoCaixa> vincularDatalogger(List<Caixa> caixas) {
         List<DataLogger> dataLoggers = dataLoggerService.dataLoggersDisponiveis();
 
-        if(dataLoggers.size() < caixas.size()){
+        if (dataLoggers.size() < caixas.size()) {
             throw new RuntimeException("Dataloggers insuficientes");
         }
         List<HistoricoCaixa> historicoCaixaDb = historicoCaixaRepository.listar();
 
         for (int i = 0; i < caixas.size(); i++) {
-            
+
             HistoricoCaixa historicoCaixaNovo = new HistoricoCaixa(dataLoggers.get(i), caixas.get(i), "abcd");
-             historicoCaixaDb.add(historicoCaixaNovo);
-             
-             dataLoggers.get(i).setDisponivel(false);
-             dataLoggerService.editarDatalogger(dataLoggers.get(i));
+            historicoCaixaDb.add(historicoCaixaNovo);
+
+            dataLoggers.get(i).setDisponivel(false);
+            dataLoggerService.editarDatalogger(dataLoggers.get(i));
 
         }
-        
 
-       
+        return historicoCaixaDb;
 
-        historicoCaixaRepository.salvar(historicoCaixaDb);
+    }
 
-        
+    public void salvarVinculoDataCaixa(List<HistoricoCaixa> historicos){
+
+        for (HistoricoCaixa historico : historicos) {
+            
+            historicoCaixaRepository.editar(historico);
+        }
+    }
+
+    public int qtdCaixaTransportePlaca(String placa){
+
+        return caixaRepository.caixasPorPlacaTransporte(placa).size();
+
+
     }
 
     public List<Caixa> caixasPorTransporte(String placa) {

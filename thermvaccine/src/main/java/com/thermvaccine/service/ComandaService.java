@@ -17,10 +17,12 @@ public class ComandaService {
 
     private final CalculoVidaUtilService calculoVidaUtilService;
     private final ComandaRepository comandaRepository;
+    private final LoteService loteService;
 
     public ComandaService(){
         this.calculoVidaUtilService = new CalculoVidaUtilService();
         this.comandaRepository = new ComandaRepository();
+        this.loteService = new LoteService();
     }
 
     private final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
@@ -34,11 +36,15 @@ public class ComandaService {
 
     }
 
-    public Comanda criarComanda(String cep, int numEndereco,List<Lote_coman> lote){
+    public void criarComanda(String cep, int numEndereco,List<Lote_coman> lote){
 
         List<Lote_coman> lotesAtt = calcularMrnaDisponivel(lote);
 
-        return new Comanda(cep, numEndereco, lotesAtt);
+        loteService.descontarLote(lote);
+
+        Comanda comanda = new Comanda(cep, numEndereco, lotesAtt);
+
+        comandaRepository.salvarUni(comanda);
         //no View, guardar a nova Comanda numa lista para dps mandar tudo para a Caixa
     }
     
@@ -79,9 +85,12 @@ public List<Comanda> listarComandasDisponiveis(){
     
 }
 
-public void editarComanda(Comanda comanda){
+public void editarComandas(List<Comanda> comandas){
 
-    comandaRepository.editar(comanda);
+    for (Comanda comanda : comandas) {
+        comandaRepository.editar(comanda);
+    }
+  
 }
 
 public int qtdTotalComanda(List<Comanda> comandas){

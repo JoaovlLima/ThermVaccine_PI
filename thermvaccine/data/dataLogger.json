@@ -2,61 +2,6 @@
   "id" : "755e2bb1-0d94-459f-b92b-abdff43879da",
   "modelo" : "ModeloTest",
   "disponivel" : true,
-  "registroDatalogger" : [ {
-    "id" : 1356,
-    "temperatura" : 4.95,
-    "rede" : true,
-    "energia" : 13.3,
-    "compressor" : true,
-    "alarme" : false,
-    "data_hora" : "2026-05-27T18:54:38.25662223"
-  }, {
-    "id" : 1357,
-    "temperatura" : 5.25,
-    "rede" : true,
-    "energia" : 13.3,
-    "compressor" : true,
-    "alarme" : false,
-    "data_hora" : "2026-05-27T18:54:43.263249431"
-  }, {
-    "id" : 1358,
-    "temperatura" : 5.65,
-    "rede" : true,
-    "energia" : 13.3,
-    "compressor" : true,
-    "alarme" : false,
-    "data_hora" : "2026-05-27T18:54:48.266226435"
-  }, {
-    "id" : 1359,
-    "temperatura" : 5.95,
-    "rede" : true,
-    "energia" : 13.6,
-    "compressor" : true,
-    "alarme" : false,
-    "data_hora" : "2026-05-27T18:54:53.269481472"
-  }, {
-    "id" : 1360,
-    "temperatura" : 6.45,
-    "rede" : true,
-    "energia" : 13.3,
-    "compressor" : true,
-    "alarme" : false,
-    "data_hora" : "2026-05-27T18:54:58.272335488"
-  }, {
-    "id" : 1361,
-    "temperatura" : 7.05,
-    "rede" : true,
-    "energia" : 13.3,
-    "compressor" : true,
-    "alarme" : false,
-    "data_hora" : "2026-05-27T18:55:03.276880141"
-  }, {
-    "id" : 1362,
-    "temperatura" : 7.6,
-    "rede" : true,
-    "energia" : 13.3,
-    "compressor" : true,
-    "alarme" : false,
-    "data_hora" : "2026-05-27T18:55:08.280705051"
-  } ]
+  "registroDatalogger" : [ 
+  ]
 } ]

@@ -30,13 +30,12 @@ public class VacinaService {
     }
 
     //READ
-    public void listar(){
+    public List<Vacina> listar(){
 
         List<Vacina> vacinas = vacinaRepository.listar();
 
-        for (Vacina vacina : vacinas){
-            System.out.println(vacina);
-        }
+       return vacinas;
+
     }
 
     //UPDATE 

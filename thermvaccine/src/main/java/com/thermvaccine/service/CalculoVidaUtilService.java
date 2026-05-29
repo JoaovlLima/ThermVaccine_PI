@@ -1,4 +1,5 @@
 package com.thermvaccine.service;
+
 import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -62,7 +63,7 @@ public class CalculoVidaUtilService implements ICalculo{
 
         double MRNA_Atual = (mrnaInicial / 100) * MRNA_INICIAL;
 
-        for(int i = 0; i < registros.size() - 1; i++){
+        for(int i = 0; i < registros.size() - 1; i++){ // Trocar para ser a partir do último registro gerado - não vão ser apagados
 
             RegistroDatalogger atual = registros.get(i);
             RegistroDatalogger proximo = registros.get(i + 1);

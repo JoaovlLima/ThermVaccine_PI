@@ -30,42 +30,53 @@ public class Main {
 
     public static void main(String[] args) throws InterruptedException {
 
-        // ── SERVICES ─────────────────────────────────────────────
-        CalculoVidaUtilService calculoService = new CalculoVidaUtilService();
-        DataLoggerService dataLoggerService = new DataLoggerService();
-        VacinaService vacinaService = new VacinaService();
+        TransporteService transporteService = new TransporteService();
+        List<Transporte> lista = transporteService.listarEmTransito();
+        System.out.println("QTD: "+lista.size());
 
-        // ── VACINA ────────────────────────────────────────────────
-        Vacina moderna = new Vacina("Moderna mRNA-1273", -20f, 8f, 100000.0, 6.04e12, 90.0);
-        vacinaService.criar(moderna);
+        // // ── SERVICES ─────────────────────────────────────────────
+        // CalculoVidaUtilService calculoService = new CalculoVidaUtilService();
+        // DataLoggerService dataLoggerService = new DataLoggerService();
+        // VacinaService vacinaService = new VacinaService();
 
-        // ── DATALOGGER ────────────────────────────────────────────       
-        System.out.println("Vacina criada: " + moderna.getNome());
-        dataLoggerService.limparRegistros("755e2bb1-0d94-459f-b92b-abdff43879da");
+        // // ── VACINA ────────────────────────────────────────────────
+        // Vacina moderna = new Vacina("Moderna mRNA-1273", -20f, 8f, 100000.0, 6.04e12, 90.0);
+        // vacinaService.criar(moderna);
 
-        // ── USUARIO ────────────────────────────────────────────   
-        Usuario u = new UserQualidade("id1", "Teste", "teste123", "qualidade", Usuario.Tier.QUA);
+        // // // ── DATALOGGER ────────────────────────────────────────────       
+        // // System.out.println("Vacina criada: " + moderna.getNome());
+        // // dataLoggerService.limparRegistros("755e2bb1-0d94-459f-b92b-abdff43879da");
 
-        // ── LOTE ────────────────────────────────────────────   
-        Lote lote = new Lote(100, "FabricanteTeste", "2027-01-01 00:00:00", u, moderna);
-        lote.setData_descongelamento(LocalDateTime.now().minusDays(7));
+        // // ── USUARIO ────────────────────────────────────────────   
+        // Usuario u = new UserQualidade("id1", "Teste", "teste123", "qualidade", Usuario.Tier.QUA);
 
-        // ── SIMULAÇÃO VIA CSV ─────────────────────────────────────
-        List<RegistroDatalogger> registrosTest = dataLoggerService.leituraArquivo();
-        dataLoggerService.salvarRegistro(registrosTest, "755e2bb1-0d94-459f-b92b-abdff43879da");
-        System.out.println("ESTA COM THREAD");
-        Thread.sleep(1000);
+        // // ── LOTE ────────────────────────────────────────────   
+        // Lote lote = new Lote(
+        //     100,
+        //     "FabricanteTeste",
+        //     LocalDateTime.now().plusYears(1),        // validade
+        //     LocalDateTime.now().minusDays(7),         // data_descongelamento
+        //     u,
+        //     moderna
+        // );
+        // lote.setData_descongelamento(LocalDateTime.now().minusDays(7));
 
-        // ── MONITORAMENTO ─────────────────────────────────────────
+        // // ── SIMULAÇÃO VIA CSV ─────────────────────────────────────
+        // List<RegistroDatalogger> registrosTest = dataLoggerService.leituraArquivo();
+        // dataLoggerService.iniciarDataLogger("755e2bb1-0d94-459f-b92b-abdff43879da\"");
+        // System.out.println("ESTA COM THREAD");
+        // Thread.sleep(1000);
 
-        double mrnaInicial = lote.getData_descongelamento() != null 
-            ? calculoService.calcularMRNADisponivel(lote.getVacina(), lote.getData_descongelamento())
-            : 100.0;
+        // // ── MONITORAMENTO ─────────────────────────────────────────
+
+        // double mrnaInicial = lote.getData_descongelamento() != null 
+        //     ? calculoService.calcularMRNADisponivel(lote.getVacina(), lote.getData_descongelamento())
+        //     : 100.0;
 
         
-        System.out.printf("mRNA ponto de partida: %.6f%%%n", mrnaInicial);
+        // System.out.printf("mRNA ponto de partida: %.6f%%%n", mrnaInicial);
 
-        calculoService.iniciar("755e2bb1-0d94-459f-b92b-abdff43879da", moderna, mrnaInicial);
+        // calculoService.iniciar("755e2bb1-0d94-459f-b92b-abdff43879da", moderna, mrnaInicial);
 
 
         // ── TESTES ANTIGOS ───────────────────────────

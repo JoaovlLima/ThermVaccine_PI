@@ -3,7 +3,8 @@ package com.thermvaccine.model;
 import lombok.NoArgsConstructor;
 
 @NoArgsConstructor
-public abstract class Usuario {
+// Era para ser abstract, porem para inserção no json foi removido
+public class Usuario {
     private String id;
     private String re;
     private String nome;

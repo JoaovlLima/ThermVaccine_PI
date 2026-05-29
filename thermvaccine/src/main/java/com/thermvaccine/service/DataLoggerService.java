@@ -68,9 +68,10 @@ public class DataLoggerService {
     }
 
     
-    public void salvarRegistro(List<RegistroDatalogger> registros, String idDatalogger) {
+    public void iniciarDataLogger(String idDatalogger) {
         
-        
+        // ACESSANDO REGISTROS SIMULADOS 
+        List<RegistroDatalogger> registros = leituraArquivo();
 
         Thread thread = new Thread(() -> {
             
