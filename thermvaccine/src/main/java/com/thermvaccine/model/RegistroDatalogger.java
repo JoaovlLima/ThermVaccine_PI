@@ -1,6 +1,8 @@
 package com.thermvaccine.model;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
+
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -8,7 +10,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class RegistroDatalogger {
 
-    private Long id;
+    private String id;
     
     private float temperatura;
     private Boolean rede;
@@ -17,22 +19,10 @@ public class RegistroDatalogger {
     private Boolean alarme;
     private LocalDateTime data_hora;
 
-    
 
-    public RegistroDatalogger(Long id, float temperatura, Boolean rede, float energia,
-         Boolean compressor, Boolean alarme, LocalDateTime data_hora){
-            this.id = id;
-            this.temperatura = temperatura;
-            this.rede = rede;
-            this.energia = energia;
-            this.compressor = compressor;
-            this.alarme = alarme;
-            this.data_hora = data_hora;
-         }
-
-         public RegistroDatalogger(Long id, float temperatura, Boolean rede, float energia,
+         public RegistroDatalogger(float temperatura, Boolean rede, float energia,
          Boolean compressor, Boolean alarme){
-            this.id = id;
+            this.id = UUID.randomUUID().toString();;
             this.temperatura = temperatura;
             this.rede = rede;
             this.energia = energia;

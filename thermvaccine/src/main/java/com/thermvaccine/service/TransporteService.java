@@ -95,4 +95,9 @@ public class TransporteService {
         }
     }
 
+    public void finalizarTransporte(String placa){
+
+        
+    }
+
 }
