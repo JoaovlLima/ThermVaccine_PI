@@ -1,6 +1,6 @@
 [ {
   "id" : "33b35c36-f676-48e0-b150-f466bccc33fe",
-  "quantidade" : 500,
+  "quantidade" : 472,
   "fabricante" : "Pfzer",
   "data_descongelamento" : "2026-03-25T00:00:00",
   "validade" : "2026-09-28T00:00:00",
@@ -24,7 +24,7 @@
   }
 }, {
   "id" : "73429922-3f87-452d-a3ed-567cd7c3057e",
-  "quantidade" : 1000,
+  "quantidade" : 988,
   "fabricante" : "Pfzer",
   "data_descongelamento" : "2026-03-28T00:00:00",
   "validade" : "2026-09-28T00:00:00",

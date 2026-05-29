@@ -133,8 +133,6 @@ public class DataLoggerService {
                 // data_hora = corrigirDataHora(valores[1]);
                 // }
 
-                Long id = Long.parseLong(valores[0])+1;
-
                 float t1 = Float.parseFloat(valores[2]);
                 float t2 = Float.parseFloat(valores[3]);
                 float temperatura = (t1 + t2) / 2;
@@ -143,7 +141,7 @@ public class DataLoggerService {
                 boolean alarme = Integer.parseInt(valores[7]) == 1;
                 boolean compressor = Integer.parseInt(valores[8]) == 1;
 
-                RegistroDatalogger registro = new RegistroDatalogger(id, temperatura, rede, energia, compressor,
+                RegistroDatalogger registro = new RegistroDatalogger(temperatura, rede, energia, compressor,
                         alarme);
 
                 registros.add(registro);
