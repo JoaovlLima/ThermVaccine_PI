@@ -12,7 +12,7 @@ import com.thermvaccine.model.HistoricoCaixa;
 public class HistoricoCaixaRepository {
     private final ObjectMapper mapper = new ObjectMapper();
 
-    private final File arquivo = new File("thermvaccine\\data\\HistoricoCaixa.json");
+    private final File arquivo = new File("/home/taviz/VsCode/PI - ThermVaccine/ThermVaccine_PI/thermvaccine/data/ARQUIVO.json");
 
 
     // CLEANER
@@ -52,6 +52,23 @@ public class HistoricoCaixaRepository {
 
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    public void editar(HistoricoCaixa historicoCaixa){
+        try {
+            
+            List<HistoricoCaixa> historicoCaixasDb = listar();
+
+            for (int i = 0; i < historicoCaixasDb.size(); i++) {
+                if(historicoCaixasDb.get(i).getId() == historicoCaixa.getId()){
+                    historicoCaixasDb.set(i, historicoCaixa);
+                    break;
+                }
+            }
+
+        } catch (Exception e) {
+            throw e;
         }
     }
 }

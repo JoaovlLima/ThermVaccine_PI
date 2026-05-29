@@ -68,22 +68,23 @@ public class DataLoggerService {
     }
 
     
-    public void salvarRegistro(List<RegistroDatalogger> registros, String idDatalogger) {
+    public void iniciarDataLogger(String idDatalogger) {
         
-        
+        // ACESSANDO REGISTROS SIMULADOS 
+        List<RegistroDatalogger> registros = leituraArquivo();
 
         Thread thread = new Thread(() -> {
             
             try {
 
             DataLogger dataLogger = dataLoggerRepository.findById(idDatalogger);
+            
             for (RegistroDatalogger registro : registros) {   
                 
 
                 registro.setData_hora(LocalDateTime.now());
 
                 dataLogger.inserirRegistro(registro);
-
                 dataLoggerRepository.editar(dataLogger);
                 TimeUnit.SECONDS.sleep(5);
 
@@ -132,8 +133,6 @@ public class DataLoggerService {
                 // data_hora = corrigirDataHora(valores[1]);
                 // }
 
-                Long id = Long.parseLong(valores[0])+1;
-
                 float t1 = Float.parseFloat(valores[2]);
                 float t2 = Float.parseFloat(valores[3]);
                 float temperatura = (t1 + t2) / 2;
@@ -142,7 +141,7 @@ public class DataLoggerService {
                 boolean alarme = Integer.parseInt(valores[7]) == 1;
                 boolean compressor = Integer.parseInt(valores[8]) == 1;
 
-                RegistroDatalogger registro = new RegistroDatalogger(id, temperatura, rede, energia, compressor,
+                RegistroDatalogger registro = new RegistroDatalogger(temperatura, rede, energia, compressor,
                         alarme);
 
                 registros.add(registro);
@@ -194,6 +193,11 @@ public class DataLoggerService {
         List<RegistroDatalogger> reg = dataLogger.getRegistroDatalogger();
 
 
+    }
+
+    public void editarDatalogger(DataLogger dataLogger){
+
+        dataLoggerRepository.editar(dataLogger);
     }
 
   

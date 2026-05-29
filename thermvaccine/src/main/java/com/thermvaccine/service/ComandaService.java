@@ -2,20 +2,27 @@ package com.thermvaccine.service;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.thermvaccine.model.Comanda;
 import com.thermvaccine.model.Lote;
 import com.thermvaccine.model.Lote_coman;
 import com.thermvaccine.model.Vacina;
+import com.thermvaccine.model.Comanda.StatusComanda;
+import com.thermvaccine.repository.ComandaRepository;
 
 public class ComandaService {
 
 
     private final CalculoVidaUtilService calculoVidaUtilService;
+    private final ComandaRepository comandaRepository;
+    private final LoteService loteService;
 
     public ComandaService(){
         this.calculoVidaUtilService = new CalculoVidaUtilService();
+        this.comandaRepository = new ComandaRepository();
+        this.loteService = new LoteService();
     }
 
     private final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
@@ -29,11 +36,15 @@ public class ComandaService {
 
     }
 
-    public Comanda criarComanda(String cep, int numEndereco,List<Lote_coman> lote){
+    public void criarComanda(String cep, int numEndereco,List<Lote_coman> lote){
 
         List<Lote_coman> lotesAtt = calcularMrnaDisponivel(lote);
 
-        return new Comanda(cep, numEndereco, lotesAtt);
+        loteService.descontarLote(lote);
+
+        Comanda comanda = new Comanda(cep, numEndereco, lotesAtt);
+
+        comandaRepository.salvarUni(comanda);
         //no View, guardar a nova Comanda numa lista para dps mandar tudo para a Caixa
     }
     
@@ -56,6 +67,43 @@ public List<Lote_coman> calcularMrnaDisponivel(List<Lote_coman> lote_comans){
 
     return lote_comans;
 
+}
+
+public List<Comanda> listarComandasDisponiveis(){
+
+    List<Comanda> comandasDb = comandaRepository.listar();
+    List<Comanda> comandasDisponiveis = new ArrayList<Comanda>();
+
+    for (Comanda comanda : comandasDb) {
+        if(comanda.getStatus() == StatusComanda.EM_AGUARDO){
+            comandasDisponiveis.add(comanda);
+        }
+    }
+
+    return comandasDisponiveis;
+
+    
+}
+
+public void editarComandas(List<Comanda> comandas){
+
+    for (Comanda comanda : comandas) {
+        comandaRepository.editar(comanda);
+    }
+  
+}
+
+public int qtdTotalComanda(List<Comanda> comandas){
+    int totalComanda = 0;
+    for (Comanda comanda : comandas) {
+        
+        for(Lote_coman lote_coman : comanda.getLote_coman()) {
+            
+            totalComanda+=lote_coman.getQtd();
+        }
+    }
+
+    return totalComanda;
 }
 
 

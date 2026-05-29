@@ -18,7 +18,7 @@ public class ComandaRepository implements IRepository<Comanda> {
         .registerModule(new JavaTimeModule())
         .disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
 
-    private final File arquivo = new File("thermvaccine\\data\\comanda.json");
+    private final File arquivo = new File("/home/taviz/VsCode/PI - ThermVaccine/ThermVaccine_PI/thermvaccine/data/comanda.json");
 
 
     // CLEANER
@@ -51,6 +51,13 @@ public class ComandaRepository implements IRepository<Comanda> {
     }
 
     // SAVE FILE
+
+    public void salvarUni(Comanda comanda){
+        List<Comanda> comandasBd = listar();
+        comandasBd.add(comanda);
+        salvar(comandasBd);
+    }
+
     public void salvar(List<Comanda> Comanda) {
         try {
             mapper.writerWithDefaultPrettyPrinter()
@@ -60,7 +67,7 @@ public class ComandaRepository implements IRepository<Comanda> {
             e.printStackTrace();
         }
     }
-
+    
     // EDIT FILE
     public void editar(Comanda comandaAtualizada){
         try {
@@ -99,7 +106,7 @@ public class ComandaRepository implements IRepository<Comanda> {
 
     List<Comanda> comandasBd = listar();
 
-    List<Comanda> comandasPorCaixa = null;
+    List<Comanda> comandasPorCaixa = new ArrayList<>();;
 
     for (Comanda comanda : comandasBd) {
         

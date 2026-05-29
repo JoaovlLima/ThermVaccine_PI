@@ -36,7 +36,7 @@ public class DataLoggerRepository implements IRepository<DataLogger> {
     // READ FILE
     public List<DataLogger> listar() {
         try {
-            if (!arquivo.exists()) {
+            if (!arquivo.exists() || arquivo.length() == 0) {
                 return new ArrayList<>();
             }
 
@@ -62,7 +62,7 @@ public class DataLoggerRepository implements IRepository<DataLogger> {
         }
     }
 
-    // EDIT FILE
+    // EDIT FILE 
     public void editar(DataLogger dataLoggerAtualizada){
         try {
             List<DataLogger> dataLoggers = listar();

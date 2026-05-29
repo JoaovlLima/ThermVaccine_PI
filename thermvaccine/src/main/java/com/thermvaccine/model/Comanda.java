@@ -2,6 +2,7 @@ package com.thermvaccine.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 import java.time.LocalDateTime;
 import lombok.NoArgsConstructor;
 
@@ -36,7 +37,7 @@ public class Comanda {
 
   
     public Comanda(String cep, int numEndereco, List<Lote_coman> lote_coman){
-        //this.id = id;
+        this.id = UUID.randomUUID().toString();
         this.data_emissao = LocalDateTime.now();
         this.cep = cep;
         this.numEndereco = numEndereco;

@@ -1,4 +1,5 @@
 package com.thermvaccine.service;
+
 import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -12,19 +13,20 @@ import com.thermvaccine.model.Vacina;
 import com.thermvaccine.repository.DataLoggerRepository;
 
 
-public class CalculoVidaUtilService implements Icalculo{
+public class CalculoVidaUtilService implements ICalculo{
 
     public static final double R = 8.3144;
     public static final double MRNA_INICIAL = 100.0;
 
     private static final DataLoggerRepository repository = new DataLoggerRepository();
 
-    public void iniciar(String idDataLogger, Vacina vacina){
+    public void iniciar(String idDataLogger, Vacina vacina, double mrnaInicial){
         int tamanhoAnterior = 0;
 
         double ea = vacina.getEa();
         double a = vacina.getA();
         double threshold = vacina.getThreshold();
+
 
         while (true){
             DataLogger dataLogger = repository.findById(idDataLogger);
@@ -38,9 +40,13 @@ public class CalculoVidaUtilService implements Icalculo{
 
             if(registros.size() > tamanhoAnterior) {
                 tamanhoAnterior = registros.size();
-                double percentual = calcularRegistros(registros.subList(0, registros.size() - 1), ea, a, threshold);
+                double percentual = calcularRegistros(registros.subList(0, registros.size() - 1), ea, a, threshold, mrnaInicial);
                 System.out.printf("mRNA intacto: %.6f%%%n", percentual);
 
+                if(percentual < threshold){
+                    System.out.println("VACINA VENCIDA.");
+                    break;
+                }
             }
 
             try {
@@ -53,11 +59,11 @@ public class CalculoVidaUtilService implements Icalculo{
     }
 
 
-    public double calcularRegistros(List<RegistroDatalogger> registros, double ea, double a, double threshold){
+    public double calcularRegistros(List<RegistroDatalogger> registros, double ea, double a, double threshold, double mrnaInicial){
 
-        double MRNA_Atual = MRNA_INICIAL;
+        double MRNA_Atual = (mrnaInicial / 100) * MRNA_INICIAL;
 
-        for(int i = 0; i < registros.size() - 1; i++){
+        for(int i = 0; i < registros.size() - 1; i++){ // Trocar para ser a partir do último registro gerado - não vão ser apagados
 
             RegistroDatalogger atual = registros.get(i);
             RegistroDatalogger proximo = registros.get(i + 1);
@@ -68,18 +74,14 @@ public class CalculoVidaUtilService implements Icalculo{
 
             ).toSeconds();
 
+
             if (deltaTSegundos <= 0) continue;
 
             // Corto a função daqui pra baixo, essa função atual fica pra listar os registros e aplicar os segundos, a que vou chamar, calcular, fica a parte para melhor utilização (modular)
 
         
-                MRNA_Atual = calcular(deltaTSegundos, ea, a, threshold, MRNA_Atual, registros.get(i).getTemperatura());
-                
-                double percentualIntacto = (MRNA_Atual / MRNA_INICIAL) * 100.0;
-
-            if(percentualIntacto < threshold){
-                break;
-            }
+            MRNA_Atual = calcular(deltaTSegundos, ea, a, threshold, MRNA_Atual, registros.get(i).getTemperatura());
+            
         }
 
         return (MRNA_Atual / MRNA_INICIAL) * 100.0;
