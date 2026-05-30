@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 import com.thermvaccine.model.Lote;
 import com.thermvaccine.model.Lote_coman;
+import com.thermvaccine.model.UserLogistica;
 import com.thermvaccine.model.Usuario;
 import com.thermvaccine.model.Vacina;
 import com.thermvaccine.repository.LoteRepository;
@@ -29,7 +30,7 @@ public class LoteService {
 
     // CREATE
     public void criar(int quantidade, String fabricante, LocalDateTime validade, LocalDateTime data_descongelamento,
-            Usuario usuario, Vacina vacina) {
+            UserLogistica usuario, Vacina vacina) {
         Lote lote = new Lote(quantidade, fabricante, validade, data_descongelamento, usuario, vacina);
 
         List<Lote> lotes = loteRepository.listar();

@@ -20,6 +20,10 @@ public class DataLoggerService {
 
     private final RegistroRepository registroRepository;
     private final DataLoggerRepository dataLoggerRepository;
+    
+    private final String registroComVariacao = "registroComVariacao.csv";
+    private final List<String> registroSemVariacao = List.of("registroSemVariacao.csv", "registroSemVariacao2.csv");
+    
 
     public DataLoggerService() {
         this.registroRepository = new RegistroRepository();
@@ -71,7 +75,7 @@ public class DataLoggerService {
     public void iniciarDataLogger(String idDatalogger) {
         
         // ACESSANDO REGISTROS SIMULADOS 
-        List<RegistroDatalogger> registros = leituraArquivo();
+        List<RegistroDatalogger> registros = leituraArquivo(idDatalogger);
 
         Thread thread = new Thread(() -> {
             
@@ -105,14 +109,23 @@ public class DataLoggerService {
 
     // FUNCÕES AUXILIARES
 
-    public List<RegistroDatalogger> leituraArquivo() {
+    public List<RegistroDatalogger> leituraArquivo(String idDataLogger) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
         List<RegistroDatalogger> registros = new ArrayList<>();
 
+        String registroUtilizado = null;
+        if(idDataLogger.equals("DL01")){
+            registroUtilizado = registroComVariacao;
+        }else if(idDataLogger.equals("DL02")){
+            registroUtilizado = registroSemVariacao.get(0);
+        }else{
+            registroUtilizado = registroSemVariacao.get(1);
+        }
+
         InputStream input = getClass()
                 .getClassLoader()
-                .getResourceAsStream("planilha_datalogger.csv");
+                .getResourceAsStream(registroUtilizado);
 
         if (input == null) {
             throw new RuntimeException("Arquivo CSV não encontrado");

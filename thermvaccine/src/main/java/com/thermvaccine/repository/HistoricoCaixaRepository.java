@@ -12,7 +12,7 @@ import com.thermvaccine.model.HistoricoCaixa;
 public class HistoricoCaixaRepository {
     private final ObjectMapper mapper = new ObjectMapper();
 
-    private final File arquivo = new File("/home/taviz/VsCode/PI - ThermVaccine/ThermVaccine_PI/thermvaccine/data/ARQUIVO.json");
+    private final File arquivo = new File("thermvaccine\\data\\historicoCaixa.json");
 
 
     // CLEANER

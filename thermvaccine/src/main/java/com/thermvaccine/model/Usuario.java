@@ -4,7 +4,7 @@ import lombok.NoArgsConstructor;
 
 @NoArgsConstructor
 // Era para ser abstract, porem para inserção no json foi removido
-public class Usuario {
+public abstract class Usuario {
     private String id;
     private String re;
     private String nome;
