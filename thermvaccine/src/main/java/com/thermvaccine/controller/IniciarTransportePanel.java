@@ -4,6 +4,7 @@ import com.thermvaccine.model.Caixa;
 import com.thermvaccine.model.Comanda;
 import com.thermvaccine.model.HistoricoCaixa;
 import com.thermvaccine.model.Transporte;
+import com.thermvaccine.model.Vacina;
 import com.thermvaccine.service.CaixaService;
 import com.thermvaccine.service.ComandaService;
 import com.thermvaccine.service.TransporteService;
@@ -17,29 +18,29 @@ import java.util.List;
 public class IniciarTransportePanel extends JPanel {
 
     private static final Color GREEN_DARK = new Color(34, 105, 66);
-    private static final Color BORDER     = new Color(220, 220, 220);
+    private static final Color BORDER = new Color(220, 220, 220);
     private static final Color TEXT_MUTED = new Color(130, 130, 130);
 
     private final FluxoLogisticoWindow window;
-    private final ComandaService    comandaService    = new ComandaService();
-    private final CaixaService      caixaService      = new CaixaService();
+    private final ComandaService comandaService = new ComandaService();
+    private final CaixaService caixaService = new CaixaService();
     private final TransporteService transporteService = new TransporteService();
 
-    private List<Comanda>       comandasSelecionadas = new ArrayList<>();
-    private List<Caixa>         caixasAlocadas       = new ArrayList<>();
-    private List<HistoricoCaixa> historicos          = new ArrayList<>();
+    private List<Comanda> comandasSelecionadas = new ArrayList<>();
+    private List<Caixa> caixasAlocadas = new ArrayList<>();
+    private List<HistoricoCaixa> historicos = new ArrayList<>();
 
     private final CardLayout cardLayout = new CardLayout();
-    private final JPanel     cards      = new JPanel(cardLayout);
+    private final JPanel cards = new JPanel(cardLayout);
 
     // tela 1
     private JPanel painelComandas;
     private JLabel lblFeedback1;
 
     // tela 2
-    private JPanel            painelResumo;
+    private JPanel painelResumo;
     private JComboBox<Transporte> cmbTransporte;
-    private JLabel            lblFeedback2;
+    private JLabel lblFeedback2;
 
     public IniciarTransportePanel(FluxoLogisticoWindow window) {
         this.window = window;
@@ -84,9 +85,12 @@ public class IniciarTransportePanel extends JPanel {
         lblFeedback1 = new JLabel(" ");
         lblFeedback1.setFont(new Font("SansSerif", Font.PLAIN, 12));
 
-        JButton btnCancelar  = buildButton("Cancelar", false);
+        JButton btnCancelar = buildButton("Cancelar", false);
         JButton btnContinuar = buildButton("Continuar", true);
-        btnCancelar.addActionListener(e  -> { limpar(); window.voltarMenu(); });
+        btnCancelar.addActionListener(e -> {
+            limpar();
+            window.voltarMenu();
+        });
         btnContinuar.addActionListener(e -> continuar());
 
         root.add(buildActions(lblFeedback1, btnCancelar, btnContinuar), BorderLayout.SOUTH);
@@ -138,8 +142,7 @@ public class IniciarTransportePanel extends JPanel {
         item.setBackground(Color.WHITE);
         item.setBorder(BorderFactory.createCompoundBorder(
                 BorderFactory.createMatteBorder(0, 0, 1, 0, BORDER),
-                new EmptyBorder(10, 12, 10, 12)
-        ));
+                new EmptyBorder(10, 12, 10, 12)));
         item.setMaximumSize(new Dimension(Integer.MAX_VALUE, 56));
         item.add(cb, BorderLayout.WEST);
         item.add(texts, BorderLayout.CENTER);
@@ -176,7 +179,7 @@ public class IniciarTransportePanel extends JPanel {
 
         try {
             caixasAlocadas = caixaService.acharCaixas(comandasSelecionadas);
-            historicos     = caixaService.vincularDatalogger(caixasAlocadas);
+            historicos = caixaService.vincularDatalogger(caixasAlocadas);
         } catch (RuntimeException ex) {
             mostrarFeedback(lblFeedback1, ex.getMessage(), true);
             return;
@@ -243,7 +246,7 @@ public class IniciarTransportePanel extends JPanel {
         lblFeedback2 = new JLabel(" ");
         lblFeedback2.setFont(new Font("SansSerif", Font.PLAIN, 12));
 
-        JButton btnVoltar    = buildButton("Voltar", false);
+        JButton btnVoltar = buildButton("Voltar", false);
         JButton btnConfirmar = buildButton("Confirmar", true);
         btnVoltar.addActionListener(e -> {
             cardLayout.show(cards, "tela1");
@@ -272,8 +275,7 @@ public class IniciarTransportePanel extends JPanel {
             lblDL.setForeground(GREEN_DARK);
             lblDL.setBorder(BorderFactory.createCompoundBorder(
                     BorderFactory.createLineBorder(new Color(34, 105, 66, 80), 1, true),
-                    new EmptyBorder(2, 8, 2, 8)
-            ));
+                    new EmptyBorder(2, 8, 2, 8)));
 
             JPanel header = new JPanel(new BorderLayout());
             header.setBackground(Color.WHITE);
@@ -304,8 +306,7 @@ public class IniciarTransportePanel extends JPanel {
             card.setBackground(Color.WHITE);
             card.setBorder(BorderFactory.createCompoundBorder(
                     BorderFactory.createLineBorder(BORDER, 1, true),
-                    new EmptyBorder(10, 12, 10, 12)
-            ));
+                    new EmptyBorder(10, 12, 10, 12)));
             card.setMaximumSize(new Dimension(Integer.MAX_VALUE, 300));
             card.setAlignmentX(Component.LEFT_ALIGNMENT);
             card.add(header, BorderLayout.NORTH);
@@ -337,13 +338,16 @@ public class IniciarTransportePanel extends JPanel {
             caixa.setIdTransporte(transporte.getPlaca());
         }
 
-        comandaService.editarComandas(comandasSelecionadas);
+        comandaService.iniciarTransporte(comandasSelecionadas);
         caixaService.salvarTransporteCaixa(caixasAlocadas);
         caixaService.salvarVinculoDataCaixa(historicos);
 
         mostrarFeedback(lblFeedback2, "Transporte iniciado com sucesso!", false);
 
-        Timer t = new Timer(1500, ev -> { limpar(); window.voltarMenu(); });
+        Timer t = new Timer(1500, ev -> {
+            limpar();
+            window.voltarMenu();
+        });
         t.setRepeats(false);
         t.start();
     }
@@ -373,8 +377,7 @@ public class IniciarTransportePanel extends JPanel {
         actions.setBackground(Color.WHITE);
         actions.setBorder(BorderFactory.createCompoundBorder(
                 BorderFactory.createMatteBorder(1, 0, 0, 0, BORDER),
-                new EmptyBorder(12, 0, 0, 0)
-        ));
+                new EmptyBorder(12, 0, 0, 0)));
         actions.add(feedback, BorderLayout.WEST);
         actions.add(btns, BorderLayout.EAST);
         return actions;
@@ -385,8 +388,7 @@ public class IniciarTransportePanel extends JPanel {
         c.setBackground(Color.WHITE);
         c.setBorder(BorderFactory.createCompoundBorder(
                 BorderFactory.createLineBorder(BORDER, 1, true),
-                new EmptyBorder(0, 8, 0, 8)
-        ));
+                new EmptyBorder(0, 8, 0, 8)));
     }
 
     private JButton buildButton(String text, boolean primary) {
@@ -406,4 +408,9 @@ public class IniciarTransportePanel extends JPanel {
         }
         return btn;
     }
+
+     public void onShow() {
+        carregarComandas();
+}
+    
 }

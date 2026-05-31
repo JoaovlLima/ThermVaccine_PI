@@ -15,6 +15,9 @@ public class FluxoLogisticoWindow extends JFrame {
     private static final Color BORDER     = new Color(220, 220, 220);
     private static final Color TEXT_MUTED = new Color(130, 130, 130);
 
+    private final CriarComandaPanel       criarComandaPanel       = new CriarComandaPanel(this);
+    private final IniciarTransportePanel  iniciarTransportePanel  = new IniciarTransportePanel(this);
+
     private final UserLogistica usuario;
 
     private final CardLayout cardLayout = new CardLayout();
@@ -115,11 +118,15 @@ public class FluxoLogisticoWindow extends JFrame {
         return btn;
     }
 
-    public void navegarPara(String card, int altura) {
-        cardLayout.show(cards, card);
-        setSize(420, altura);
-        setLocationRelativeTo(null);
-    }
+   public void navegarPara(String card, int altura) {
+    cardLayout.show(cards, card);
+    setSize(420, altura);
+    setLocationRelativeTo(null);
+
+    // notifica o painel
+    if (card.equals("comanda")) criarComandaPanel.onShow();
+    if (card.equals("transporte")) iniciarTransportePanel.onShow();
+}
 
     public void voltarMenu() {
         cardLayout.show(cards, "menu");

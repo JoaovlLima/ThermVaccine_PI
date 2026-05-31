@@ -1,5 +1,6 @@
 package com.thermvaccine.service;
 
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -220,5 +221,14 @@ public class CaixaService {
     public List<Caixa> caixasPorTransporte(String placa) {
         return caixaRepository.caixasPorPlacaTransporte(placa);
     }
+
+    public LocalDateTime dataSaidaPorTransporte(String placa){
+
+        List<Caixa> caixas = caixasPorTransporte(placa);
+
+        List<Comanda> comanda = comandaService.comandaPorCaixa(caixas.get(0).getId());
+
+        return comanda.get(0).getData_saida();
+    }   
 
 }

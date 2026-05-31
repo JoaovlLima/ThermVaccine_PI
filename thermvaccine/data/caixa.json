@@ -8,19 +8,4 @@
   "qtd_max_vac" : 2000,
   "disponivel" : true,
   "idTransporte" : null
-}, {
-  "id" : "cx3",
-  "qtd_max_vac" : 2000,
-  "disponivel" : true,
-  "idTransporte" : "213456"
-},{
-  "id" : "cx4",
-  "qtd_max_vac" : 2000,
-  "disponivel" : true,
-  "idTransporte" : "213456"
-},{
-  "id" : "cx5",
-  "qtd_max_vac" : 2000,
-  "disponivel" : true,
-  "idTransporte" : "213456"
 }]

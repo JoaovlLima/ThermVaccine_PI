@@ -1,18 +1,55 @@
 [ {
-  "id" : "COMAN01",
-  "data_emissao" : "2026-05-28T10:28:04.5149717",
-  "cep" : "13254",
-  "numEndereco" : 120,
+  "id" : "1064335c-8b3a-4143-ab15-86c2e9826abd",
+  "data_emissao" : "2026-05-30T15:51:13.4496726",
+  "cep" : "10000",
+  "numEndereco" : 10,
   "status" : "EM_AGUARDO",
-  "idCaixa" : "cx3",
+  "idCaixa" : null,
   "lote_coman" : [ {
-    "id" : "5ddf56a3-7958-4d65-922f-48e375366120",
+    "id" : "ff85c67e-5ae4-4da1-8d9f-be547b08afbb",
     "lote" : {
-      "id" : "33b35c36-f676-48e0-b150-f466bccc33fe",
+      "id" : "356a82c6-315e-4bd1-8485-8c469007292e",
+      "quantidade" : 0,
+      "fabricante" : "test",
+      "data_descongelamento" : "2026-05-30T15:50:02.354",
+      "validade" : "2026-10-30T00:00:00",
+      "usuario" : {
+        "id" : null,
+        "re" : "114",
+        "nome" : "Carlos",
+        "senha" : "1234",
+        "cargo" : "Chefe Logistico",
+        "empresa" : null,
+        "tier" : "LOG"
+      },
+      "vacina" : {
+        "id" : "001",
+        "nome" : "Moderna mRNA-1273",
+        "tempe_min" : -20.0,
+        "tempe_max" : 8.0,
+        "ea" : 100000.0,
+        "a" : 6.04E12,
+        "threshold" : 95.0
+      }
+    },
+    "qtd" : 1000,
+    "mrna_Disponivel" : 99.99879780149027
+  } ]
+}, {
+  "id" : "2062d374-9c85-4a04-a22d-83093e8375f2",
+  "data_emissao" : "2026-05-30T15:51:34.121491",
+  "cep" : "1000",
+  "numEndereco" : 500,
+  "status" : "EM_AGUARDO",
+  "idCaixa" : null,
+  "lote_coman" : [ {
+    "id" : "f2f94aea-6d38-48fe-a307-f2d7f7497b98",
+    "lote" : {
+      "id" : "280463c1-b799-46e3-a573-c757bb65385d",
       "quantidade" : 500,
-      "fabricante" : "Pfzer",
-      "data_descongelamento" : "2026-09-28T00:00:00",
-      "validade" : "2026-09-28T00:00:00",
+      "fabricante" : "teste2",
+      "data_descongelamento" : "2026-05-30T15:50:02.354",
+      "validade" : "2026-10-30T00:00:00",
       "usuario" : {
         "id" : null,
         "re" : "114",
@@ -33,101 +70,6 @@
       }
     },
     "qtd" : 500,
-    "mrna_Disponivel" : 600.7851313187434
-  }, {
-    "id" : "6ae59ec3-255f-489b-8764-611367d5b7e4",
-    "lote" : {
-      "id" : "350831bb-1411-46cc-b7b3-fe10ae46860b",
-      "quantidade" : 1200,
-      "fabricante" : "CoronaVac",
-      "data_descongelamento" : "2026-05-28T09:15:27.644",
-      "validade" : "2026-11-28T00:00:00",
-      "usuario" : {
-        "id" : null,
-        "re" : "114",
-        "nome" : "Carlos",
-        "senha" : "1234",
-        "cargo" : "Chefe Logistico",
-        "empresa" : null,
-        "tier" : "LOG"
-      },
-      "vacina" : {
-        "id" : "001",
-        "nome" : "Moderna mRNA-1273",
-        "tempe_min" : -20.0,
-        "tempe_max" : 8.0,
-        "ea" : 100000.0,
-        "a" : 6.04E12,
-        "threshold" : 95.0
-      }
-    },
-    "qtd" : 800,
-    "mrna_Disponivel" : 99.92626933263764
-  } ]
-}, {
-  "id" : "f95cc23f-3ff1-4924-9866-cf8c1fc6c488",
-  "data_emissao" : "2026-05-28T19:36:07.3807678",
-  "cep" : "11111111",
-  "numEndereco" : 12335,
-  "status" : "EM_AGUARDO",
-  "idCaixa" : null,
-  "lote_coman" : [ {
-    "id" : "1684fe93-b104-447f-9c40-f910e56cfb14",
-    "lote" : {
-      "id" : "73429922-3f87-452d-a3ed-567cd7c3057e",
-      "quantidade" : 988,
-      "fabricante" : "Pfzer",
-      "data_descongelamento" : "2026-09-28T00:00:00",
-      "validade" : "2026-09-28T00:00:00",
-      "usuario" : {
-        "id" : null,
-        "re" : "114",
-        "nome" : "Carlos",
-        "senha" : "1234",
-        "cargo" : "Chefe Logistico",
-        "empresa" : null,
-        "tier" : "LOG"
-      },
-      "vacina" : {
-        "id" : "001",
-        "nome" : "Moderna mRNA-1273",
-        "tempe_min" : -20.0,
-        "tempe_max" : 8.0,
-        "ea" : 100000.0,
-        "a" : 6.04E12,
-        "threshold" : 95.0
-      }
-    },
-    "qtd" : 12,
-    "mrna_Disponivel" : 597.4493116805899
-  }, {
-    "id" : "7189dbe2-bc30-4d74-85d9-324b4eea3010",
-    "lote" : {
-      "id" : "33b35c36-f676-48e0-b150-f466bccc33fe",
-      "quantidade" : 472,
-      "fabricante" : "Pfzer",
-      "data_descongelamento" : "2026-09-28T00:00:00",
-      "validade" : "2026-09-28T00:00:00",
-      "usuario" : {
-        "id" : null,
-        "re" : "114",
-        "nome" : "Carlos",
-        "senha" : "1234",
-        "cargo" : "Chefe Logistico",
-        "empresa" : null,
-        "tier" : "LOG"
-      },
-      "vacina" : {
-        "id" : "001",
-        "nome" : "Moderna mRNA-1273",
-        "tempe_min" : -20.0,
-        "tempe_max" : 8.0,
-        "ea" : 100000.0,
-        "a" : 6.04E12,
-        "threshold" : 95.0
-      }
-    },
-    "qtd" : 28,
-    "mrna_Disponivel" : 597.4493116805899
+    "mrna_Disponivel" : 99.99845915663177
   } ]
 } ]

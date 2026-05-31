@@ -13,8 +13,6 @@ public class Transporte {
 
     private String placa;
     private int capacidade;
-    private LocalDateTime data_saida;
-    private LocalDateTime data_chegada;
     private Boolean disponivel;
 
 
@@ -22,8 +20,6 @@ public class Transporte {
         this.placa = placa;
         this.capacidade = capacidade;
         this.disponivel = true;
-        this.data_saida = null;
-        this.data_chegada = null;
     }
 
 
@@ -43,24 +39,6 @@ public class Transporte {
 
     public int getCapacidade() {
         return capacidade;
-    }
-
-    public String getData_saida() {
-        if(this.data_saida == null){
-            return null;
-        }
-        return data_saida.format(FORMATTER);
-    }
-
-    public String getData_chegada() {
-        if(this.data_chegada == null){
-            return null;
-        }
-        return data_chegada.format(FORMATTER);
-    }
-
-    public void setData_chegada(LocalDateTime data_chegada) {
-        this.data_chegada = data_chegada;
     }
 
 }

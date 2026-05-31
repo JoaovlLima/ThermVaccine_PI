@@ -5,6 +5,7 @@ import com.thermvaccine.repository.CaixaRepository;
 import com.thermvaccine.repository.RegistroRepository;
 import com.thermvaccine.repository.TransporteRepository;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,8 +28,6 @@ public class TransporteService {
     public void exibirDados(Transporte transp) {
         System.out.printf("Placa: %s\n", transp.getPlaca());
         System.out.printf("Capacidade: %d\n", transp.getCapacidade());
-        System.out.printf("Data Saida: %s\n", transp.getData_saida());
-        // System.out.printf("Data Chegada: %s\n", transp.getData_chegada());
     }
 
     public Transporte criarTransporte(String placa, int capacidade) {
@@ -108,5 +107,6 @@ public class TransporteService {
 
         
     }
+
 
 }
