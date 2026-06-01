@@ -1,63 +1,29 @@
 [ {
-  "id" : "1064335c-8b3a-4143-ab15-86c2e9826abd",
-  "data_emissao" : "2026-05-30T15:51:13.4496726",
-  "cep" : "10000",
-  "numEndereco" : 10,
-  "status" : "EM_AGUARDO",
-  "idCaixa" : null,
+  "id" : "8a912a33-67dd-4617-b996-9368e6c5bd7d",
+  "data_emissao" : "2026-05-31T22:37:52.0716979",
+  "data_saida" : "2026-05-31T22:38:03.5646871",
+  "data_Chegada" : null,
+  "cep" : "2000154",
+  "numEndereco" : 120,
+  "status" : "EM_TRANSITO",
+  "idCaixa" : "cx1",
   "lote_coman" : [ {
-    "id" : "ff85c67e-5ae4-4da1-8d9f-be547b08afbb",
+    "id" : "9e250174-61df-4ba8-a4d9-982d5bf10aab",
     "lote" : {
       "id" : "356a82c6-315e-4bd1-8485-8c469007292e",
-      "quantidade" : 0,
+      "quantidade" : 97499,
       "fabricante" : "test",
       "data_descongelamento" : "2026-05-30T15:50:02.354",
       "validade" : "2026-10-30T00:00:00",
       "usuario" : {
+        "tier" : "LOG",
         "id" : null,
         "re" : "114",
         "nome" : "Carlos",
         "senha" : "1234",
         "cargo" : "Chefe Logistico",
         "empresa" : null,
-        "tier" : "LOG"
-      },
-      "vacina" : {
-        "id" : "001",
-        "nome" : "Moderna mRNA-1273",
-        "tempe_min" : -20.0,
-        "tempe_max" : 8.0,
-        "ea" : 100000.0,
-        "a" : 6.04E12,
-        "threshold" : 95.0
-      }
-    },
-    "qtd" : 1000,
-    "mrna_Disponivel" : 99.99879780149027
-  } ]
-}, {
-  "id" : "2062d374-9c85-4a04-a22d-83093e8375f2",
-  "data_emissao" : "2026-05-30T15:51:34.121491",
-  "cep" : "1000",
-  "numEndereco" : 500,
-  "status" : "EM_AGUARDO",
-  "idCaixa" : null,
-  "lote_coman" : [ {
-    "id" : "f2f94aea-6d38-48fe-a307-f2d7f7497b98",
-    "lote" : {
-      "id" : "280463c1-b799-46e3-a573-c757bb65385d",
-      "quantidade" : 500,
-      "fabricante" : "teste2",
-      "data_descongelamento" : "2026-05-30T15:50:02.354",
-      "validade" : "2026-10-30T00:00:00",
-      "usuario" : {
-        "id" : null,
-        "re" : "114",
-        "nome" : "Carlos",
-        "senha" : "1234",
-        "cargo" : "Chefe Logistico",
-        "empresa" : null,
-        "tier" : "LOG"
+        "tier" : null
       },
       "vacina" : {
         "id" : "001",
@@ -70,6 +36,36 @@
       }
     },
     "qtd" : 500,
-    "mrna_Disponivel" : 99.99845915663177
+    "mrna_Disponivel" : 98.14022468626928
+  }, {
+    "id" : "39a26494-e257-48f0-85d3-c1d3294ec228",
+    "lote" : {
+      "id" : "280463c1-b799-46e3-a573-c757bb65385d",
+      "quantidade" : 290,
+      "fabricante" : "teste2",
+      "data_descongelamento" : "2026-05-30T15:50:02.354",
+      "validade" : "2026-10-30T00:00:00",
+      "usuario" : {
+        "tier" : "LOG",
+        "id" : null,
+        "re" : "114",
+        "nome" : "Carlos",
+        "senha" : "1234",
+        "cargo" : "Chefe Logistico",
+        "empresa" : null,
+        "tier" : null
+      },
+      "vacina" : {
+        "id" : "001",
+        "nome" : "Moderna mRNA-1273",
+        "tempe_min" : -20.0,
+        "tempe_max" : 8.0,
+        "ea" : 100000.0,
+        "a" : 6.04E12,
+        "threshold" : 95.0
+      }
+    },
+    "qtd" : 210,
+    "mrna_Disponivel" : 98.14022468626928
   } ]
 } ]

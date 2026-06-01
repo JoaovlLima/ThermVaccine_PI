@@ -341,6 +341,7 @@ public class IniciarTransportePanel extends JPanel {
         comandaService.iniciarTransporte(comandasSelecionadas);
         caixaService.salvarTransporteCaixa(caixasAlocadas);
         caixaService.salvarVinculoDataCaixa(historicos);
+        transporteService.mudarStatus(transporte.getPlaca());
 
         mostrarFeedback(lblFeedback2, "Transporte iniciado com sucesso!", false);
 

@@ -14,7 +14,7 @@ import com.thermvaccine.model.Comanda;
 
 public class ComandaRepository implements IRepository<Comanda> {
     
-    private final ObjectMapper mapper = new ObjectMapper()
+   private final ObjectMapper mapper = new ObjectMapper()
         .registerModule(new JavaTimeModule())
         .disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
 

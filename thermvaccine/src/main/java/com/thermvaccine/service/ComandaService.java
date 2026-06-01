@@ -90,6 +90,7 @@ public void iniciarTransporte(List<Comanda> comandas){
     for (Comanda comanda : comandas) {
         comanda.setStatus(StatusComanda.EM_TRANSITO);
         comanda.setData_saida(LocalDateTime.now());
+        
         comandaRepository.editar(comanda);
     }
   

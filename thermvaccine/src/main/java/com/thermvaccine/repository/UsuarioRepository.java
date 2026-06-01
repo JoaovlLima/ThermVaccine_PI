@@ -50,4 +50,17 @@ public class UsuarioRepository {
             e.printStackTrace();
         }
     }
+
+    public Usuario findByRe(String re){
+
+        List<Usuario> usuariosDb = listar();
+
+        for (Usuario usuario : usuariosDb) {
+            if(usuario.getRe().equals(re)){
+                return usuario; 
+            }
+        }
+        
+        return null;
+    }
 }

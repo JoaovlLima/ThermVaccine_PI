@@ -1,7 +1,38 @@
 [ {
   "id" : "DL01",
   "modelo" : "ModeloTest",
-  "disponivel" : true,
-  "registroDatalogger" : [ 
-  ]
+  "disponivel" : false,
+  "registroDatalogger" : [ {
+    "id" : "a2581dee-d002-4a11-8507-9c4df02e958f",
+    "temperatura" : 4.95,
+    "rede" : true,
+    "energia" : 13.3,
+    "compressor" : true,
+    "alarme" : false,
+    "data_hora" : "2026-05-31T22:37:58.9763986"
+  }, {
+    "id" : "11d03447-5a5d-4286-9351-f61fd312f278",
+    "temperatura" : 5.25,
+    "rede" : true,
+    "energia" : 13.3,
+    "compressor" : true,
+    "alarme" : false,
+    "data_hora" : "2026-05-31T22:38:03.9888404"
+  }, {
+    "id" : "edb4e80b-5282-4876-a58b-84b15d99c577",
+    "temperatura" : 5.65,
+    "rede" : true,
+    "energia" : 13.3,
+    "compressor" : true,
+    "alarme" : false,
+    "data_hora" : "2026-05-31T22:38:08.9924115"
+  }, {
+    "id" : "64935ca0-5672-4681-ad36-2134f4e946af",
+    "temperatura" : 5.95,
+    "rede" : true,
+    "energia" : 13.6,
+    "compressor" : true,
+    "alarme" : false,
+    "data_hora" : "2026-05-31T22:38:14.006617"
+  } ]
 } ]
