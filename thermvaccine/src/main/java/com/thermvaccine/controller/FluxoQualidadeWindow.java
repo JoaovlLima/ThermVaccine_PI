@@ -10,7 +10,8 @@ import java.awt.event.*;
 
 /**
  * View Swing do fluxo de qualidade.
- * Não contém lógica — só monta componentes e expõe métodos para o controller usar.
+ * Não contém lógica — só monta componentes e expõe métodos para o controller
+ * usar.
  */
 public class FluxoQualidadeWindow extends JFrame {
 
@@ -18,15 +19,15 @@ public class FluxoQualidadeWindow extends JFrame {
     private static final Color GREEN_DARK = new Color(34, 105, 66);
     private static final Color BORDER_CLR = new Color(220, 220, 220);
     private static final Color TEXT_MUTED = new Color(130, 130, 130);
-    private static final Color BG         = Color.WHITE;
+    private static final Color BG = Color.WHITE;
 
     // ── ESTRUTURA ─────────────────────────────────────────────
     private final FluxoQualidade controller;
 
-    private final JLabel  lblTitulo   = new JLabel();
-    private final JPanel  conteudo    = new JPanel();
-    private final JPanel  topoPanel   = new JPanel(new BorderLayout());
-    private       JButton btnVoltar   = null;
+    private final JLabel lblTitulo = new JLabel();
+    private final JPanel conteudo = new JPanel();
+    private final JPanel topoPanel = new JPanel(new BorderLayout());
+    private JButton btnVoltar = null;
 
     public FluxoQualidadeWindow(UserQualidade user, FluxoQualidade controller) {
         this.controller = controller;
@@ -40,7 +41,7 @@ public class FluxoQualidadeWindow extends JFrame {
         getContentPane().setBackground(BG);
 
         add(buildHeader(user.getNome()), BorderLayout.NORTH);
-        add(buildBody(),                 BorderLayout.CENTER);
+        add(buildBody(), BorderLayout.CENTER);
     }
 
     // ── HEADER ────────────────────────────────────────────────
@@ -48,9 +49,8 @@ public class FluxoQualidadeWindow extends JFrame {
         JPanel header = new JPanel(new BorderLayout());
         header.setBackground(BG);
         header.setBorder(BorderFactory.createCompoundBorder(
-            BorderFactory.createMatteBorder(0, 0, 1, 0, BORDER_CLR),
-            new EmptyBorder(14, 24, 14, 24)
-        ));
+                BorderFactory.createMatteBorder(0, 0, 1, 0, BORDER_CLR),
+                new EmptyBorder(14, 24, 14, 24)));
 
         JLabel title = new JLabel("ThermVaccine");
         title.setFont(new Font("SansSerif", Font.BOLD, 15));
@@ -60,8 +60,25 @@ public class FluxoQualidadeWindow extends JFrame {
         nome.setFont(new Font("SansSerif", Font.PLAIN, 12));
         nome.setForeground(TEXT_MUTED);
 
+        JButton btnSair = new JButton("Sair");
+        btnSair.setFont(new Font("SansSerif", Font.PLAIN, 12));
+        btnSair.setForeground(new Color(180, 60, 60));
+        btnSair.setBackground(BG);
+        btnSair.setBorder(BorderFactory.createLineBorder(BORDER_CLR, 1, true));
+        btnSair.setFocusPainted(false);
+        btnSair.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        btnSair.addActionListener(e -> {
+            dispose();
+            new LoginWindow().setVisible(true);
+        });
+
+        JPanel right = new JPanel(new FlowLayout(FlowLayout.RIGHT, 8, 0));
+        right.setBackground(BG);
+        right.add(nome);
+        right.add(btnSair);
+
         header.add(title, BorderLayout.WEST);
-        header.add(nome,  BorderLayout.EAST);
+        header.add(right, BorderLayout.EAST);
         return header;
     }
 
@@ -157,7 +174,8 @@ public class FluxoQualidadeWindow extends JFrame {
 
     public void setBotaoVoltar(Runnable onClick) {
         // remove botão anterior se existir
-        if (btnVoltar != null) topoPanel.remove(btnVoltar);
+        if (btnVoltar != null)
+            topoPanel.remove(btnVoltar);
 
         btnVoltar = new JButton("← Voltar");
         btnVoltar.setFont(new Font("SansSerif", Font.PLAIN, 12));
@@ -214,12 +232,16 @@ public class FluxoQualidadeWindow extends JFrame {
         card.add(Box.createVerticalStrut(6));
 
         card.addMouseListener(new MouseAdapter() {
-            public void mouseClicked(MouseEvent e) { onClick.run(); }
+            public void mouseClicked(MouseEvent e) {
+                onClick.run();
+            }
+
             public void mouseEntered(MouseEvent e) {
                 card.setBorder(BorderFactory.createLineBorder(GREEN_DARK, 1, true));
                 lblT.setForeground(GREEN_DARK);
                 card.setBackground(new Color(34, 105, 66, 10));
             }
+
             public void mouseExited(MouseEvent e) {
                 card.setBorder(BorderFactory.createLineBorder(BORDER_CLR, 1, true));
                 lblT.setForeground(new Color(40, 40, 40));
@@ -255,8 +277,10 @@ public class FluxoQualidadeWindow extends JFrame {
 
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
-            try { UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName()); }
-            catch (Exception ignored) {}
+            try {
+                UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+            } catch (Exception ignored) {
+            }
             UserQualidade u = new UserQualidade("id1", "Tavi", "123", "Analista", Usuario.Tier.QUA);
             FluxoQualidade controller = new FluxoQualidade();
             FluxoQualidadeWindow window = new FluxoQualidadeWindow(u, controller);

@@ -16,23 +16,23 @@ import java.util.List;
 public class CriarComandaPanel extends JPanel {
 
     private static final Color GREEN_DARK = new Color(34, 105, 66);
-    private static final Color BORDER     = new Color(220, 220, 220);
+    private static final Color BORDER = new Color(220, 220, 220);
     private static final Color TEXT_MUTED = new Color(130, 130, 130);
 
     private final FluxoLogisticoWindow window;
-    private final LoteService    loteService    = new LoteService();
-    private final VacinaService  vacinaService  = new VacinaService();
+    private final LoteService loteService = new LoteService();
+    private final VacinaService vacinaService = new VacinaService();
     private final ComandaService comandaService = new ComandaService();
 
     private final List<Lote_coman> lotesSelecionados = new ArrayList<>();
 
     private JComboBox<Vacina> cmbVacina;
-    private JComboBox<Lote>   cmbLote;
-    private JSpinner           spnQuantidade;
-    private JPanel             painelLotesSelecionados;
-    private JTextField         txtCep;
-    private JTextField         txtNumero;
-    private JLabel             lblFeedback;
+    private JComboBox<Lote> cmbLote;
+    private JSpinner spnQuantidade;
+    private JPanel painelLotesSelecionados;
+    private JTextField txtCep;
+    private JTextField txtNumero;
+    private JLabel lblFeedback;
 
     public CriarComandaPanel(FluxoLogisticoWindow window) {
         this.window = window;
@@ -89,28 +89,36 @@ public class CriarComandaPanel extends JPanel {
         painelLotesSelecionados.setLayout(new BoxLayout(painelLotesSelecionados, BoxLayout.Y_AXIS));
         painelLotesSelecionados.setBorder(BorderFactory.createCompoundBorder(
                 BorderFactory.createLineBorder(BORDER, 1, true),
-                new EmptyBorder(8, 10, 8, 10)
-        ));
+                new EmptyBorder(8, 10, 8, 10)));
         atualizarPainelLotes();
 
         // --- CEP e Número ---
-        txtCep    = new JTextField();
+        txtCep = new JTextField();
         txtNumero = new JTextField();
         styleInput(txtCep);
         styleInput(txtNumero);
 
         // Layout
-        gbc.gridx = 0; gbc.gridy = 0; gbc.gridwidth = 2; gbc.weightx = 1.0; gbc.insets = new Insets(0, 0, 10, 0);
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.gridwidth = 2;
+        gbc.weightx = 1.0;
+        gbc.insets = new Insets(0, 0, 10, 0);
         form.add(buildField("Vacina", cmbVacina), gbc);
 
         gbc.gridy = 1;
         form.add(buildField("Lote", cmbLote), gbc);
 
-        gbc.gridwidth = 1; gbc.weightx = 0.5;
-        gbc.gridx = 0; gbc.gridy = 2; gbc.insets = new Insets(0, 0, 10, 8);
+        gbc.gridwidth = 1;
+        gbc.weightx = 0.5;
+        gbc.gridx = 0;
+        gbc.gridy = 2;
+        gbc.insets = new Insets(0, 0, 10, 8);
         form.add(buildField("Quantidade", spnQuantidade), gbc);
 
-        gbc.gridx = 1; gbc.gridy = 2; gbc.insets = new Insets(0, 0, 10, 0);
+        gbc.gridx = 1;
+        gbc.gridy = 2;
+        gbc.insets = new Insets(0, 0, 10, 0);
         gbc.anchor = GridBagConstraints.SOUTH;
         form.add(btnAdicionar, gbc);
 
@@ -118,18 +126,28 @@ public class CriarComandaPanel extends JPanel {
         lblLotesTitle.setFont(new Font("SansSerif", Font.PLAIN, 11));
         lblLotesTitle.setForeground(TEXT_MUTED);
 
-        gbc.gridx = 0; gbc.gridy = 3; gbc.gridwidth = 2; gbc.weightx = 1.0; gbc.insets = new Insets(0, 0, 4, 0);
+        gbc.gridx = 0;
+        gbc.gridy = 3;
+        gbc.gridwidth = 2;
+        gbc.weightx = 1.0;
+        gbc.insets = new Insets(0, 0, 4, 0);
         gbc.anchor = GridBagConstraints.NORTHWEST;
         form.add(lblLotesTitle, gbc);
 
-        gbc.gridy = 4; gbc.insets = new Insets(0, 0, 10, 0);
+        gbc.gridy = 4;
+        gbc.insets = new Insets(0, 0, 10, 0);
         form.add(painelLotesSelecionados, gbc);
 
-        gbc.gridwidth = 1; gbc.weightx = 0.5;
-        gbc.gridx = 0; gbc.gridy = 5; gbc.insets = new Insets(0, 0, 0, 8);
+        gbc.gridwidth = 1;
+        gbc.weightx = 0.5;
+        gbc.gridx = 0;
+        gbc.gridy = 5;
+        gbc.insets = new Insets(0, 0, 0, 8);
         form.add(buildField("CEP", txtCep), gbc);
 
-        gbc.gridx = 1; gbc.gridy = 5; gbc.insets = new Insets(0, 0, 0, 0);
+        gbc.gridx = 1;
+        gbc.gridy = 5;
+        gbc.insets = new Insets(0, 0, 0, 0);
         form.add(buildField("Número", txtNumero), gbc);
 
         return form;
@@ -138,17 +156,20 @@ public class CriarComandaPanel extends JPanel {
     private void atualizarLotes() {
         Vacina vacina = (Vacina) cmbVacina.getSelectedItem();
         cmbLote.removeAllItems();
-        if (vacina == null) return;
+        if (vacina == null)
+            return;
 
         List<Lote> lotes = loteService.listarPorVacina(vacina.getId());
-        for (Lote l : lotes) cmbLote.addItem(l);
+        for (Lote l : lotes)
+            cmbLote.addItem(l);
     }
 
     private void adicionarLote() {
-        Lote lote     = (Lote) cmbLote.getSelectedItem();
+        Lote lote = (Lote) cmbLote.getSelectedItem();
         int quantidade = (int) spnQuantidade.getValue();
 
-        if (lote == null) return;
+        if (lote == null)
+            return;
 
         int qtdJaAdd = loteService.qtdVacPorLote(lote.getId(), lotesSelecionados) + quantidade;
         if (qtdJaAdd > lote.getQuantidade()) {
@@ -191,9 +212,12 @@ public class CriarComandaPanel extends JPanel {
         lblFeedback.setForeground(GREEN_DARK);
 
         JButton btnCancelar = actionButton("Cancelar", false);
-        JButton btnSalvar   = actionButton("Salvar comanda", true);
+        JButton btnSalvar = actionButton("Salvar comanda", true);
 
-        btnCancelar.addActionListener(e -> { limpar(); window.voltarMenu(); });
+        btnCancelar.addActionListener(e -> {
+            limpar();
+            window.voltarMenu();
+        });
         btnSalvar.addActionListener(e -> salvar());
 
         JPanel btns = new JPanel(new FlowLayout(FlowLayout.RIGHT, 8, 0));
@@ -205,15 +229,14 @@ public class CriarComandaPanel extends JPanel {
         actions.setBackground(Color.WHITE);
         actions.setBorder(BorderFactory.createCompoundBorder(
                 BorderFactory.createMatteBorder(1, 0, 0, 0, BORDER),
-                new EmptyBorder(12, 0, 0, 0)
-        ));
+                new EmptyBorder(12, 0, 0, 0)));
         actions.add(lblFeedback, BorderLayout.WEST);
         actions.add(btns, BorderLayout.EAST);
         return actions;
     }
 
     private void salvar() {
-        String cep    = txtCep.getText().trim();
+        String cep = txtCep.getText().trim();
         String numero = txtNumero.getText().trim();
 
         if (lotesSelecionados.isEmpty()) {
@@ -236,7 +259,10 @@ public class CriarComandaPanel extends JPanel {
         comandaService.criarComanda(cep, numEndereco, lotesSelecionados);
         mostrarFeedback("Comanda criada com sucesso!", false);
 
-        Timer t = new Timer(1500, ev -> { limpar(); window.voltarMenu(); });
+        Timer t = new Timer(1500, ev -> {
+            limpar();
+            window.voltarMenu();
+        });
         t.setRepeats(false);
         t.start();
     }
@@ -298,8 +324,7 @@ public class CriarComandaPanel extends JPanel {
         c.setBackground(Color.WHITE);
         c.setBorder(BorderFactory.createCompoundBorder(
                 BorderFactory.createLineBorder(BORDER, 1, true),
-                new EmptyBorder(0, 8, 0, 8)
-        ));
+                new EmptyBorder(0, 8, 0, 8)));
     }
 
     private JButton actionButton(String text, boolean primary) {
@@ -318,5 +343,14 @@ public class CriarComandaPanel extends JPanel {
             btn.setBorder(BorderFactory.createLineBorder(BORDER, 1, true));
         }
         return btn;
+    }
+
+    public void onShow() {
+        cmbVacina.removeAllItems();
+        for (Vacina v : vacinaService.listar())
+            cmbVacina.addItem(v);
+        atualizarLotes();
+        lotesSelecionados.clear();
+        atualizarPainelLotes();
     }
 }

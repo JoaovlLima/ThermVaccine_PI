@@ -46,7 +46,7 @@ public class Lote {
         return quantidade;
     }
 
-    public Usuario getUsuario() {
+    public UserLogistica getUsuario() {
         return usuario;
     }
 

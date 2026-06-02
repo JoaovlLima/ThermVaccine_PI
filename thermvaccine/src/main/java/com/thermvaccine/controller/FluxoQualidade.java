@@ -6,6 +6,8 @@ import com.thermvaccine.service.*;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 /**
@@ -42,7 +44,8 @@ public class FluxoQualidade {
 
         for (Transporte t : lista) {
             String titulo = "Placa: " + t.getPlaca();
-            String sub    = "Capacidade: " + t.getCapacidade() + " | Saída: " + t.getData_saida();
+            LocalDateTime dataSaida = caixaService.dataSaidaPorTransporte(t.getPlaca());
+            String sub = "Capacidade: " + t.getCapacidade() + " | Saída: " + (dataSaida != null ? dataSaida.format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm")) : "—");
             window.adicionarCard(titulo, sub, () -> mostrarCaixas(t.getPlaca()));
         }
 

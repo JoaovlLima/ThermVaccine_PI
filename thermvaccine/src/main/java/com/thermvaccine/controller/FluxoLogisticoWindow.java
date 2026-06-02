@@ -12,13 +12,16 @@ import java.awt.*;
 public class FluxoLogisticoWindow extends JFrame {
 
     private static final Color GREEN_DARK = new Color(34, 105, 66);
-    private static final Color BORDER     = new Color(220, 220, 220);
+    private static final Color BORDER = new Color(220, 220, 220);
     private static final Color TEXT_MUTED = new Color(130, 130, 130);
+
+    private final CriarComandaPanel criarComandaPanel = new CriarComandaPanel(this);
+    private final IniciarTransportePanel iniciarTransportePanel = new IniciarTransportePanel(this);
 
     private final UserLogistica usuario;
 
     private final CardLayout cardLayout = new CardLayout();
-    private final JPanel     cards      = new JPanel(cardLayout);
+    private final JPanel cards = new JPanel(cardLayout);
 
     public FluxoLogisticoWindow(UserLogistica usuario) {
         this.usuario = usuario;
@@ -34,10 +37,10 @@ public class FluxoLogisticoWindow extends JFrame {
         add(buildHeader(), BorderLayout.NORTH);
 
         cards.setBackground(Color.WHITE);
-        cards.add(buildMenu(),               "menu");
-        cards.add(new CadastrarLotePanel(this),     "lote");
-        cards.add(new CriarComandaPanel(this),      "comanda");
-        cards.add(new IniciarTransportePanel(this),  "transporte");
+        cards.add(buildMenu(), "menu");
+        cards.add(new CadastrarLotePanel(this), "lote");
+        cards.add(new CriarComandaPanel(this), "comanda");
+        cards.add(new IniciarTransportePanel(this), "transporte");
         add(cards, BorderLayout.CENTER);
 
         cardLayout.show(cards, "menu");
@@ -48,8 +51,7 @@ public class FluxoLogisticoWindow extends JFrame {
         header.setBackground(Color.WHITE);
         header.setBorder(BorderFactory.createCompoundBorder(
                 BorderFactory.createMatteBorder(0, 0, 1, 0, BORDER),
-                new EmptyBorder(14, 24, 14, 24)
-        ));
+                new EmptyBorder(14, 24, 14, 24)));
 
         JLabel title = new JLabel("ThermVaccine");
         title.setFont(new Font("SansSerif", Font.BOLD, 15));
@@ -59,8 +61,26 @@ public class FluxoLogisticoWindow extends JFrame {
         user.setFont(new Font("SansSerif", Font.PLAIN, 12));
         user.setForeground(TEXT_MUTED);
 
+        JButton btnSair = new JButton("Sair");
+        btnSair.setFont(new Font("SansSerif", Font.PLAIN, 12));
+        btnSair.setForeground(new Color(180, 60, 60));
+        btnSair.setBackground(Color.WHITE);
+        btnSair.setBorder(BorderFactory.createLineBorder(BORDER, 1, true));
+        btnSair.setFocusPainted(false);
+        btnSair.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        btnSair.addActionListener(e -> {
+            dispose();
+            new LoginWindow().setVisible(true);
+        });
+
+        JPanel right = new JPanel(new FlowLayout(FlowLayout.RIGHT, 8, 0));
+        right.setBackground(Color.WHITE);
+        right.add(user);
+        right.add(btnSair);
+
         header.add(title, BorderLayout.WEST);
-        header.add(user,  BorderLayout.EAST);
+        header.add(right, BorderLayout.EAST);
+
         return header;
     }
 
@@ -70,12 +90,12 @@ public class FluxoLogisticoWindow extends JFrame {
         panel.setBorder(new EmptyBorder(24, 24, 24, 24));
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
 
-        JButton btnLote       = menuButton("Cadastrar lote");
-        JButton btnComanda    = menuButton("Criar comanda");
+        JButton btnLote = menuButton("Cadastrar lote");
+        JButton btnComanda = menuButton("Criar comanda");
         JButton btnTransporte = menuButton("Iniciar transporte");
 
-        btnLote.addActionListener(e       -> navegarPara("lote", 460));
-        btnComanda.addActionListener(e    -> navegarPara("comanda", 560));
+        btnLote.addActionListener(e -> navegarPara("lote", 460));
+        btnComanda.addActionListener(e -> navegarPara("comanda", 560));
         btnTransporte.addActionListener(e -> navegarPara("transporte", 460));
 
         panel.add(btnLote);
@@ -105,6 +125,7 @@ public class FluxoLogisticoWindow extends JFrame {
                 btn.setForeground(GREEN_DARK);
                 btn.setBackground(new Color(34, 105, 66, 10));
             }
+
             public void mouseExited(java.awt.event.MouseEvent e) {
                 btn.setBorder(BorderFactory.createLineBorder(BORDER, 1, true));
                 btn.setForeground(new Color(40, 40, 40));
@@ -119,6 +140,12 @@ public class FluxoLogisticoWindow extends JFrame {
         cardLayout.show(cards, card);
         setSize(420, altura);
         setLocationRelativeTo(null);
+
+        // notifica o painel
+        if (card.equals("comanda"))
+            criarComandaPanel.onShow();
+        if (card.equals("transporte"))
+            iniciarTransportePanel.onShow();
     }
 
     public void voltarMenu() {
@@ -133,8 +160,10 @@ public class FluxoLogisticoWindow extends JFrame {
 
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
-            try { UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName()); }
-            catch (Exception ignored) {}
+            try {
+                UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+            } catch (Exception ignored) {
+            }
             UserLogistica u = new UserLogistica("114", "Carlos", "1234", "Chefe Logistico", Tier.LOG);
             new FluxoLogisticoWindow(u).setVisible(true);
         });

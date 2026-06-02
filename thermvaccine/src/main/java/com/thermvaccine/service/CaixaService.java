@@ -1,5 +1,6 @@
 package com.thermvaccine.service;
 
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -193,9 +194,10 @@ public class CaixaService {
 
             HistoricoCaixa historicoCaixaNovo = new HistoricoCaixa(dataLoggers.get(i), caixas.get(i), "abcd");
             historicoCaixaDb.add(historicoCaixaNovo);
-
+            dataLoggerService.iniciarDataLogger(dataLoggers.get(i).getId());
             dataLoggers.get(i).setDisponivel(false);
             dataLoggerService.editarDatalogger(dataLoggers.get(i));
+           
 
         }
 
@@ -205,10 +207,8 @@ public class CaixaService {
 
     public void salvarVinculoDataCaixa(List<HistoricoCaixa> historicos){
 
-        for (HistoricoCaixa historico : historicos) {
-            
-            historicoCaixaRepository.editar(historico);
-        }
+        historicoCaixaRepository.salvar(historicos);
+        
     }
 
     public int qtdCaixaTransportePlaca(String placa){
@@ -221,5 +221,14 @@ public class CaixaService {
     public List<Caixa> caixasPorTransporte(String placa) {
         return caixaRepository.caixasPorPlacaTransporte(placa);
     }
+
+    public LocalDateTime dataSaidaPorTransporte(String placa){
+
+        List<Caixa> caixas = caixasPorTransporte(placa);
+
+        List<Comanda> comanda = comandaService.comandaPorCaixa(caixas.get(0).getId());
+
+        return comanda.get(0).getData_saida();
+    }   
 
 }

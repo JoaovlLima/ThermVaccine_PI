@@ -1,26 +1,29 @@
 [ {
-  "id" : "COMAN01",
-  "data_emissao" : "2026-05-28T10:28:04.5149717",
-  "cep" : "13254",
+  "id" : "8a912a33-67dd-4617-b996-9368e6c5bd7d",
+  "data_emissao" : "2026-05-31T22:37:52.0716979",
+  "data_saida" : "2026-05-31T22:38:03.5646871",
+  "data_Chegada" : null,
+  "cep" : "2000154",
   "numEndereco" : 120,
-  "status" : "EM_AGUARDO",
-  "idCaixa" : "cx3",
+  "status" : "EM_TRANSITO",
+  "idCaixa" : "cx1",
   "lote_coman" : [ {
-    "id" : "5ddf56a3-7958-4d65-922f-48e375366120",
+    "id" : "9e250174-61df-4ba8-a4d9-982d5bf10aab",
     "lote" : {
-      "id" : "33b35c36-f676-48e0-b150-f466bccc33fe",
-      "quantidade" : 500,
-      "fabricante" : "Pfzer",
-      "data_descongelamento" : "2026-09-28T00:00:00",
-      "validade" : "2026-09-28T00:00:00",
+      "id" : "356a82c6-315e-4bd1-8485-8c469007292e",
+      "quantidade" : 97499,
+      "fabricante" : "test",
+      "data_descongelamento" : "2026-05-30T15:50:02.354",
+      "validade" : "2026-10-30T00:00:00",
       "usuario" : {
+        "tier" : "LOG",
         "id" : null,
         "re" : "114",
         "nome" : "Carlos",
         "senha" : "1234",
         "cargo" : "Chefe Logistico",
         "empresa" : null,
-        "tier" : "LOG"
+        "tier" : null
       },
       "vacina" : {
         "id" : "001",
@@ -33,23 +36,24 @@
       }
     },
     "qtd" : 500,
-    "mrna_Disponivel" : 90.7851313187434
+    "mrna_Disponivel" : 98.14022468626928
   }, {
-    "id" : "6ae59ec3-255f-489b-8764-611367d5b7e4",
+    "id" : "39a26494-e257-48f0-85d3-c1d3294ec228",
     "lote" : {
-      "id" : "350831bb-1411-46cc-b7b3-fe10ae46860b",
-      "quantidade" : 1200,
-      "fabricante" : "CoronaVac",
-      "data_descongelamento" : "2026-05-28T09:15:27.644",
-      "validade" : "2026-11-28T00:00:00",
+      "id" : "280463c1-b799-46e3-a573-c757bb65385d",
+      "quantidade" : 290,
+      "fabricante" : "teste2",
+      "data_descongelamento" : "2026-05-30T15:50:02.354",
+      "validade" : "2026-10-30T00:00:00",
       "usuario" : {
+        "tier" : "LOG",
         "id" : null,
         "re" : "114",
         "nome" : "Carlos",
         "senha" : "1234",
         "cargo" : "Chefe Logistico",
         "empresa" : null,
-        "tier" : "LOG"
+        "tier" : null
       },
       "vacina" : {
         "id" : "001",
@@ -61,74 +65,8 @@
         "threshold" : 95.0
       }
     },
-    "qtd" : 800,
-    "mrna_Disponivel" : 99.92626933263764
-  } ]
-}, {
-  "id" : "f95cc23f-3ff1-4924-9866-cf8c1fc6c488",
-  "data_emissao" : "2026-05-28T19:36:07.3807678",
-  "cep" : "11111111",
-  "numEndereco" : 12335,
-  "status" : "EM_AGUARDO",
-  "idCaixa" : "cx2",
-  "lote_coman" : [ {
-    "id" : "1684fe93-b104-447f-9c40-f910e56cfb14",
-    "lote" : {
-      "id" : "73429922-3f87-452d-a3ed-567cd7c3057e",
-      "quantidade" : 988,
-      "fabricante" : "Pfzer",
-      "data_descongelamento" : "2026-09-28T00:00:00",
-      "validade" : "2026-09-28T00:00:00",
-      "usuario" : {
-        "id" : null,
-        "re" : "114",
-        "nome" : "Carlos",
-        "senha" : "1234",
-        "cargo" : "Chefe Logistico",
-        "empresa" : null,
-        "tier" : "LOG"
-      },
-      "vacina" : {
-        "id" : "001",
-        "nome" : "Moderna mRNA-1273",
-        "tempe_min" : -20.0,
-        "tempe_max" : 8.0,
-        "ea" : 100000.0,
-        "a" : 6.04E12,
-        "threshold" : 95.0
-      }
-    },
-    "qtd" : 12,
-    "mrna_Disponivel" : 597.4493116805899
-  }, {
-    "id" : "7189dbe2-bc30-4d74-85d9-324b4eea3010",
-    "lote" : {
-      "id" : "33b35c36-f676-48e0-b150-f466bccc33fe",
-      "quantidade" : 472,
-      "fabricante" : "Pfzer",
-      "data_descongelamento" : "2026-09-28T00:00:00",
-      "validade" : "2026-09-28T00:00:00",
-      "usuario" : {
-        "id" : null,
-        "re" : "114",
-        "nome" : "Carlos",
-        "senha" : "1234",
-        "cargo" : "Chefe Logistico",
-        "empresa" : null,
-        "tier" : "LOG"
-      },
-      "vacina" : {
-        "id" : "001",
-        "nome" : "Moderna mRNA-1273",
-        "tempe_min" : -20.0,
-        "tempe_max" : 8.0,
-        "ea" : 100000.0,
-        "a" : 6.04E12,
-        "threshold" : 95.0
-      }
-    },
-    "qtd" : 28,
-    "mrna_Disponivel" : 597.4493116805899
+    "qtd" : 210,
+    "mrna_Disponivel" : 98.14022468626928
   } ]
 }, {
   "id" : "794e9ce6-5f52-4b19-a7ec-574c83b0136a",
