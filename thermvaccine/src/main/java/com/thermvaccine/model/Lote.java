@@ -19,11 +19,11 @@ public class Lote {
     private LocalDateTime data_descongelamento;
     private LocalDateTime validade;
 
-    private Usuario usuario;
+    private UserLogistica usuario;
     private Vacina vacina;
 
 
-    public Lote(int quantidade, String fabricante, LocalDateTime validade, LocalDateTime data_descongelamento, Usuario usuario, Vacina vacina){
+    public Lote(int quantidade, String fabricante, LocalDateTime validade, LocalDateTime data_descongelamento, UserLogistica usuario, Vacina vacina){
         this.id = UUID.randomUUID().toString();
         this.quantidade = quantidade;
         this.fabricante = fabricante;
@@ -68,7 +68,7 @@ public class Lote {
         this.quantidade = quantidade;
     }
 
-    public void setUsuario(Usuario usuario) {
+    public void setUsuario(UserLogistica usuario) {
         this.usuario = usuario;
     }
 

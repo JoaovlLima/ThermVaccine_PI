@@ -9,5 +9,4 @@
   "capacidade" : 15,
   "data_saida" : null,
   "data_chegada" : null,
-  "disponivel" : true
-} ]
+  "disponivel" : false ]
