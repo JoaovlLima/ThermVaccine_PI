@@ -17,8 +17,10 @@ public class HistoricoCaixaRepository {
         .registerModule(new JavaTimeModule())
         .disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
 
-    private final File arquivo = new File("thermvaccine\\data\\historicoCaixa.json");
+    // private final File arquivo = new File("thermvaccine\\data\\historicoCaixa.json");
 
+    private final File arquivo =
+        new File("/home/taviz/VsCode/PI - ThermVaccine/ThermVaccine_PI/thermvaccine/data/historicoCaixa.json");
 
     // CLEANER
     public void limpar() {

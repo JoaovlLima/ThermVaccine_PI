@@ -12,9 +12,12 @@ import com.thermvaccine.model.Vacina;
 
 public class VacinaRepository {
 
+    // private final File arquivo =
+    //         new File("thermvaccine\\data\\vacina.json");
+
+
     private final File arquivo =
-            new File("thermvaccine\\data\\vacina.json");
-            // /home/taviz/VsCode/PI - ThermVaccine/ThermVaccine_PI/thermvaccine/data/ARQUIVO.json
+        new File("/home/taviz/VsCode/PI - ThermVaccine/ThermVaccine_PI/thermvaccine/data/vacina.json");
 
     private final ObjectMapper mapper =
             new ObjectMapper();

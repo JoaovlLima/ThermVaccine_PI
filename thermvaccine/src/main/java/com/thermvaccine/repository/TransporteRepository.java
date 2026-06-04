@@ -18,8 +18,11 @@ public class TransporteRepository implements IRepository<Transporte> {
         .registerModule(new JavaTimeModule())
         .disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
 
-    private final File arquivo = new File("thermvaccine\\data\\transporte.json");
+    // private final File arquivo = new File("thermvaccine\\data\\transporte.json");
 
+
+    private final File arquivo =
+        new File("/home/taviz/VsCode/PI - ThermVaccine/ThermVaccine_PI/thermvaccine/data/transporte.json");
 
     // CLEANER
     public void limpar() {

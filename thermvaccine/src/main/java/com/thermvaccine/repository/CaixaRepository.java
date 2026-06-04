@@ -17,8 +17,11 @@ public class CaixaRepository implements IRepository<Caixa> {
 
     private final ObjectMapper mapper = new ObjectMapper();
 
-    private final File arquivo = new File("thermvaccine\\data\\caixa.json");
-    // /home/taviz/VsCode/PI - ThermVaccine/ThermVaccine_PI/thermvaccine/data/ARQUIVO.json
+
+    // private final File arquivo = new File("thermvaccine\\data\\caixa.json");
+
+    private final File arquivo =
+        new File("/home/taviz/VsCode/PI - ThermVaccine/ThermVaccine_PI/thermvaccine/data/caixa.json");
 
     // CLEANER
     public void limpar() {
