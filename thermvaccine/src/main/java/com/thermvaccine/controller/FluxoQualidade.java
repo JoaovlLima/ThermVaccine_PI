@@ -13,6 +13,7 @@ import java.util.List;
 
 public class FluxoQualidade {
 
+    private final ComandaService comandaService = new ComandaService();
     private final TransporteService transporteService = new TransporteService();
     private final CaixaService      caixaService      = new CaixaService();
     private Timer timerComanda = null;
@@ -107,7 +108,10 @@ public class FluxoQualidade {
                 String idC    = abreviar(comanda.getId());
                 String titulo = "Comanda — " + idC;
                 String sub    = "CEP: " + comanda.getCep() + " | Nº " + comanda.getNumEndereco()
-                    + (entregue ? "   ✓ ENTREGUE" : "");
+                    + (entregue ? "   ✓ ENTREGUE" : "")
+                    + (entregue && comanda.getData_Chegada() != null 
+                        ? " | Chegada: " + comanda.getData_Chegada().format(DateTimeFormatter.ofPattern("dd/MM HH:mm")) 
+                        : "");
                 window.adicionarCard(titulo, sub, () -> mostrarComanda(comanda, caixa, placa));
             }
         }
@@ -129,12 +133,15 @@ public class FluxoQualidade {
         Runnable renderizar = () -> {
             DataLogger dl = caixaService.dataLoggerDaCaixa(caixa.getId());
             window.limparConteudo();
+            boolean entregue = comanda.getStatus() == Comanda.StatusComanda.ENTREGUE;
+            window.setTitulo("Lotes da Comanda" + (entregue ? "   ✓ ENTREGUE" : "")); 
 
             List<Lote_coman> lotes = comanda.getLote_coman();
 
             if (lotes == null || lotes.isEmpty()) {
                 window.adicionarMensagem("Nenhum lote nesta comanda.");
             } else {
+                double[] mrnaAtualFinal = {0.0};
                 for (Lote_coman lc : lotes) {
                     Lote   lote   = lc.getLote();
                     Vacina vacina = lote != null ? lote.getVacina() : null;
@@ -149,6 +156,7 @@ public class FluxoQualidade {
                             vacina.getThreshold(),
                             lc.getMRNA_Disponivel()
                         );
+                        mrnaAtualFinal[0] = mrnaAtual;
                         System.out.println("Registros do DL: " + dl.getRegistroDatalogger().size());
                         System.out.println("mrnaInicial: " + lc.getMRNA_Disponivel());
                         System.out.println("mrnaAtual calculado: " + mrnaAtual);
@@ -165,6 +173,20 @@ public class FluxoQualidade {
 
                     window.adicionarInfoCard(titulo, sub);
                 }
+
+                if (comanda.getStatus() != Comanda.StatusComanda.ENTREGUE) {
+                    window.adicionarEspacador();
+                    window.adicionarBotaoAcao("✓ Marcar como Entregue", () -> {
+                        Timer t = timerComanda; // captura o valor atual
+                        if (timerComanda != null) {
+                            timerComanda.stop();
+                            timerComanda = null;
+                        }
+                        comandaService.entregarComanda(comanda.getId(), mrnaAtualFinal[0]);
+                        mostrarCaixa(caixa, placa);
+                    });
+                }
+
             }
 
             window.setBotaoVoltar(() -> {

@@ -16,11 +16,19 @@ public class Comanda {
     private LocalDateTime data_Chegada;
     private String cep;
     private int numEndereco;
+    private double mrnaFinal = 0.0; // atributo novo add
     private StatusComanda status;
     
     private String idCaixa;
     private List<Lote_coman> lote_coman = new ArrayList<>();
 
+    public double getMrnaFinal() { // get novo add
+        return mrnaFinal; 
+    }
+
+    public void setMrnaFinal(double mrnaFinal) { // Set novo add
+        this.mrnaFinal = mrnaFinal; 
+    }
 
     public LocalDateTime getData_saida() {
         return data_saida;

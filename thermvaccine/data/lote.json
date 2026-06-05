@@ -48,4 +48,79 @@
     "a" : 6.04E12,
     "threshold" : 95.0
   }
+}, {
+  "id" : "e129b267-e0ca-4dce-9e9b-d825df83df5c",
+  "quantidade" : 0,
+  "fabricante" : "PFizer",
+  "data_descongelamento" : "2026-06-05T19:03:21.276",
+  "validade" : "2026-06-05T19:03:21.274",
+  "usuario" : {
+    "tier" : "LOG",
+    "id" : null,
+    "re" : "001",
+    "nome" : "Carlos Logística",
+    "senha" : "1234",
+    "cargo" : "Chefe Logístico",
+    "empresa" : null,
+    "tier" : null
+  },
+  "vacina" : {
+    "id" : "001",
+    "nome" : "Moderna mRNA-1273",
+    "tempe_min" : -20.0,
+    "tempe_max" : 8.0,
+    "ea" : 100000.0,
+    "a" : 6.04E12,
+    "threshold" : 70.0
+  }
+}, {
+  "id" : "dc4aedce-e217-40db-a36c-98d92a9172e4",
+  "quantidade" : 0,
+  "fabricante" : "Pfizer",
+  "data_descongelamento" : "2026-06-05T19:20:28.098",
+  "validade" : "2026-06-05T19:20:28.095",
+  "usuario" : {
+    "tier" : "LOG",
+    "id" : null,
+    "re" : "001",
+    "nome" : "Carlos Logística",
+    "senha" : "1234",
+    "cargo" : "Chefe Logístico",
+    "empresa" : null,
+    "tier" : null
+  },
+  "vacina" : {
+    "id" : "001",
+    "nome" : "Moderna mRNA-1273",
+    "tempe_min" : -20.0,
+    "tempe_max" : 8.0,
+    "ea" : 100000.0,
+    "a" : 6.04E12,
+    "threshold" : 70.0
+  }
+}, {
+  "id" : "4041676f-a70d-4696-a272-854c597db502",
+  "quantidade" : 0,
+  "fabricante" : "Pfizer",
+  "data_descongelamento" : "2026-06-05T19:23:39.045",
+  "validade" : "2026-06-05T19:23:39.042",
+  "usuario" : {
+    "tier" : "LOG",
+    "id" : null,
+    "re" : "001",
+    "nome" : "Carlos Logística",
+    "senha" : "1234",
+    "cargo" : "Chefe Logístico",
+    "empresa" : null,
+    "tier" : null
+  },
+  "vacina" : {
+    "id" : "001",
+    "nome" : "Moderna mRNA-1273",
+    "tempe_min" : -20.0,
+    "tempe_max" : 8.0,
+    "ea" : 100000.0,
+    "a" : 6.04E12,
+    "threshold" : 70.0
+  }
 } ]
