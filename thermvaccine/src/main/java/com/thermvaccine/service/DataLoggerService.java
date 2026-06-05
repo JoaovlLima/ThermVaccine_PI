@@ -12,14 +12,17 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import com.thermvaccine.model.DataLogger;
+import com.thermvaccine.model.HistoricoCaixa;
 import com.thermvaccine.model.RegistroDatalogger;
 import com.thermvaccine.repository.DataLoggerRepository;
+import com.thermvaccine.repository.HistoricoCaixaRepository;
 import com.thermvaccine.repository.RegistroRepository;
 
 public class DataLoggerService {
 
     private final RegistroRepository registroRepository;
     private final DataLoggerRepository dataLoggerRepository;
+    private final HistoricoCaixaRepository historicoCaixaRepository;
     
     private final String registroComVariacao = "registroComVariacao.csv";
     private final List<String> registroSemVariacao = List.of("registroSemVariacao.csv", "registroSemVariacao2.csv");
@@ -28,6 +31,8 @@ public class DataLoggerService {
     public DataLoggerService() {
         this.registroRepository = new RegistroRepository();
         this.dataLoggerRepository = new DataLoggerRepository();
+        this.historicoCaixaRepository = new HistoricoCaixaRepository();
+
     }
 
 
@@ -69,6 +74,24 @@ public class DataLoggerService {
             throw new RuntimeException("Erro ao listar dataLogger disponiveis: "+e);
         }
 
+    }
+
+
+    public List<DataLogger> dataLoggersEmUso(){
+         
+            List<DataLogger> dataLoggersDb = dataLoggerRepository.listar();
+
+            List<DataLogger> dataLoggersEmUso = new ArrayList<>();
+
+            for (DataLogger dataLogger : dataLoggersDb) {
+
+                if(!dataLogger.isDisponivel()){
+                    dataLoggersEmUso.add(dataLogger);
+                }
+
+            }
+
+            return dataLoggersEmUso;
     }
 
     
@@ -211,6 +234,23 @@ public class DataLoggerService {
     public void editarDatalogger(DataLogger dataLogger){
 
         dataLoggerRepository.editar(dataLogger);
+    }
+
+
+    public void liberarDlPorCaixa(String idCaixa){
+
+        List<HistoricoCaixa> historicoCaixasDb = historicoCaixaRepository.listar();
+
+        for (HistoricoCaixa historicoCaixa : historicoCaixasDb) {
+
+            if(historicoCaixa.getCaixa().getId().equals(idCaixa)){
+            DataLogger datalogger = historicoCaixa.getDataLogger();
+            datalogger.setDisponivel(true);
+            dataLoggerRepository.editar(datalogger);
+            }
+            
+        }
+        
     }
 
   

@@ -229,6 +229,18 @@ public class CaixaService {
         List<Comanda> comanda = comandaService.comandaPorCaixa(caixas.get(0).getId());
 
         return comanda.get(0).getData_saida();
-    }   
+    } 
+    
+    public void liberarCaixaPorTransporte(String placa){
+        List<Caixa> caixas = caixasPorTransporte(placa);
+        
+        for (Caixa caixa : caixas) {
+            caixa.setDisponivel(true);
+            caixaRepository.editar(caixa);
+
+            dataLoggerService.liberarDlPorCaixa(caixa.getId());
+        }    
+
+    }
 
 }
