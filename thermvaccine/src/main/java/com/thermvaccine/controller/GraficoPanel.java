@@ -10,10 +10,7 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Painel Swing que desenha o gráfico de temperatura do datalogger.
- * Atualizado via timer a cada 5 segundos.
- */
+// GRáfico atualizado via timer a cada 5 segundos
 public class GraficoPanel extends JPanel {
 
     private static final Color GREEN_DARK = new Color(34, 105, 66);

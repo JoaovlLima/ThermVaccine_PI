@@ -35,6 +35,7 @@ public class Main {
 
          DataLoggerService dataLoggerService = new DataLoggerService();
     for (DataLogger dl : dataLoggerService.dataLoggersEmUso()) {
+        dataLoggerService.limparRegistros(dl.getId()); // Se preciso, retirar, já que não estava limpando
         dataLoggerService.iniciarDataLogger(dl.getId());
     }
 
