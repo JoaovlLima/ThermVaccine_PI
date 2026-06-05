@@ -181,4 +181,5 @@ public class CadastrarLotePanel extends JPanel {
         }
         return btn;
     }
+
 }

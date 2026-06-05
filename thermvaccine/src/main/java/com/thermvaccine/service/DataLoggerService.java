@@ -12,18 +12,27 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import com.thermvaccine.model.DataLogger;
+import com.thermvaccine.model.HistoricoCaixa;
 import com.thermvaccine.model.RegistroDatalogger;
 import com.thermvaccine.repository.DataLoggerRepository;
+import com.thermvaccine.repository.HistoricoCaixaRepository;
 import com.thermvaccine.repository.RegistroRepository;
 
 public class DataLoggerService {
 
     private final RegistroRepository registroRepository;
     private final DataLoggerRepository dataLoggerRepository;
+    private final HistoricoCaixaRepository historicoCaixaRepository;
+    
+    private final String registroComVariacao = "registroComVariacao.csv";
+    private final List<String> registroSemVariacao = List.of("registroSemVariacao.csv", "registroSemVariacao2.csv");
+    
 
     public DataLoggerService() {
         this.registroRepository = new RegistroRepository();
         this.dataLoggerRepository = new DataLoggerRepository();
+        this.historicoCaixaRepository = new HistoricoCaixaRepository();
+
     }
 
 
@@ -67,11 +76,29 @@ public class DataLoggerService {
 
     }
 
+
+    public List<DataLogger> dataLoggersEmUso(){
+         
+            List<DataLogger> dataLoggersDb = dataLoggerRepository.listar();
+
+            List<DataLogger> dataLoggersEmUso = new ArrayList<>();
+
+            for (DataLogger dataLogger : dataLoggersDb) {
+
+                if(!dataLogger.isDisponivel()){
+                    dataLoggersEmUso.add(dataLogger);
+                }
+
+            }
+
+            return dataLoggersEmUso;
+    }
+
     
     public void iniciarDataLogger(String idDatalogger) {
         
         // ACESSANDO REGISTROS SIMULADOS 
-        List<RegistroDatalogger> registros = leituraArquivo();
+        List<RegistroDatalogger> registros = leituraArquivo(idDatalogger);
 
         Thread thread = new Thread(() -> {
             
@@ -105,14 +132,23 @@ public class DataLoggerService {
 
     // FUNCÕES AUXILIARES
 
-    public List<RegistroDatalogger> leituraArquivo() {
+    public List<RegistroDatalogger> leituraArquivo(String idDataLogger) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
         List<RegistroDatalogger> registros = new ArrayList<>();
 
+        String registroUtilizado = null;
+        if(idDataLogger.equals("DL01")){
+            registroUtilizado = registroComVariacao;
+        }else if(idDataLogger.equals("DL02")){
+            registroUtilizado = registroSemVariacao.get(0);
+        }else{
+            registroUtilizado = registroSemVariacao.get(1);
+        }
+
         InputStream input = getClass()
                 .getClassLoader()
-                .getResourceAsStream("planilha_datalogger.csv");
+                .getResourceAsStream(registroUtilizado);
 
         if (input == null) {
             throw new RuntimeException("Arquivo CSV não encontrado");
@@ -198,6 +234,23 @@ public class DataLoggerService {
     public void editarDatalogger(DataLogger dataLogger){
 
         dataLoggerRepository.editar(dataLogger);
+    }
+
+
+    public void liberarDlPorCaixa(String idCaixa){
+
+        List<HistoricoCaixa> historicoCaixasDb = historicoCaixaRepository.listar();
+
+        for (HistoricoCaixa historicoCaixa : historicoCaixasDb) {
+
+            if(historicoCaixa.getCaixa().getId().equals(idCaixa)){
+            DataLogger datalogger = historicoCaixa.getDataLogger();
+            datalogger.setDisponivel(true);
+            dataLoggerRepository.editar(datalogger);
+            }
+            
+        }
+        
     }
 
   

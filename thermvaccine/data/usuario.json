@@ -1,1 +1,20 @@
-[]
+[
+  {
+    "id": null,
+    "re": "001",
+    "nome": "Carlos Logística",
+    "senha": "1234",
+    "cargo": "Chefe Logístico",
+    "empresa": null,
+    "tier": "LOG"
+  },
+  {
+    "id": null,
+    "re": "002",
+    "nome": "Ana Qualidade",
+    "senha": "1234",
+    "cargo": "Analista de Qualidade",
+    "empresa": null,
+    "tier": "QUA"
+  }
+]

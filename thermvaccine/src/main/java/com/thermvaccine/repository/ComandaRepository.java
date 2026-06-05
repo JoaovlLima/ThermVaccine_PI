@@ -14,11 +14,11 @@ import com.thermvaccine.model.Comanda;
 
 public class ComandaRepository implements IRepository<Comanda> {
     
-    private final ObjectMapper mapper = new ObjectMapper()
+   private final ObjectMapper mapper = new ObjectMapper()
         .registerModule(new JavaTimeModule())
         .disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
 
-    private final File arquivo = new File("/home/taviz/VsCode/PI - ThermVaccine/ThermVaccine_PI/thermvaccine/data/comanda.json");
+    private final File arquivo = new File("thermvaccine\\data\\comanda.json");
 
 
     // CLEANER

@@ -85,9 +85,12 @@ public List<Comanda> listarComandasDisponiveis(){
     
 }
 
-public void editarComandas(List<Comanda> comandas){
+public void iniciarTransporte(List<Comanda> comandas){
 
     for (Comanda comanda : comandas) {
+        comanda.setStatus(StatusComanda.EM_TRANSITO);
+        comanda.setData_saida(LocalDateTime.now());
+        
         comandaRepository.editar(comanda);
     }
   
@@ -105,6 +108,23 @@ public int qtdTotalComanda(List<Comanda> comandas){
 
     return totalComanda;
 }
+
+public List<Comanda> comandaPorCaixa(String idCaixa){
+
+    List<Comanda> comandasDb = comandaRepository.listar();
+
+    List<Comanda> comandaPorCaixa = new ArrayList<>();
+
+    for (Comanda comanda : comandasDb) {
+
+        if(comanda.getIdCaixa() != null && comanda.getIdCaixa().equals(idCaixa)){
+            comandaPorCaixa.add(comanda);
+        }
+    }
+
+    return comandaPorCaixa;
+}
+
 
 
     

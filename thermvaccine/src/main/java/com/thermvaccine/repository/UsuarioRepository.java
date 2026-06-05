@@ -13,7 +13,7 @@ import com.thermvaccine.model.Usuario;
 public class UsuarioRepository {
 
     private final File arquivo = 
-            new File("/home/taviz/VsCode/PI - ThermVaccine/ThermVaccine_PI/thermvaccine/data/usuario.json");
+            new File("thermvaccine\\data\\usuario.json");
 
     private final ObjectMapper mapper = 
             new ObjectMapper();
@@ -49,5 +49,18 @@ public class UsuarioRepository {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public Usuario findByRe(String re){
+
+        List<Usuario> usuariosDb = listar();
+
+        for (Usuario usuario : usuariosDb) {
+            if(usuario.getRe().equals(re)){
+                return usuario; 
+            }
+        }
+        
+        return null;
     }
 }

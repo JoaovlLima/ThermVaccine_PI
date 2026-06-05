@@ -1,10 +1,19 @@
 package com.thermvaccine.model;
 
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+
 import lombok.NoArgsConstructor;
 
+
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property = "tier")
+@JsonSubTypes({
+    @JsonSubTypes.Type(value = UserLogistica.class, name = "LOG"),
+    @JsonSubTypes.Type(value = UserQualidade.class, name = "QUA")
+})
 @NoArgsConstructor
 // Era para ser abstract, porem para inserção no json foi removido
-public class Usuario {
+public abstract class Usuario {
     private String id;
     private String re;
     private String nome;

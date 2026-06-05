@@ -7,12 +7,17 @@ import java.util.List;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.thermvaccine.model.HistoricoCaixa;
 
 public class HistoricoCaixaRepository {
-    private final ObjectMapper mapper = new ObjectMapper();
+    
+     private final ObjectMapper mapper = new ObjectMapper()
+        .registerModule(new JavaTimeModule())
+        .disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
 
-    private final File arquivo = new File("/home/taviz/VsCode/PI - ThermVaccine/ThermVaccine_PI/thermvaccine/data/ARQUIVO.json");
+    private final File arquivo = new File("thermvaccine\\data\\historicoCaixa.json");
 
 
     // CLEANER

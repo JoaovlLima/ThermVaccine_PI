@@ -1,6 +1,9 @@
 package com.thermvaccine;
 
 import java.util.List;
+
+import javax.swing.SwingUtilities;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -17,7 +20,7 @@ import com.thermvaccine.model.Usuario;
 import com.thermvaccine.model.Vacina;
 
 import com.thermvaccine.controller.CaixaController;
-
+import com.thermvaccine.controller.LoginWindow;
 import com.thermvaccine.service.CalculoVidaUtilService;
 import com.thermvaccine.service.CaixaService;
 import com.thermvaccine.service.DataLoggerService;
@@ -30,10 +33,12 @@ public class Main {
 
     public static void main(String[] args) throws InterruptedException {
 
-        TransporteService transporteService = new TransporteService();
-        List<Transporte> lista = transporteService.listarEmTransito();
-        System.out.println("QTD: "+lista.size());
+         DataLoggerService dataLoggerService = new DataLoggerService();
+    for (DataLogger dl : dataLoggerService.dataLoggersEmUso()) {
+        dataLoggerService.iniciarDataLogger(dl.getId());
+    }
 
+        SwingUtilities.invokeLater(() -> new LoginWindow().setVisible(true));
         // // ── SERVICES ─────────────────────────────────────────────
         // CalculoVidaUtilService calculoService = new CalculoVidaUtilService();
         // DataLoggerService dataLoggerService = new DataLoggerService();
