@@ -107,6 +107,10 @@ public class DataLoggerService {
     }
 
 
+    public DataLogger buscarPorId(String id) {
+        return dataLoggerRepository.findById(id);
+    }
+
     // FUNCÕES AUXILIARES
 
     public List<RegistroDatalogger> leituraArquivo(String idDataLogger) {

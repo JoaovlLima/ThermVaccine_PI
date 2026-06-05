@@ -28,11 +28,11 @@ public class ComandaService {
     private final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
     public void exibirDados(Comanda comanda){
-        System.out.printf("ID: %d\n", comanda.getId());
+        System.out.printf("ID: %s\n", comanda.getId());
         System.out.printf("Data de emissao: %s\n", comanda.getData_emissao().format(FORMATTER));
         System.out.printf("Status: %s\n", comanda.getStatus());
         System.out.printf("Local de entrega: CEP - %s | Numero da residencia - %d\n", comanda.getCep(), comanda.getNumEndereco());
-        System.out.printf("Referente ao lote: %d", comanda.getLote_coman());
+        System.out.printf("Referente ao lote: %s", comanda.getLote_coman());
 
     }
 

@@ -137,7 +137,7 @@ public class FluxoQualidade {
                 String titulo = "Lote — " + idL;
                 String sub    = "Vacina: " + (vacina != null ? vacina.getNome() : "—")
                     + "  |  Qtd: " + lc.getQtd()
-                    + "  |  mRNA: " + String.format("%.4f%%", mrna);
+                    + "  |  mRNA: " + String.format("%.4f%%", (mrna / CalculoVidaUtilService.MRNA_INICIAL) * 100.0);
 
                 window.adicionarInfoCard(titulo, sub);
             }
