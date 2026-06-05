@@ -17,6 +17,7 @@ public class FluxoLogisticoWindow extends JFrame {
 
     private final CriarComandaPanel criarComandaPanel = new CriarComandaPanel(this);
     private final IniciarTransportePanel iniciarTransportePanel = new IniciarTransportePanel(this);
+    private final FinalizarTransportePanel finalizarTransportePanel = new FinalizarTransportePanel(this);
 
     private final UserLogistica usuario;
 
@@ -39,8 +40,9 @@ public class FluxoLogisticoWindow extends JFrame {
         cards.setBackground(Color.WHITE);
         cards.add(buildMenu(), "menu");
         cards.add(new CadastrarLotePanel(this), "lote");
-        cards.add(new CriarComandaPanel(this), "comanda");
-        cards.add(new IniciarTransportePanel(this), "transporte");
+        cards.add(criarComandaPanel, "comanda");
+        cards.add(iniciarTransportePanel, "transporte");
+        cards.add(finalizarTransportePanel, "finalizarTransporte");
         add(cards, BorderLayout.CENTER);
 
         cardLayout.show(cards, "menu");
@@ -93,16 +95,20 @@ public class FluxoLogisticoWindow extends JFrame {
         JButton btnLote = menuButton("Cadastrar lote");
         JButton btnComanda = menuButton("Criar comanda");
         JButton btnTransporte = menuButton("Iniciar transporte");
+        JButton btnFinalizarTransporte = menuButton("Finalizar Transporte");
 
         btnLote.addActionListener(e -> navegarPara("lote", 460));
         btnComanda.addActionListener(e -> navegarPara("comanda", 560));
         btnTransporte.addActionListener(e -> navegarPara("transporte", 460));
+        btnFinalizarTransporte.addActionListener(e -> navegarPara("finalizarTransporte", 460));
 
         panel.add(btnLote);
         panel.add(Box.createVerticalStrut(8));
         panel.add(btnComanda);
         panel.add(Box.createVerticalStrut(8));
         panel.add(btnTransporte);
+        panel.add(Box.createVerticalStrut(8));
+        panel.add(btnFinalizarTransporte);
 
         return panel;
     }
@@ -146,6 +152,8 @@ public class FluxoLogisticoWindow extends JFrame {
             criarComandaPanel.onShow();
         if (card.equals("transporte"))
             iniciarTransportePanel.onShow();
+        if (card.equals("finalizarTransporte"))
+            finalizarTransportePanel.onShow();
     }
 
     public void voltarMenu() {

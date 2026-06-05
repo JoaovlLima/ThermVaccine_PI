@@ -69,28 +69,31 @@
     "mrna_Disponivel" : 98.14022468626928
   } ]
 }, {
-  "id" : "794e9ce6-5f52-4b19-a7ec-574c83b0136a",
-  "data_emissao" : "2026-05-28T22:11:22.574386884",
-  "cep" : "1304",
-  "numEndereco" : 123,
+  "id" : "469c6496-9bef-4a89-a410-bb9048300a74",
+  "data_emissao" : "2026-06-05T00:32:37.57788",
+  "data_saida" : null,
+  "data_Chegada" : null,
+  "cep" : "13000",
+  "numEndereco" : 510,
   "status" : "EM_AGUARDO",
   "idCaixa" : null,
   "lote_coman" : [ {
-    "id" : "87a3ef80-1aa2-4c7a-839d-3ae8c227f562",
+    "id" : "2a85a0fc-2f30-4024-8a0f-6eee9868d2c0",
     "lote" : {
-      "id" : "d39b551b-20d4-4671-b932-9c86acdae436",
-      "quantidade" : 130,
-      "fabricante" : "Butantan",
-      "data_descongelamento" : "2026-05-05T00:00:00",
-      "validade" : "2026-10-28T00:00:00",
+      "id" : "356a82c6-315e-4bd1-8485-8c469007292e",
+      "quantidade" : 92099,
+      "fabricante" : "test",
+      "data_descongelamento" : "2026-05-30T15:50:02.354",
+      "validade" : "2026-10-30T00:00:00",
       "usuario" : {
+        "tier" : "LOG",
         "id" : null,
         "re" : "114",
         "nome" : "Carlos",
         "senha" : "1234",
         "cargo" : "Chefe Logistico",
         "empresa" : null,
-        "tier" : "LOG"
+        "tier" : null
       },
       "vacina" : {
         "id" : "001",
@@ -102,36 +105,7 @@
         "threshold" : 95.0
       }
     },
-    "qtd" : 50,
-    "mrna_Disponivel" : 70.46823492551717
-  }, {
-    "id" : "d8a952eb-278c-4f40-a617-68cb934a3494",
-    "lote" : {
-      "id" : "d39b551b-20d4-4671-b932-9c86acdae436",
-      "quantidade" : 130,
-      "fabricante" : "Butantan",
-      "data_descongelamento" : "2026-05-05T00:00:00",
-      "validade" : "2026-10-28T00:00:00",
-      "usuario" : {
-        "id" : null,
-        "re" : "114",
-        "nome" : "Carlos",
-        "senha" : "1234",
-        "cargo" : "Chefe Logistico",
-        "empresa" : null,
-        "tier" : "LOG"
-      },
-      "vacina" : {
-        "id" : "001",
-        "nome" : "Moderna mRNA-1273",
-        "tempe_min" : -20.0,
-        "tempe_max" : 8.0,
-        "ea" : 100000.0,
-        "a" : 6.04E12,
-        "threshold" : 95.0
-      }
-    },
-    "qtd" : 20,
-    "mrna_Disponivel" : 70.46823492551717
+    "qtd" : 5400,
+    "mrna_Disponivel" : 92.45413795935984
   } ]
 } ]

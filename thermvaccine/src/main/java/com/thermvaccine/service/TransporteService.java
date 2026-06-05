@@ -1,6 +1,7 @@
 package com.thermvaccine.service;
 
 import com.thermvaccine.model.Transporte;
+import com.thermvaccine.model.Comanda.StatusComanda;
 import com.thermvaccine.repository.CaixaRepository;
 import com.thermvaccine.repository.RegistroRepository;
 import com.thermvaccine.repository.TransporteRepository;
@@ -12,17 +13,22 @@ import java.util.List;
 import org.hibernate.sql.ast.tree.predicate.BooleanExpressionPredicate;
 
 import com.thermvaccine.model.Caixa;
+import com.thermvaccine.model.Comanda;
 
 public class TransporteService {
 
     private final TransporteRepository transporteRepository;
     private final CaixaRepository caixaRepository;
     private final CaixaService caixaService;
+    private final ComandaService comandaService;
+    private final DataLoggerService dataLoggerService;
 
     public TransporteService() {
         this.transporteRepository = new TransporteRepository();
         this.caixaRepository = new CaixaRepository();
         this.caixaService = new CaixaService();
+        this.comandaService = new ComandaService();
+        this.dataLoggerService = new DataLoggerService();
     }
 
     public void exibirDados(Transporte transp) {
@@ -59,6 +65,19 @@ public class TransporteService {
 
         return transportesDisponiveis;
     }
+
+    public List<Transporte> listarTransportesEmUso(){
+         List<Transporte> transportesDb = transporteRepository.listar();
+        List<Transporte> transportesEmUso = new ArrayList<>();
+        for (Transporte transporte : transportesDb) {
+            if (!transporte.getDisponivel()) {
+                transportesEmUso.add(transporte);
+            }
+        }
+
+        return transportesEmUso;
+    }
+    
 
     public List<Transporte> listarEmTransito() { // Lista transportes em transito - disponivel=false - novo método
         List<Transporte> transportesDb = transporteRepository.listar();
@@ -105,6 +124,21 @@ public class TransporteService {
 
     public void finalizarTransporte(String placa){
 
+        List<Caixa> caixas = caixaService.caixasPorTransporte(placa);
+        for (Caixa caixa : caixas) {
+            List<Comanda> comandas = comandaService.comandaPorCaixa(caixa.getId());
+
+            for (Comanda comanda: comandas) {
+                if(comanda.getStatus() != StatusComanda.ENTREGUE){
+                    throw new IllegalStateException("Há comandas não entregues neste transporte.");
+                }
+            }
+        }
+
+        Transporte transporte = transporteRepository.findById(placa);
+        transporte.setDisponivel(true);
+        transporteRepository.editar(transporte);
+        caixaService.liberarCaixaPorTransporte(placa);
         
     }
 
