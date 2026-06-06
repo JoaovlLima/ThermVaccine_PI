@@ -19,8 +19,10 @@ public class DataLoggerRepository implements IRepository<DataLogger> {
         .registerModule(new JavaTimeModule())
         .disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
 
-    private final File arquivo = new File("thermvaccine\\data\\dataLogger.json");
+    // private final File arquivo = new File("thermvaccine\\data\\dataLogger.json");
 
+    private final File arquivo =
+        new File("/home/taviz/VsCode/PI - ThermVaccine/ThermVaccine_PI/thermvaccine/data/dataLogger.json");
 
     // CLEANER
     public void limpar() {

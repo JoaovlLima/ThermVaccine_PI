@@ -138,6 +138,9 @@ public class TransporteService {
         Transporte transporte = transporteRepository.findById(placa);
         transporte.setDisponivel(true);
         transporteRepository.editar(transporte);
+        for (Caixa caixa : caixaService.caixasPorTransporte(placa)) { // Remove comandas do Json
+            comandaService.removerComandasDaCaixa(caixa.getId());
+        }
         caixaService.liberarCaixaPorTransporte(placa);
         
     }

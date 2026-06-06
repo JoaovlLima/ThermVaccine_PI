@@ -10,14 +10,14 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
-/**
- * Controller do fluxo de qualidade.
- * Contém toda a lógica — a view só chama métodos daqui.
- */
+
 public class FluxoQualidade {
 
+    private final ComandaService comandaService = new ComandaService();
     private final TransporteService transporteService = new TransporteService();
     private final CaixaService      caixaService      = new CaixaService();
+    private Timer timerComanda = null;
+    private final CalculoVidaUtilService calculoService = new CalculoVidaUtilService(); 
 
     private FluxoQualidadeWindow window;
 
@@ -81,7 +81,7 @@ public class FluxoQualidade {
         window.limparConteudo();
         window.setTitulo("CAIXA — " + abreviar(caixa.getId()));
 
-        // datalogger
+       
         window.adicionarSecao("Datalogger");
         DataLogger dl = caixaService.dataLoggerDaCaixa(caixa.getId());
         
@@ -96,7 +96,7 @@ public class FluxoQualidade {
 
         window.adicionarEspacador();
 
-        // comandas
+        
         window.adicionarSecao("Comandas");
         List<Comanda> comandas = caixaService.comandasDaCaixa(caixa.getId());
 
@@ -108,7 +108,10 @@ public class FluxoQualidade {
                 String idC    = abreviar(comanda.getId());
                 String titulo = "Comanda — " + idC;
                 String sub    = "CEP: " + comanda.getCep() + " | Nº " + comanda.getNumEndereco()
-                    + (entregue ? "   ✓ ENTREGUE" : "");
+                    + (entregue ? "   ✓ ENTREGUE" : "")
+                    + (entregue && comanda.getData_Chegada() != null 
+                        ? " | Chegada: " + comanda.getData_Chegada().format(DateTimeFormatter.ofPattern("dd/MM HH:mm")) 
+                        : "");
                 window.adicionarCard(titulo, sub, () -> mostrarComanda(comanda, caixa, placa));
             }
         }
@@ -120,31 +123,88 @@ public class FluxoQualidade {
     // ── TELA 4 ────────────────────────────────────────────────
 
     public void mostrarComanda(Comanda comanda, Caixa caixa, String placa) {
-        window.limparConteudo();
-        window.setTitulo("Lotes da Comanda");
 
-        List<Lote_coman> lotes = comanda.getLote_coman();
-
-        if (lotes == null || lotes.isEmpty()) {
-            window.adicionarMensagem("Nenhum lote nesta comanda.");
-        } else {
-            for (Lote_coman lc : lotes) {
-                Lote   lote   = lc.getLote();
-                Vacina vacina = lote != null ? lote.getVacina() : null;
-                double mrna   = lc.getMRNA_Disponivel();
-
-                String idL    = lote != null ? abreviar(lote.getId()) : "s/id";
-                String titulo = "Lote — " + idL;
-                String sub    = "Vacina: " + (vacina != null ? vacina.getNome() : "—")
-                    + "  |  Qtd: " + lc.getQtd()
-                    + "  |  mRNA: " + String.format("%.4f%%", mrna);
-
-                window.adicionarInfoCard(titulo, sub);
-            }
+        // para o timer anterior se existir
+        if (timerComanda != null) {
+            timerComanda.stop();
+            timerComanda = null;
         }
 
-        window.setBotaoVoltar(() -> mostrarCaixa(caixa, placa));
-        window.redimensionar(460, 400);
+        Runnable renderizar = () -> {
+            DataLogger dl = caixaService.dataLoggerDaCaixa(caixa.getId());
+            window.limparConteudo();
+            boolean entregue = comanda.getStatus() == Comanda.StatusComanda.ENTREGUE;
+            window.setTitulo("Lotes da Comanda" + (entregue ? "   ✓ ENTREGUE" : "")); 
+
+            List<Lote_coman> lotes = comanda.getLote_coman();
+
+            if (lotes == null || lotes.isEmpty()) {
+                window.adicionarMensagem("Nenhum lote nesta comanda.");
+            } else {
+                double[] mrnaAtualFinal = {0.0};
+                for (Lote_coman lc : lotes) {
+                    Lote   lote   = lc.getLote();
+                    Vacina vacina = lote != null ? lote.getVacina() : null;
+
+                    double mrnaAtual;
+                    if (dl != null && vacina != null) {
+                        // recalcula usando os registros reais do datalogger
+                        mrnaAtual = calculoService.calcularRegistros(
+                            dl.getRegistroDatalogger(),
+                            vacina.getEa(),
+                            vacina.getA(),
+                            vacina.getThreshold(),
+                            lc.getMRNA_Disponivel()
+                        );
+                        mrnaAtualFinal[0] = mrnaAtual;
+                        System.out.println("Registros do DL: " + dl.getRegistroDatalogger().size());
+                        System.out.println("mrnaInicial: " + lc.getMRNA_Disponivel());
+                        System.out.println("mrnaAtual calculado: " + mrnaAtual);
+                    } else {
+                        // sem datalogger, usa o valor salvo convertido
+                        mrnaAtual = (lc.getMRNA_Disponivel() / CalculoVidaUtilService.MRNA_INICIAL) * 100.0;
+                    }
+
+                    String idL    = lote != null ? abreviar(lote.getId()) : "s/id";
+                    String titulo = "Lote — " + idL;
+                    String sub    = "Vacina: " + (vacina != null ? vacina.getNome() : "—")
+                        + "  |  Qtd: " + lc.getQtd()
+                        + "  |  mRNA: " + String.format("%.4f%%", mrnaAtual);
+
+                    window.adicionarInfoCard(titulo, sub);
+                }
+
+                if (comanda.getStatus() != Comanda.StatusComanda.ENTREGUE) {
+                    window.adicionarEspacador();
+                    window.adicionarBotaoAcao("✓ Marcar como Entregue", () -> {
+                        Timer t = timerComanda; // captura o valor atual
+                        if (timerComanda != null) {
+                            timerComanda.stop();
+                            timerComanda = null;
+                        }
+                        comandaService.entregarComanda(comanda.getId(), mrnaAtualFinal[0]);
+                        mostrarCaixa(caixa, placa);
+                    });
+                }
+
+            }
+
+            window.setBotaoVoltar(() -> {
+                if (timerComanda != null) {
+                    timerComanda.stop();
+                    timerComanda = null;
+                }
+                mostrarCaixa(caixa, placa);
+            });
+            window.redimensionar(460, 400);
+        };
+
+        // renderiza imediatamente
+        renderizar.run();
+
+        // atualiza a cada 5 segundos
+        timerComanda = new Timer(5000, e -> renderizar.run());
+        timerComanda.start();
     }
 
     // ── GRÁFICO ───────────────────────────────────────────────

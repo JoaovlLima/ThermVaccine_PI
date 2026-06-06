@@ -130,6 +130,10 @@ public class DataLoggerService {
     }
 
 
+    public DataLogger buscarPorId(String id) {
+        return dataLoggerRepository.findById(id);
+    }
+
     // FUNCÕES AUXILIARES
 
     public List<RegistroDatalogger> leituraArquivo(String idDataLogger) {
@@ -244,7 +248,8 @@ public class DataLoggerService {
         for (HistoricoCaixa historicoCaixa : historicoCaixasDb) {
 
             if(historicoCaixa.getCaixa().getId().equals(idCaixa)){
-            DataLogger datalogger = historicoCaixa.getDataLogger();
+            DataLogger datalogger = dataLoggerRepository.findById(historicoCaixa.getDataLogger().getId());
+            if (datalogger == null) continue;
             datalogger.setDisponivel(true);
             dataLoggerRepository.editar(datalogger);
             }

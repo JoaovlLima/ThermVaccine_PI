@@ -3,23 +3,21 @@ package com.thermvaccine.controller;
 import com.thermvaccine.model.DataLogger;
 import com.thermvaccine.model.RegistroDatalogger;
 import com.thermvaccine.repository.DataLoggerRepository;
+import com.thermvaccine.service.DataLoggerService;
 
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Painel Swing que desenha o gráfico de temperatura do datalogger.
- * Atualizado via timer a cada 5 segundos.
- */
+// GRáfico atualizado via timer a cada 5 segundos
 public class GraficoPanel extends JPanel {
 
     private static final Color GREEN_DARK = new Color(34, 105, 66);
     private static final Color EIXO       = new Color(100, 100, 100);
     private static final Font  FONTE_EIXO = new Font("SansSerif", Font.PLAIN, 10);
 
-    private final DataLoggerRepository repo = new DataLoggerRepository();
+    private final DataLoggerService dataLoggerService = new DataLoggerService();
     private List<Double> temperaturas = new ArrayList<>();
     private List<String> labels       = new ArrayList<>();
 
@@ -30,7 +28,7 @@ public class GraficoPanel extends JPanel {
     }
 
     public void atualizar(String idDataLogger) {
-        DataLogger dl = repo.findById(idDataLogger);
+        DataLogger dl = dataLoggerService.buscarPorId(idDataLogger);
         if (dl == null) return;
 
         List<RegistroDatalogger> registros = dl.getRegistroDatalogger();

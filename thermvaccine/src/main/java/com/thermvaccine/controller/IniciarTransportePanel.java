@@ -7,6 +7,7 @@ import com.thermvaccine.model.Transporte;
 import com.thermvaccine.model.Vacina;
 import com.thermvaccine.service.CaixaService;
 import com.thermvaccine.service.ComandaService;
+import com.thermvaccine.service.DataLoggerService;
 import com.thermvaccine.service.TransporteService;
 
 import javax.swing.*;

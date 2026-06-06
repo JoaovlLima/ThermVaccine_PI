@@ -41,7 +41,11 @@ public class CaixaService {
             if(h.getCaixa() != null && idCaixa.equals(h.getCaixa().getId()))
                 ultimo = h;
         }
-        return ultimo != null ? ultimo.getDataLogger() : null;
+        
+        if (ultimo == null) return null;
+
+        return dataLoggerService.buscarPorId(ultimo.getDataLogger().getId());
+
     }
 
     public List<Comanda> comandasDaCaixa(String idCaixa){ // Comandas que estão associadas à uma caixa - novo método 

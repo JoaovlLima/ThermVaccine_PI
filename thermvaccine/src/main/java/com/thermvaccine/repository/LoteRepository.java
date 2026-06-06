@@ -9,7 +9,6 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
-import com.thermvaccine.model.DataLogger;
 import com.thermvaccine.model.Lote;
 
 public class LoteRepository {
@@ -18,8 +17,10 @@ public class LoteRepository {
         .registerModule(new JavaTimeModule())
         .disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
 
-    private final File arquivo = new File("thermvaccine\\data\\lote.json");
+    // private final File arquivo = new File("thermvaccine\\data\\lote.json");
 
+    private final File arquivo =
+        new File("/home/taviz/VsCode/PI - ThermVaccine/ThermVaccine_PI/thermvaccine/data/lote.json");
 
     // CLEANER
     public void limpar() {
