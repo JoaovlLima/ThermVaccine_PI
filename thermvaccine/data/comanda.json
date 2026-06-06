@@ -40,23 +40,64 @@
     "mrna_Disponivel" : 92.45413795935984
   } ]
 }, {
-  "id" : "ffd1f233-9c96-44f3-8b2b-cb3a3f2f432f",
-  "data_emissao" : "2026-06-05T19:24:02.756327844",
+  "id" : "b0f70568-8d96-44c4-b8ea-2a0aa2ca4588",
+  "data_emissao" : "2026-06-05T20:25:48.175671747",
   "data_saida" : null,
   "data_Chegada" : null,
-  "cep" : "123",
+  "cep" : "12",
   "numEndereco" : 123,
   "mrnaFinal" : 0.0,
   "status" : "EM_AGUARDO",
   "idCaixa" : null,
   "lote_coman" : [ {
-    "id" : "ba472986-743b-4af2-b897-987885a6812d",
+    "id" : "f2ac56a0-b841-4bc9-9f2d-595727a18db9",
     "lote" : {
-      "id" : "4041676f-a70d-4696-a272-854c597db502",
-      "quantidade" : 0,
-      "fabricante" : "Pfizer",
-      "data_descongelamento" : "2026-06-05T19:23:39.045",
-      "validade" : "2026-06-05T19:23:39.042",
+      "id" : "356a82c6-315e-4bd1-8485-8c469007292e",
+      "quantidade" : 91989,
+      "fabricante" : "test",
+      "data_descongelamento" : "2026-05-30T15:50:02.354",
+      "validade" : "2026-10-30T00:00:00",
+      "usuario" : {
+        "tier" : "LOG",
+        "id" : null,
+        "re" : "114",
+        "nome" : "Carlos",
+        "senha" : "1234",
+        "cargo" : "Chefe Logistico",
+        "empresa" : null,
+        "tier" : null
+      },
+      "vacina" : {
+        "id" : "001",
+        "nome" : "Moderna mRNA-1273",
+        "tempe_min" : -20.0,
+        "tempe_max" : 8.0,
+        "ea" : 100000.0,
+        "a" : 6.04E12,
+        "threshold" : 95.0
+      }
+    },
+    "qtd" : 110,
+    "mrna_Disponivel" : 91.34017802174496
+  } ]
+}, {
+  "id" : "0c0ce960-add2-46a8-bbdd-0bd2f7cb23f8",
+  "data_emissao" : "2026-06-05T20:47:36.255001733",
+  "data_saida" : "2026-06-05T20:50:23.876048538",
+  "data_Chegada" : "2026-06-05T20:57:43.345660647",
+  "cep" : "13506230",
+  "numEndereco" : 11,
+  "mrnaFinal" : 25.619312174799656,
+  "status" : "ENTREGUE",
+  "idCaixa" : "cx1",
+  "lote_coman" : [ {
+    "id" : "e1a4888a-01f4-4215-91af-7673a13c1848",
+    "lote" : {
+      "id" : "7c4eb70c-4233-42f6-819b-333937eb0afe",
+      "quantidade" : 49,
+      "fabricante" : "PFizer",
+      "data_descongelamento" : "2026-03-05T00:00:00",
+      "validade" : "2026-10-05T00:00:00",
       "usuario" : {
         "tier" : "LOG",
         "id" : null,
@@ -77,7 +118,7 @@
         "threshold" : 70.0
       }
     },
-    "qtd" : 100,
-    "mrna_Disponivel" : 99.99961055382973
+    "qtd" : 50,
+    "mrna_Disponivel" : 25.701943896864265
   } ]
 } ]

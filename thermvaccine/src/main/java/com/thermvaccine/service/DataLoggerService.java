@@ -248,7 +248,8 @@ public class DataLoggerService {
         for (HistoricoCaixa historicoCaixa : historicoCaixasDb) {
 
             if(historicoCaixa.getCaixa().getId().equals(idCaixa)){
-            DataLogger datalogger = historicoCaixa.getDataLogger();
+            DataLogger datalogger = dataLoggerRepository.findById(historicoCaixa.getDataLogger().getId());
+            if (datalogger == null) continue;
             datalogger.setDisponivel(true);
             dataLoggerRepository.editar(datalogger);
             }

@@ -34,10 +34,10 @@ public class Main {
     public static void main(String[] args) throws InterruptedException {
 
          DataLoggerService dataLoggerService = new DataLoggerService();
-    for (DataLogger dl : dataLoggerService.dataLoggersEmUso()) {
-        dataLoggerService.limparRegistros(dl.getId()); // Se preciso, retirar, já que não estava limpando
-        dataLoggerService.iniciarDataLogger(dl.getId());
-    }
+        for (DataLogger dl : dataLoggerService.dataLoggersEmUso()) {
+            dataLoggerService.limparRegistros(dl.getId()); // limpar sempre ao abrir
+            dataLoggerService.iniciarDataLogger(dl.getId()); 
+        }
 
         SwingUtilities.invokeLater(() -> new LoginWindow().setVisible(true));
         // // ── SERVICES ─────────────────────────────────────────────
