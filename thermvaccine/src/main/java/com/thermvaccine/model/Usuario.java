@@ -1,26 +1,58 @@
 package com.thermvaccine.model;
 
-public class Usuario {
-    //extend pessoa?
-    private long id;
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+
+import lombok.NoArgsConstructor;
+
+
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property = "tier")
+@JsonSubTypes({
+    @JsonSubTypes.Type(value = UserLogistica.class, name = "LOG"),
+    @JsonSubTypes.Type(value = UserQualidade.class, name = "QUA")
+})
+@NoArgsConstructor
+// Era para ser abstract, porem para inserção no json foi removido
+public abstract class Usuario {
+    private String id;
     private String re;
     private String nome;
     private String senha;
     private String cargo;
     private Empresa empresa;
+    private Tier tier;
 
-    public Usuario(String re, String nome, String senha, String cargo){
+    //transformar essa em abstract (classe pai do polimorfismo)
+    //extender em outras 3 classes do tier: logista, qualidade e adm
+    // atr plus q diferenciam eles?: 
+
+    public enum Tier{
+        LOG,QUA,ADM
+    }
+
+    public Usuario(String re, String nome, String senha, String cargo, Tier tier){
         this.re = re;
         this.nome = nome;
         this.senha = senha;
         this.cargo = cargo;
+        this.tier = tier;
 
     }
 
 
-    public long getId() {
+    public String getId() {
         return id;
     }
+
+    public Tier getTier() {
+        return tier;
+    }
+
+
+    public void setTier(Tier tier) {
+        this.tier = tier;
+    }
+
 
     public String getRe() {
         return re;
@@ -38,7 +70,7 @@ public class Usuario {
         return cargo;
     }
 
-    public String getEmpresa() {
+    public Empresa getEmpresa() {
         return empresa;
     }
 
@@ -56,7 +88,7 @@ public class Usuario {
         this.cargo = cargo;
     }
 
-    public void setEmpresa(String empresa) {
+    public void setEmpresa(Empresa empresa) {
         this.empresa = empresa;
     }
 

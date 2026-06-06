@@ -1,21 +1,35 @@
 package com.thermvaccine.model;
 
+import java.time.format.DateTimeFormatter;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
+import lombok.NoArgsConstructor;
 
+@NoArgsConstructor
 public class Transporte {
+ 
+    private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
     private String placa;
     private int capacidade;
-    private LocalDateTime data_saida;
-    private LocalDateTime data_chegada;
-    private List<Caixa> caixa;
+    private Boolean disponivel;
 
 
-    public Transporte(String placa, int capacidade, LocalDateTime data_saida){
+    public Transporte(String placa, int capacidade){
         this.placa = placa;
         this.capacidade = capacidade;
-        this.data_saida = data_saida;
+        this.disponivel = true;
+    }
+
+
+    public Boolean getDisponivel() {
+        return disponivel;
+    }
+
+
+    public void setDisponivel(Boolean disponivel) {
+        this.disponivel = disponivel;
     }
 
 
@@ -27,25 +41,4 @@ public class Transporte {
         return capacidade;
     }
 
-    public LocalDateTime getData_saida() {
-        return data_saida;
-    }
-
-    public LocalDateTime getData_chegada() {
-        return data_chegada;
-    }
-
-    public List<Caixa> getCaixa() {
-        return caixa;
-    }
-
-
-
-    public void setData_chegada(LocalDateTime data_chegada) {
-        this.data_chegada = data_chegada;
-    }
-
-    public void setCaixa(List<Caixa> caixa) {
-        this.caixa = caixa;
-    }
 }

@@ -1,0 +1,17 @@
+[ {
+  "id" : "2a59cbf2-d0a6-4e67-b1d6-35db3495763e",
+  "dataHora" : "2026-05-31T22:37:58.9275062",
+  "dataLogger" : {
+    "id" : "DL01",
+    "modelo" : "ModeloTest",
+    "disponivel" : false,
+    "registroDatalogger" : [ ]
+  },
+  "caixa" : {
+    "id" : "cx1",
+    "qtd_max_vac" : 2000,
+    "disponivel" : false,
+    "idTransporte" : "654321"
+  },
+  "wifi" : "abcd"
+} ]

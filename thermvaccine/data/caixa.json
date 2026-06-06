@@ -1,0 +1,11 @@
+[ {
+  "id" : "cx1",
+  "qtd_max_vac" : 2000,
+  "disponivel" : false,
+  "idTransporte" : "654321"
+}, {
+  "id" : "cx2",
+  "qtd_max_vac" : 2000,
+  "disponivel" : true,
+  "idTransporte" : null
+} ]
