@@ -186,7 +186,6 @@ public class FluxoQualidade {
                         comandaService.entregarComanda(comanda.getId(), mrnaAtualFinal[0]);
                         if (dl != null) {                                                  
                             dataLoggerService.pararDataLogger(dl.getId());
-                            dataLoggerService.limparRegistros(dl.getId());
                         }    
                         mostrarCaixa(caixa, placa);
                     });
