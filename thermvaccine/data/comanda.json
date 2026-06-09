@@ -39,4 +39,45 @@
     "qtd" : 5400,
     "mrna_Disponivel" : 92.45413795935984
   } ]
+}, {
+  "id" : "01eaca3e-eae8-49d4-8927-870a5d484ae4",
+  "data_emissao" : "2026-06-09T13:14:03.699619513",
+  "data_saida" : "2026-06-09T13:14:19.008839279",
+  "data_Chegada" : null,
+  "cep" : "1222",
+  "numEndereco" : 222,
+  "mrnaFinal" : 0.0,
+  "status" : "EM_TRANSITO",
+  "idCaixa" : "cx1",
+  "lote_coman" : [ {
+    "id" : "9fa57d91-9c98-4e08-a0df-26c078e212fc",
+    "lote" : {
+      "id" : "08e347e1-e492-4c19-b531-cf31c9f7ceda",
+      "quantidade" : 0,
+      "fabricante" : "pfizer",
+      "data_descongelamento" : "2026-06-04T00:00:00",
+      "validade" : "2026-06-30T00:00:00",
+      "usuario" : {
+        "tier" : "LOG",
+        "id" : null,
+        "re" : "001",
+        "nome" : "Carlos Logística",
+        "senha" : "1234",
+        "cargo" : "Chefe Logístico",
+        "empresa" : null,
+        "tier" : null
+      },
+      "vacina" : {
+        "id" : "001",
+        "nome" : "Moderna mRNA-1273",
+        "tempe_min" : -20.0,
+        "tempe_max" : 8.0,
+        "ea" : 100000.0,
+        "a" : 6.04E12,
+        "threshold" : 70.0
+      }
+    },
+    "qtd" : 101,
+    "mrna_Disponivel" : 92.19950429771644
+  } ]
 } ]

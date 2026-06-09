@@ -92,7 +92,8 @@ public class FluxoQualidade {
             String titulo = dl.getModelo() + " — " + abreviar(dl.getId());
             String sub    = "Disponível: " + (dl.isDisponivel() ? "Sim" : "Não (em uso)");
             window.adicionarInfoCard(titulo, sub);
-            window.adicionarBotaoAcao("Ver Gráfico", () -> abrirGrafico(dl));
+            LocalDateTime dataSaidaGrafico = caixaService.dataSaidaPorTransporte(placa); // essa é a errada qualquer coisa
+            window.adicionarBotaoAcao("Ver Gráfico", () -> abrirGrafico(dl, dataSaidaGrafico));
         }
 
         window.adicionarEspacador();
@@ -213,13 +214,13 @@ public class FluxoQualidade {
 
     // ── GRÁFICO ───────────────────────────────────────────────
 
-    public void abrirGrafico(DataLogger dataLogger) {
+    public void abrirGrafico(DataLogger dataLogger, LocalDateTime dataSaida) {
         JFrame grafico = new JFrame("Gráfico — " + dataLogger.getModelo());
         grafico.setSize(700, 420);
         grafico.setLocationRelativeTo(window);
         grafico.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
-        GraficoPanel painel = new GraficoPanel(dataLogger);
+        GraficoPanel painel = new GraficoPanel(dataLogger, dataSaida);
         grafico.add(painel);
         grafico.setVisible(true);
 
