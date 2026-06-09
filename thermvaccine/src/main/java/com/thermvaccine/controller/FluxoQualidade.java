@@ -18,6 +18,7 @@ public class FluxoQualidade {
     private final CaixaService      caixaService      = new CaixaService();
     private Timer timerComanda = null;
     private final CalculoVidaUtilService calculoService = new CalculoVidaUtilService(); 
+    private final DataLoggerService dataLoggerService = new DataLoggerService();
 
     private FluxoQualidadeWindow window;
 
@@ -154,7 +155,7 @@ public class FluxoQualidade {
                             vacina.getEa(),
                             vacina.getA(),
                             vacina.getThreshold(),
-                            lc.getMRNA_Disponivel()
+                            (lc.getMRNA_Disponivel() / CalculoVidaUtilService.MRNA_INICIAL) * 100.0
                         );
                         mrnaAtualFinal[0] = mrnaAtual;
                         System.out.println("Registros do DL: " + dl.getRegistroDatalogger().size());
@@ -177,12 +178,16 @@ public class FluxoQualidade {
                 if (comanda.getStatus() != Comanda.StatusComanda.ENTREGUE) {
                     window.adicionarEspacador();
                     window.adicionarBotaoAcao("✓ Marcar como Entregue", () -> {
-                        Timer t = timerComanda; // captura o valor atual
-                        if (timerComanda != null) {
-                            timerComanda.stop();
-                            timerComanda = null;
+                        Timer t = timerComanda; 
+                        if (t != null) {
+                            t.stop();
+                            timerComanda = null;    
                         }
                         comandaService.entregarComanda(comanda.getId(), mrnaAtualFinal[0]);
+                        if (dl != null) {                                                  
+                            dataLoggerService.pararDataLogger(dl.getId());
+                            dataLoggerService.limparRegistros(dl.getId());
+                        }    
                         mostrarCaixa(caixa, placa);
                     });
                 }

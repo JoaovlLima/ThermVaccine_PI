@@ -36,7 +36,7 @@ public class DataLoggerRepository implements IRepository<DataLogger> {
 }
 
     // READ FILE
-    public List<DataLogger> listar() {
+    public synchronized List<DataLogger> listar() {
         try {
             if (!arquivo.exists() || arquivo.length() == 0) {
                 return new ArrayList<>();
@@ -54,7 +54,7 @@ public class DataLoggerRepository implements IRepository<DataLogger> {
     }
 
     // SAVE FILE
-    public void salvar(List<DataLogger> dataLogger) {
+    public synchronized void salvar(List<DataLogger> dataLogger) {
         try {
             mapper.writerWithDefaultPrettyPrinter()
                     .writeValue(arquivo, dataLogger);
