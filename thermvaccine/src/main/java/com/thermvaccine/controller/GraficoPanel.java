@@ -7,8 +7,11 @@ import com.thermvaccine.service.DataLoggerService;
 
 import javax.swing.*;
 import java.awt.*;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+
+
 
 // GRáfico atualizado via timer a cada 5 segundos
 public class GraficoPanel extends JPanel {
@@ -21,7 +24,10 @@ public class GraficoPanel extends JPanel {
     private List<Double> temperaturas = new ArrayList<>();
     private List<String> labels       = new ArrayList<>();
 
-    public GraficoPanel(DataLogger dataLogger) {
+    private final LocalDateTime dataSaida;
+
+    public GraficoPanel(DataLogger dataLogger, LocalDateTime dataSaida) {
+        this.dataSaida = dataSaida;
         setBackground(Color.WHITE);
         setBorder(BorderFactory.createEmptyBorder(20, 20, 30, 20));
         atualizar(dataLogger.getId());
@@ -29,10 +35,18 @@ public class GraficoPanel extends JPanel {
 
     public void atualizar(String idDataLogger) {
         DataLogger dl = dataLoggerService.buscarPorId(idDataLogger);
-        if (dl == null) return;
+        if (dl == null) 
+            return;
 
         List<RegistroDatalogger> registros = dl.getRegistroDatalogger();
-        if (registros == null || registros.isEmpty()) return;
+        if (registros == null || registros.isEmpty()) 
+            return;
+
+        if (dataSaida != null) {
+            registros = registros.stream()
+                .filter(r -> r.getData_hora() != null && r.getData_hora().isAfter(dataSaida))
+                .collect(java.util.stream.Collectors.toList());
+        }
 
         temperaturas.clear();
         labels.clear();

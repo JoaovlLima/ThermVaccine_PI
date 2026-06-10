@@ -40,21 +40,21 @@
     "mrna_Disponivel" : 92.45413795935984
   } ]
 }, {
-  "id" : "b0f70568-8d96-44c4-b8ea-2a0aa2ca4588",
-  "data_emissao" : "2026-06-05T20:25:48.175671747",
+  "id" : "e1031857-981f-4549-8020-3adcb4582017",
+  "data_emissao" : "2026-06-09T23:56:23.485097474",
   "data_saida" : null,
   "data_Chegada" : null,
-  "cep" : "12",
-  "numEndereco" : 123,
+  "cep" : "111",
+  "numEndereco" : 111,
   "mrnaFinal" : 0.0,
   "status" : "EM_AGUARDO",
   "idCaixa" : null,
   "lote_coman" : [ {
-    "id" : "f2ac56a0-b841-4bc9-9f2d-595727a18db9",
+    "id" : "425cf983-5d07-42f8-b93d-afaefe72de35",
     "lote" : {
-      "id" : "356a82c6-315e-4bd1-8485-8c469007292e",
-      "quantidade" : 91989,
-      "fabricante" : "test",
+      "id" : "280463c1-b799-46e3-a573-c757bb65385d",
+      "quantidade" : 189,
+      "fabricante" : "teste2",
       "data_descongelamento" : "2026-05-30T15:50:02.354",
       "validade" : "2026-10-30T00:00:00",
       "usuario" : {
@@ -77,48 +77,7 @@
         "threshold" : 95.0
       }
     },
-    "qtd" : 110,
-    "mrna_Disponivel" : 91.34017802174496
-  } ]
-}, {
-  "id" : "0c0ce960-add2-46a8-bbdd-0bd2f7cb23f8",
-  "data_emissao" : "2026-06-05T20:47:36.255001733",
-  "data_saida" : "2026-06-05T20:50:23.876048538",
-  "data_Chegada" : "2026-06-05T20:57:43.345660647",
-  "cep" : "13506230",
-  "numEndereco" : 11,
-  "mrnaFinal" : 25.619312174799656,
-  "status" : "ENTREGUE",
-  "idCaixa" : "cx1",
-  "lote_coman" : [ {
-    "id" : "e1a4888a-01f4-4215-91af-7673a13c1848",
-    "lote" : {
-      "id" : "7c4eb70c-4233-42f6-819b-333937eb0afe",
-      "quantidade" : 49,
-      "fabricante" : "PFizer",
-      "data_descongelamento" : "2026-03-05T00:00:00",
-      "validade" : "2026-10-05T00:00:00",
-      "usuario" : {
-        "tier" : "LOG",
-        "id" : null,
-        "re" : "001",
-        "nome" : "Carlos Logística",
-        "senha" : "1234",
-        "cargo" : "Chefe Logístico",
-        "empresa" : null,
-        "tier" : null
-      },
-      "vacina" : {
-        "id" : "001",
-        "nome" : "Moderna mRNA-1273",
-        "tempe_min" : -20.0,
-        "tempe_max" : 8.0,
-        "ea" : 100000.0,
-        "a" : 6.04E12,
-        "threshold" : 70.0
-      }
-    },
-    "qtd" : 50,
-    "mrna_Disponivel" : 25.701943896864265
+    "qtd" : 101,
+    "mrna_Disponivel" : 85.96433793263458
   } ]
 } ]
