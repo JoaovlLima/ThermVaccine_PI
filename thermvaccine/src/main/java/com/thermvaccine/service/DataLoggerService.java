@@ -10,6 +10,8 @@ import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
+import java.util.Map;
+import java.util.HashMap;
 
 import com.thermvaccine.model.DataLogger;
 import com.thermvaccine.model.HistoricoCaixa;
@@ -26,7 +28,7 @@ public class DataLoggerService {
     
     private final String registroComVariacao = "registroComVariacao.csv";
     private final List<String> registroSemVariacao = List.of("registroSemVariacao.csv", "registroSemVariacao2.csv");
-    
+    private static final Map<String, Thread> threadsAtivas = new java.util.HashMap<>(); // remover
 
     public DataLoggerService() {
         this.registroRepository = new RegistroRepository();
@@ -94,7 +96,14 @@ public class DataLoggerService {
             return dataLoggersEmUso;
     }
 
-    
+    private Thread threadDataLogger = null; // parar a thread do datalogger
+    public void pararDataLogger() {
+        if (threadDataLogger != null) {
+            threadDataLogger.interrupt();
+            threadDataLogger = null;
+        }
+    }
+        
     public void iniciarDataLogger(String idDatalogger) {
         
         // ACESSANDO REGISTROS SIMULADOS 
@@ -108,6 +117,8 @@ public class DataLoggerService {
             
             for (RegistroDatalogger registro : registros) {   
                 
+                if (Thread.currentThread().isInterrupted()) // remover
+                    break;
 
                 registro.setData_hora(LocalDateTime.now());
 
@@ -122,13 +133,26 @@ public class DataLoggerService {
         }});
         
         thread.start();
+        threadsAtivas.put(idDatalogger, thread); // remover
 
     }
+
+    public void pararDataLogger(String idDatalogger) { // remover
+        Thread t = threadsAtivas.get(idDatalogger);
+        if (t != null) {
+            t.interrupt();
+            threadsAtivas.remove(idDatalogger);
+        }
+    }    
 
      public void limparRegistros(String idDataLogger){
         dataLoggerRepository.limparRegistros(idDataLogger);
     }
 
+
+    public DataLogger buscarPorId(String id) {
+        return dataLoggerRepository.findById(id);
+    }
 
     // FUNCÕES AUXILIARES
 
@@ -244,7 +268,8 @@ public class DataLoggerService {
         for (HistoricoCaixa historicoCaixa : historicoCaixasDb) {
 
             if(historicoCaixa.getCaixa().getId().equals(idCaixa)){
-            DataLogger datalogger = historicoCaixa.getDataLogger();
+            DataLogger datalogger = dataLoggerRepository.findById(historicoCaixa.getDataLogger().getId());
+            if (datalogger == null) continue;
             datalogger.setDisponivel(true);
             dataLoggerRepository.editar(datalogger);
             }

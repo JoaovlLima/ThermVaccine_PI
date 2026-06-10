@@ -1,9 +1,9 @@
 [ {
   "placa" : "213456",
   "capacidade" : 20,
-  "disponivel" : false
+  "disponivel" : true
 }, {
   "placa" : "654321",
   "capacidade" : 15,
-  "disponivel" : false
+  "disponivel" : true
 } ]

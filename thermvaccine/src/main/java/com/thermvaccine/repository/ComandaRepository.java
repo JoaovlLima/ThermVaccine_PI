@@ -18,8 +18,12 @@ public class ComandaRepository implements IRepository<Comanda> {
         .registerModule(new JavaTimeModule())
         .disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
 
+
     private final File arquivo = new File("thermvaccine\\data\\comanda.json");
 
+
+    // private final File arquivo =
+    //     new File("/home/taviz/VsCode/PI - ThermVaccine/ThermVaccine_PI/thermvaccine/data/comanda.json");
 
     // CLEANER
     public void limpar() {
@@ -110,7 +114,7 @@ public class ComandaRepository implements IRepository<Comanda> {
 
     for (Comanda comanda : comandasBd) {
         
-        if(comanda.getIdCaixa().equals(idCaixa)){
+        if(comanda.getIdCaixa() != null && comanda.getIdCaixa().equals(idCaixa)){
             comandasPorCaixa.add(comanda);
         }
     }

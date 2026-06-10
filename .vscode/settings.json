@@ -1,3 +1,12 @@
 {
-    "java.configuration.updateBuildConfiguration": "interactive"
+    "java.configuration.updateBuildConfiguration": "interactive",
+    "java.debug.settings.onBuildFailureProceed": true,
+    "java.jdt.ls.java.home": "/home/linuxbrew/.linuxbrew/Cellar/openjdk/25.0.2/libexec",
+    "java.configuration.runtimes": [
+        {
+            "name": "JavaSE-25",
+            "path": "/home/linuxbrew/.linuxbrew/Cellar/openjdk/25.0.2/libexec",
+            "default": true
+        }
+    ]
 }

@@ -1,6 +1,7 @@
 package com.thermvaccine.controller;
 
 import com.thermvaccine.model.Transporte;
+import com.thermvaccine.service.RelatorioService;
 import com.thermvaccine.service.TransporteService;
 
 import javax.swing.*;
@@ -119,15 +120,29 @@ public class FinalizarTransportePanel extends JPanel {
         return item;
     }
 
-    private void registrarRetorno(String placa) {
-        try {
-            transporteService.finalizarTransporte(placa);
-            mostrarFeedback("Retorno registrado com sucesso!", false);
-            carregarTransportes();
-        } catch (IllegalStateException e) {
-            mostrarFeedback(e.getMessage(), true);
-        }
+   private void registrarRetorno(String placa) {
+    try {
+        transporteService.validarFinalizacao(placa);
+
+        JFileChooser chooser = new JFileChooser();
+        chooser.setDialogTitle("Salvar relatório");
+        chooser.setSelectedFile(new java.io.File("relatorio_" + placa + ".pdf"));
+
+        if (chooser.showSaveDialog(this) != JFileChooser.APPROVE_OPTION) return;
+
+        String caminho = chooser.getSelectedFile().getAbsolutePath();
+        if (!caminho.endsWith(".pdf")) caminho += ".pdf";
+
+        new RelatorioService().gerarRelatorio(placa, window.getUsuario(), caminho);
+        transporteService.finalizarTransporte(placa);
+
+        mostrarFeedback("Retorno registrado e relatório gerado!", false);
+        carregarTransportes();
+
+    } catch (IllegalStateException e) {
+        mostrarFeedback(e.getMessage(), true);
     }
+}
 
     private JPanel buildActions() {
         JButton btnVoltar = new JButton("Voltar");

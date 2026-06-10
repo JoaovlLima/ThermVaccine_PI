@@ -19,6 +19,8 @@ public class HistoricoCaixaRepository {
 
     private final File arquivo = new File("thermvaccine\\data\\historicoCaixa.json");
 
+    // private final File arquivo =
+    //     new File("/home/taviz/VsCode/PI - ThermVaccine/ThermVaccine_PI/thermvaccine/data/historicoCaixa.json");
 
     // CLEANER
     public void limpar() {
@@ -66,12 +68,12 @@ public class HistoricoCaixaRepository {
             List<HistoricoCaixa> historicoCaixasDb = listar();
 
             for (int i = 0; i < historicoCaixasDb.size(); i++) {
-                if(historicoCaixasDb.get(i).getId() == historicoCaixa.getId()){
+                if(historicoCaixasDb.get(i).getId().equals(historicoCaixa.getId())){
                     historicoCaixasDb.set(i, historicoCaixa);
                     break;
                 }
             }
-
+            salvar(historicoCaixasDb);
         } catch (Exception e) {
             throw e;
         }

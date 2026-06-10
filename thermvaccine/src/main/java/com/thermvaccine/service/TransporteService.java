@@ -122,25 +122,26 @@ public class TransporteService {
         }
     }
 
-    public void finalizarTransporte(String placa){
-
-        List<Caixa> caixas = caixaService.caixasPorTransporte(placa);
-        for (Caixa caixa : caixas) {
-            List<Comanda> comandas = comandaService.comandaPorCaixa(caixa.getId());
-
-            for (Comanda comanda: comandas) {
-                if(comanda.getStatus() != StatusComanda.ENTREGUE){
-                    throw new IllegalStateException("Há comandas não entregues neste transporte.");
-                }
+    public void validarFinalizacao(String placa) {
+    List<Caixa> caixas = caixaService.caixasPorTransporte(placa);
+    for (Caixa caixa : caixas) {
+        for (Comanda comanda : comandaService.comandaPorCaixa(caixa.getId())) {
+            if (comanda.getStatus() != StatusComanda.ENTREGUE) {
+                throw new IllegalStateException("Há comandas não entregues neste transporte.");
             }
         }
-
-        Transporte transporte = transporteRepository.findById(placa);
-        transporte.setDisponivel(true);
-        transporteRepository.editar(transporte);
-        caixaService.liberarCaixaPorTransporte(placa);
-        
     }
+}
+
+public void finalizarTransporte(String placa) {
+    Transporte transporte = transporteRepository.findById(placa);
+    transporte.setDisponivel(true);
+    transporteRepository.editar(transporte);
+    for (Caixa caixa : caixaService.caixasPorTransporte(placa)) {
+        comandaService.removerComandasDaCaixa(caixa.getId());
+    }
+    caixaService.liberarCaixaPorTransporte(placa);
+}
 
 
 }

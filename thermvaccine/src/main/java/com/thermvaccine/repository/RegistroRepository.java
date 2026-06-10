@@ -20,6 +20,9 @@ public class RegistroRepository {
     private final File arquivo = new File("thermvaccine\\data\\registro.json");
 
 
+    // private final File arquivo =
+    //     new File("/home/taviz/VsCode/PI - ThermVaccine/ThermVaccine_PI/thermvaccine/data/registro.json");
+
     // CLEANER
     public void limpar() {
     try {

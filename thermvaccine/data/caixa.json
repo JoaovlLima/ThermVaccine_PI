@@ -1,11 +1,16 @@
 [ {
   "id" : "cx1",
   "qtd_max_vac" : 2000,
-  "disponivel" : false,
-  "idTransporte" : "654321"
+  "disponivel" : true,
+  "idTransporte" : null
 }, {
   "id" : "cx2",
   "qtd_max_vac" : 2000,
-  "disponivel" : false,
-  "idTransporte" : "213456"
+  "disponivel" : true,
+  "idTransporte" : null
+}, {
+  "id" : "cx3",
+  "qtd_max_vac" : 2000,
+  "disponivel" : true,
+  "idTransporte" : null
 } ]

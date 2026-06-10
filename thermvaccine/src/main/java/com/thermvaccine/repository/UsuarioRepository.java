@@ -15,6 +15,10 @@ public class UsuarioRepository {
     private final File arquivo = 
             new File("thermvaccine\\data\\usuario.json");
 
+
+    // private final File arquivo =
+    //     new File("/home/taviz/VsCode/PI - ThermVaccine/ThermVaccine_PI/thermvaccine/data/usuario.json");
+
     private final ObjectMapper mapper = 
             new ObjectMapper();
 

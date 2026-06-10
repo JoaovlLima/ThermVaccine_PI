@@ -28,11 +28,11 @@ public class ComandaService {
     private final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
     public void exibirDados(Comanda comanda){
-        System.out.printf("ID: %d\n", comanda.getId());
+        System.out.printf("ID: %s\n", comanda.getId());
         System.out.printf("Data de emissao: %s\n", comanda.getData_emissao().format(FORMATTER));
         System.out.printf("Status: %s\n", comanda.getStatus());
         System.out.printf("Local de entrega: CEP - %s | Numero da residencia - %d\n", comanda.getCep(), comanda.getNumEndereco());
-        System.out.printf("Referente ao lote: %d", comanda.getLote_coman());
+        System.out.printf("Referente ao lote: %s", comanda.getLote_coman());
 
     }
 
@@ -50,84 +50,100 @@ public class ComandaService {
     
     //criar Comanda criacaoComandas(): while ate n querer mais cadastrar. apenas p ir coletando os atributos e retornar uma List<Comanda> pra consumir no Caixa
 
-public List<Lote_coman> calcularMrnaDisponivel(List<Lote_coman> lote_comans){
+    public List<Lote_coman> calcularMrnaDisponivel(List<Lote_coman> lote_comans){
 
-    for (Lote_coman lote_coman : lote_comans) {
-        
-        Vacina vacina = lote_coman.getLote().getVacina();
-        LocalDateTime data_descon = lote_coman.getLote().getData_descongelamento();
-
-        double MRNA_Disponivel = calculoVidaUtilService.calcularMRNADisponivel(vacina, data_descon);
-
-        System.out.println("LOTE : "+lote_coman.getLote().getId());
-        System.out.println("MRNA Disponivel: "+MRNA_Disponivel);
-        lote_coman.setMRNA_Disponivel(MRNA_Disponivel);
-
-    }
-
-    return lote_comans;
-
-}
-
-public List<Comanda> listarComandasDisponiveis(){
-
-    List<Comanda> comandasDb = comandaRepository.listar();
-    List<Comanda> comandasDisponiveis = new ArrayList<Comanda>();
-
-    for (Comanda comanda : comandasDb) {
-        if(comanda.getStatus() == StatusComanda.EM_AGUARDO){
-            comandasDisponiveis.add(comanda);
-        }
-    }
-
-    return comandasDisponiveis;
-
-    
-}
-
-public void iniciarTransporte(List<Comanda> comandas){
-
-    for (Comanda comanda : comandas) {
-        comanda.setStatus(StatusComanda.EM_TRANSITO);
-        comanda.setData_saida(LocalDateTime.now());
-        
-        comandaRepository.editar(comanda);
-    }
-  
-}
-
-public int qtdTotalComanda(List<Comanda> comandas){
-    int totalComanda = 0;
-    for (Comanda comanda : comandas) {
-        
-        for(Lote_coman lote_coman : comanda.getLote_coman()) {
+        for (Lote_coman lote_coman : lote_comans) {
             
-            totalComanda+=lote_coman.getQtd();
+            Vacina vacina = lote_coman.getLote().getVacina();
+            LocalDateTime data_descon = lote_coman.getLote().getData_descongelamento();
+
+            double MRNA_Disponivel = calculoVidaUtilService.calcularMRNADisponivel(vacina, data_descon);
+
+            System.out.println("LOTE : "+lote_coman.getLote().getId());
+            System.out.println("MRNA Disponivel: "+MRNA_Disponivel);
+            lote_coman.setMRNA_Disponivel(MRNA_Disponivel);
+
         }
+
+        return lote_comans;
+
     }
 
-    return totalComanda;
-}
+    public List<Comanda> listarComandasDisponiveis(){
 
-public List<Comanda> comandaPorCaixa(String idCaixa){
+        List<Comanda> comandasDb = comandaRepository.listar();
+        List<Comanda> comandasDisponiveis = new ArrayList<Comanda>();
 
-    List<Comanda> comandasDb = comandaRepository.listar();
-
-    List<Comanda> comandaPorCaixa = new ArrayList<>();
-
-    for (Comanda comanda : comandasDb) {
-
-        if(comanda.getIdCaixa() != null && comanda.getIdCaixa().equals(idCaixa)){
-            comandaPorCaixa.add(comanda);
+        for (Comanda comanda : comandasDb) {
+            if(comanda.getStatus() == StatusComanda.EM_AGUARDO){
+                comandasDisponiveis.add(comanda);
+            }
         }
+
+        return comandasDisponiveis;
+
+        
     }
 
-    return comandaPorCaixa;
-}
+    public void iniciarTransporte(List<Comanda> comandas){
 
-
-
+        for (Comanda comanda : comandas) {
+            comanda.setStatus(StatusComanda.EM_TRANSITO);
+            comanda.setData_saida(LocalDateTime.now());
+            
+            comandaRepository.editar(comanda);
+        }
     
+    }
+
+    public int qtdTotalComanda(List<Comanda> comandas){
+        int totalComanda = 0;
+        for (Comanda comanda : comandas) {
+            
+            for(Lote_coman lote_coman : comanda.getLote_coman()) {
+                
+                totalComanda+=lote_coman.getQtd();
+            }
+        }
+
+        return totalComanda;
+    }
+
+    public List<Comanda> comandaPorCaixa(String idCaixa){
+
+        List<Comanda> comandasDb = comandaRepository.listar();
+
+        List<Comanda> comandaPorCaixa = new ArrayList<>();
+
+        for (Comanda comanda : comandasDb) {
+
+            if(comanda.getIdCaixa() != null && comanda.getIdCaixa().equals(idCaixa)){
+                comandaPorCaixa.add(comanda);
+            }
+        }
+
+        return comandaPorCaixa;
+    }
+
+    public void entregarComanda(String idComanda, double mrnaFinal) {
+        List<Comanda> db = comandaRepository.listar();
+        for (Comanda c : db) {
+            if (idComanda.equals(c.getId())) {
+                c.setStatus(Comanda.StatusComanda.ENTREGUE);
+                c.setMrnaFinal(mrnaFinal);
+                c.setData_Chegada(LocalDateTime.now());
+                break;
+            }
+        }
+        comandaRepository.salvar(db);
+    }
+
+    public void removerComandasDaCaixa(String idCaixa) {
+        List<Comanda> db = comandaRepository.listar();
+        db.removeIf(c -> idCaixa.equals(c.getIdCaixa()));
+        comandaRepository.salvar(db);
+    }
+
 }
 
 
