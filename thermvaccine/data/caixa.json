@@ -6,6 +6,6 @@
 }, {
   "id" : "cx2",
   "qtd_max_vac" : 2000,
-  "disponivel" : true,
-  "idTransporte" : null
+  "disponivel" : false,
+  "idTransporte" : "213456"
 } ]
