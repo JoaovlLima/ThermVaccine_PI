@@ -25,7 +25,7 @@
   }
 }, {
   "id" : "280463c1-b799-46e3-a573-c757bb65385d",
-  "quantidade" : 290,
+  "quantidade" : 189,
   "fabricante" : "teste2",
   "data_descongelamento" : "2026-05-30T15:50:02.354",
   "validade" : "2026-10-30T00:00:00",
@@ -329,6 +329,31 @@
   "fabricante" : "pfizer",
   "data_descongelamento" : "2026-06-04T00:00:00",
   "validade" : "2026-06-30T00:00:00",
+  "usuario" : {
+    "tier" : "LOG",
+    "id" : null,
+    "re" : "001",
+    "nome" : "Carlos Logística",
+    "senha" : "1234",
+    "cargo" : "Chefe Logístico",
+    "empresa" : null,
+    "tier" : null
+  },
+  "vacina" : {
+    "id" : "001",
+    "nome" : "Moderna mRNA-1273",
+    "tempe_min" : -20.0,
+    "tempe_max" : 8.0,
+    "ea" : 100000.0,
+    "a" : 6.04E12,
+    "threshold" : 70.0
+  }
+}, {
+  "id" : "7953cc6d-6f97-481e-978d-b5c86494975b",
+  "quantidade" : 0,
+  "fabricante" : "Pfizer",
+  "data_descongelamento" : "2026-05-21T00:00:00",
+  "validade" : "2026-07-01T00:00:00",
   "usuario" : {
     "tier" : "LOG",
     "id" : null,

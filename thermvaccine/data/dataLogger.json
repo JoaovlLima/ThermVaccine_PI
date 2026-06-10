@@ -3,132 +3,164 @@
   "modelo" : "ModeloTest",
   "disponivel" : false,
   "registroDatalogger" : [ {
-    "id" : "ddc8ffe0-9e06-42b0-91c4-0d70e6353831",
+    "id" : "e3cb04a2-5465-4b04-bc63-5ff6ee1f8082",
     "temperatura" : 4.95,
     "rede" : true,
     "energia" : 13.3,
     "compressor" : true,
     "alarme" : false,
-    "data_hora" : "2026-06-09T13:12:33.63309546"
+    "data_hora" : "2026-06-10T00:02:21.235174586"
   }, {
-    "id" : "06138c55-6ab0-4dbe-a9ee-e8231ac568c9",
+    "id" : "2f46efbf-d68c-4a75-8691-d574c8b03664",
     "temperatura" : 5.25,
     "rede" : true,
     "energia" : 13.3,
     "compressor" : true,
     "alarme" : false,
-    "data_hora" : "2026-06-09T13:12:38.648980429"
+    "data_hora" : "2026-06-10T00:02:26.240438706"
   }, {
-    "id" : "b03861ca-f6f1-42e5-af2d-10c4f97e28b9",
+    "id" : "46484e73-897c-45ed-be72-d7b4edf12d18",
     "temperatura" : 5.65,
     "rede" : true,
     "energia" : 13.3,
     "compressor" : true,
     "alarme" : false,
-    "data_hora" : "2026-06-09T13:12:43.652803766"
+    "data_hora" : "2026-06-10T00:02:31.244063643"
   }, {
-    "id" : "ba28e71a-df4f-4178-9f4a-18b97aaeefc6",
+    "id" : "bbeafb48-23b9-481a-a5c6-abeee5835b34",
     "temperatura" : 5.95,
     "rede" : true,
     "energia" : 13.6,
     "compressor" : true,
     "alarme" : false,
-    "data_hora" : "2026-06-09T13:12:48.656703847"
+    "data_hora" : "2026-06-10T00:02:36.248022206"
   }, {
-    "id" : "5d6e1f60-c351-4bc4-a72a-4aaa390ba909",
+    "id" : "44771b3e-3404-464e-a1fd-8beb0b083ef5",
     "temperatura" : 6.45,
     "rede" : true,
     "energia" : 13.3,
     "compressor" : true,
     "alarme" : false,
-    "data_hora" : "2026-06-09T13:12:53.666149614"
+    "data_hora" : "2026-06-10T00:02:41.251333501"
   }, {
-    "id" : "67d03be2-d143-4a52-b3dd-40525713a12d",
+    "id" : "f815623b-1877-4bd8-aa2b-447ae488e15f",
     "temperatura" : 7.05,
     "rede" : true,
     "energia" : 13.3,
     "compressor" : true,
     "alarme" : false,
-    "data_hora" : "2026-06-09T13:12:58.670800413"
+    "data_hora" : "2026-06-10T00:02:46.255129115"
   }, {
-    "id" : "1c457d14-9320-4744-a4cd-848280c5391d",
+    "id" : "d31cb155-a36a-48b4-a47c-f25ef869bb0a",
     "temperatura" : 7.6,
     "rede" : true,
     "energia" : 13.3,
     "compressor" : true,
     "alarme" : false,
-    "data_hora" : "2026-06-09T13:13:03.675498525"
+    "data_hora" : "2026-06-10T00:02:51.257848217"
   }, {
-    "id" : "f5cdfa7e-58f4-4049-a416-e649a77ca652",
+    "id" : "c17b2046-7057-4ddd-a4e7-0aab29fe0490",
     "temperatura" : 8.200001,
     "rede" : true,
     "energia" : 13.3,
     "compressor" : true,
     "alarme" : false,
-    "data_hora" : "2026-06-09T13:13:08.679788763"
+    "data_hora" : "2026-06-10T00:02:56.26090468"
   }, {
-    "id" : "e24cfaa1-3a94-4b06-b740-0cf4643186ab",
+    "id" : "256d5b5b-b619-4445-ab30-9b1e0abbfbc8",
     "temperatura" : 8.8,
     "rede" : true,
     "energia" : 13.4,
     "compressor" : true,
     "alarme" : true,
-    "data_hora" : "2026-06-09T13:13:13.684515219"
+    "data_hora" : "2026-06-10T00:03:01.265173172"
   }, {
-    "id" : "7781d817-1e4b-4b79-8a32-ecbe90b1aa5e",
-    "temperatura" : 4.95,
+    "id" : "3747f3ff-90d2-4d9d-8976-5073db2287b3",
+    "temperatura" : 9.45,
+    "rede" : true,
+    "energia" : 13.4,
+    "compressor" : true,
+    "alarme" : true,
+    "data_hora" : "2026-06-10T00:03:06.268877273"
+  }, {
+    "id" : "8d534b68-db17-49b6-82b6-d44c51406be8",
+    "temperatura" : 10.15,
+    "rede" : true,
+    "energia" : 13.4,
+    "compressor" : true,
+    "alarme" : true,
+    "data_hora" : "2026-06-10T00:03:11.270584623"
+  }, {
+    "id" : "dcbc1f22-ce53-4b03-97c2-6867073e14ae",
+    "temperatura" : 11.05,
+    "rede" : true,
+    "energia" : 13.4,
+    "compressor" : true,
+    "alarme" : true,
+    "data_hora" : "2026-06-10T00:03:16.274981308"
+  }, {
+    "id" : "2a750f7a-6078-406e-8f7b-6a158e6de79d",
+    "temperatura" : 11.85,
+    "rede" : true,
+    "energia" : 13.4,
+    "compressor" : true,
+    "alarme" : true,
+    "data_hora" : "2026-06-10T00:03:21.277445951"
+  }, {
+    "id" : "003dadbc-f545-4597-bff1-e117b8924a26",
+    "temperatura" : 12.75,
     "rede" : true,
     "energia" : 13.3,
     "compressor" : true,
-    "alarme" : false,
-    "data_hora" : "2026-06-09T13:14:11.513550796"
+    "alarme" : true,
+    "data_hora" : "2026-06-10T00:03:26.280844727"
   }, {
-    "id" : "9d908d63-ec6b-4876-901c-059408eac745",
-    "temperatura" : 5.25,
+    "id" : "9b7771b2-b6fd-4c3b-b0c9-9aa36707de41",
+    "temperatura" : 13.65,
     "rede" : true,
     "energia" : 13.3,
     "compressor" : true,
-    "alarme" : false,
-    "data_hora" : "2026-06-09T13:14:16.515460061"
+    "alarme" : true,
+    "data_hora" : "2026-06-10T00:03:31.282540338"
   }, {
-    "id" : "65f74290-70d9-4f29-b08a-95d6ea690335",
-    "temperatura" : 5.65,
+    "id" : "058618d1-390a-44fc-a741-31e9aa74008c",
+    "temperatura" : 14.5,
     "rede" : true,
     "energia" : 13.3,
     "compressor" : true,
-    "alarme" : false,
-    "data_hora" : "2026-06-09T13:14:21.523663039"
+    "alarme" : true,
+    "data_hora" : "2026-06-10T00:03:36.286327989"
   }, {
-    "id" : "d7c71291-e7b5-4638-b765-a067d5010dc2",
-    "temperatura" : 5.95,
+    "id" : "0e914e35-7156-44fc-9551-3e7bfa901896",
+    "temperatura" : 15.299999,
     "rede" : true,
-    "energia" : 13.6,
+    "energia" : 13.4,
     "compressor" : true,
-    "alarme" : false,
-    "data_hora" : "2026-06-09T13:14:26.525200728"
+    "alarme" : true,
+    "data_hora" : "2026-06-10T00:03:41.291446955"
   }, {
-    "id" : "6f1ad882-fd72-4e63-9cd5-e00c742f88e7",
-    "temperatura" : 6.45,
+    "id" : "a262da0b-e4f1-4ba8-b51f-6f5e76c5b70b",
+    "temperatura" : 16.05,
+    "rede" : true,
+    "energia" : 14.7,
+    "compressor" : true,
+    "alarme" : true,
+    "data_hora" : "2026-06-10T00:03:46.295000065"
+  }, {
+    "id" : "821e4bba-cb2b-448c-a2af-7ab7ecbd3939",
+    "temperatura" : 16.85,
+    "rede" : true,
+    "energia" : 13.4,
+    "compressor" : true,
+    "alarme" : true,
+    "data_hora" : "2026-06-10T00:03:51.29650588"
+  }, {
+    "id" : "1774f186-22e7-4f22-975e-aacd5673a77d",
+    "temperatura" : 17.6,
     "rede" : true,
     "energia" : 13.3,
     "compressor" : true,
-    "alarme" : false,
-    "data_hora" : "2026-06-09T13:14:31.528316446"
-  }, {
-    "id" : "e70e878c-98bc-4f09-835c-938379643c74",
-    "temperatura" : 7.05,
-    "rede" : true,
-    "energia" : 13.3,
-    "compressor" : true,
-    "alarme" : false,
-    "data_hora" : "2026-06-09T13:14:36.531418547"
-  }, {
-    "id" : "f39297fc-29ff-4edb-8bf8-4b00eb714cb4",
-    "temperatura" : 7.6,
-    "rede" : true,
-    "energia" : 13.3,
-    "compressor" : true,
-    "alarme" : false,
-    "data_hora" : "2026-06-09T13:14:41.534755919"
+    "alarme" : true,
+    "data_hora" : "2026-06-10T00:03:56.297607047"
   } ]
 } ]

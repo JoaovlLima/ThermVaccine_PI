@@ -40,30 +40,30 @@
     "mrna_Disponivel" : 92.45413795935984
   } ]
 }, {
-  "id" : "01eaca3e-eae8-49d4-8927-870a5d484ae4",
-  "data_emissao" : "2026-06-09T13:14:03.699619513",
-  "data_saida" : "2026-06-09T13:14:19.008839279",
+  "id" : "e1031857-981f-4549-8020-3adcb4582017",
+  "data_emissao" : "2026-06-09T23:56:23.485097474",
+  "data_saida" : null,
   "data_Chegada" : null,
-  "cep" : "1222",
-  "numEndereco" : 222,
+  "cep" : "111",
+  "numEndereco" : 111,
   "mrnaFinal" : 0.0,
-  "status" : "EM_TRANSITO",
-  "idCaixa" : "cx1",
+  "status" : "EM_AGUARDO",
+  "idCaixa" : null,
   "lote_coman" : [ {
-    "id" : "9fa57d91-9c98-4e08-a0df-26c078e212fc",
+    "id" : "425cf983-5d07-42f8-b93d-afaefe72de35",
     "lote" : {
-      "id" : "08e347e1-e492-4c19-b531-cf31c9f7ceda",
-      "quantidade" : 0,
-      "fabricante" : "pfizer",
-      "data_descongelamento" : "2026-06-04T00:00:00",
-      "validade" : "2026-06-30T00:00:00",
+      "id" : "280463c1-b799-46e3-a573-c757bb65385d",
+      "quantidade" : 189,
+      "fabricante" : "teste2",
+      "data_descongelamento" : "2026-05-30T15:50:02.354",
+      "validade" : "2026-10-30T00:00:00",
       "usuario" : {
         "tier" : "LOG",
         "id" : null,
-        "re" : "001",
-        "nome" : "Carlos Logística",
+        "re" : "114",
+        "nome" : "Carlos",
         "senha" : "1234",
-        "cargo" : "Chefe Logístico",
+        "cargo" : "Chefe Logistico",
         "empresa" : null,
         "tier" : null
       },
@@ -74,10 +74,10 @@
         "tempe_max" : 8.0,
         "ea" : 100000.0,
         "a" : 6.04E12,
-        "threshold" : 70.0
+        "threshold" : 95.0
       }
     },
     "qtd" : 101,
-    "mrna_Disponivel" : 92.19950429771644
+    "mrna_Disponivel" : 85.96433793263458
   } ]
 } ]

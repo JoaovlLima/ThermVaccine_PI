@@ -670,4 +670,92 @@
     "idTransporte" : "213456"
   },
   "wifi" : "abcd"
+}, {
+  "id" : "61f61c74-26aa-4b02-8bde-7081ace7af83",
+  "dataHora" : "2026-06-09T23:57:41.979258885",
+  "dataLogger" : {
+    "id" : "DL01",
+    "modelo" : "ModeloTest",
+    "disponivel" : false,
+    "registroDatalogger" : [ {
+      "id" : "d083c73a-e7c3-4723-9f17-87537c177aed",
+      "temperatura" : 4.95,
+      "rede" : true,
+      "energia" : 13.3,
+      "compressor" : true,
+      "alarme" : false,
+      "data_hora" : "2026-06-09T23:52:41.619248174"
+    }, {
+      "id" : "062b4f05-9519-4b38-a762-9114f7acf422",
+      "temperatura" : 5.25,
+      "rede" : true,
+      "energia" : 13.3,
+      "compressor" : true,
+      "alarme" : false,
+      "data_hora" : "2026-06-09T23:52:46.624013614"
+    }, {
+      "id" : "1414a06c-4ae6-4132-ae06-7637b42cbc61",
+      "temperatura" : 5.65,
+      "rede" : true,
+      "energia" : 13.3,
+      "compressor" : true,
+      "alarme" : false,
+      "data_hora" : "2026-06-09T23:52:51.627112454"
+    }, {
+      "id" : "edd6a0f2-295a-42f7-a344-771af88ba3d2",
+      "temperatura" : 5.95,
+      "rede" : true,
+      "energia" : 13.6,
+      "compressor" : true,
+      "alarme" : false,
+      "data_hora" : "2026-06-09T23:52:56.629573714"
+    }, {
+      "id" : "88bbe748-d87b-42d1-a2fa-8f67d4c81e53",
+      "temperatura" : 6.45,
+      "rede" : true,
+      "energia" : 13.3,
+      "compressor" : true,
+      "alarme" : false,
+      "data_hora" : "2026-06-09T23:53:01.632985267"
+    }, {
+      "id" : "71da4ac8-b2b2-4670-bd14-5341f6373e4c",
+      "temperatura" : 7.05,
+      "rede" : true,
+      "energia" : 13.3,
+      "compressor" : true,
+      "alarme" : false,
+      "data_hora" : "2026-06-09T23:53:06.636489221"
+    }, {
+      "id" : "3708b522-4014-4282-8a7d-8b60dfcf4415",
+      "temperatura" : 7.6,
+      "rede" : true,
+      "energia" : 13.3,
+      "compressor" : true,
+      "alarme" : false,
+      "data_hora" : "2026-06-09T23:53:11.639648376"
+    }, {
+      "id" : "ce952b33-1d46-4bd4-9553-374eeea682a8",
+      "temperatura" : 8.200001,
+      "rede" : true,
+      "energia" : 13.3,
+      "compressor" : true,
+      "alarme" : false,
+      "data_hora" : "2026-06-09T23:53:16.642944893"
+    }, {
+      "id" : "da03797a-f20a-4e2b-ac37-c1fa7db5c352",
+      "temperatura" : 8.8,
+      "rede" : true,
+      "energia" : 13.4,
+      "compressor" : true,
+      "alarme" : true,
+      "data_hora" : "2026-06-09T23:53:21.646175543"
+    } ]
+  },
+  "caixa" : {
+    "id" : "cx1",
+    "qtd_max_vac" : 2000,
+    "disponivel" : false,
+    "idTransporte" : "213456"
+  },
+  "wifi" : "abcd"
 } ]

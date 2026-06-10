@@ -20,6 +20,10 @@ public class FluxoQualidade {
     private final CalculoVidaUtilService calculoService = new CalculoVidaUtilService(); 
     private final DataLoggerService dataLoggerService = new DataLoggerService();
 
+    private boolean alerta10Disparado = false;
+    private boolean alerta5Disparado  = false;
+    private boolean alertaCompDisparado = false;
+
     private FluxoQualidadeWindow window;
 
     public void start(UserQualidade user) {
@@ -126,7 +130,6 @@ public class FluxoQualidade {
 
     public void mostrarComanda(Comanda comanda, Caixa caixa, String placa) {
 
-        // para o timer anterior se existir
         if (timerComanda != null) {
             timerComanda.stop();
             timerComanda = null;
@@ -159,6 +162,53 @@ public class FluxoQualidade {
                             (lc.getMRNA_Disponivel() / CalculoVidaUtilService.MRNA_INICIAL) * 100.0
                         );
                         mrnaAtualFinal[0] = mrnaAtual;
+
+                        double threshold = vacina.getThreshold();
+
+                        if (!alertaCompDisparado && mrnaAtual <= threshold) {
+                            alertaCompDisparado = true;
+                            alerta10Disparado = true;
+                            alerta5Disparado = true;
+                            // para tudo
+                            Timer t = timerComanda;
+                            if (t != null) { t.stop(); timerComanda = null; }
+                            dataLoggerService.pararDataLogger(dl.getId());
+                            // mostra alerta
+                            SwingUtilities.invokeLater(() ->
+                                JOptionPane.showMessageDialog(window,
+                                    "Transporte: " + placa + "\nCaixa: " + caixa.getId() +
+                                    "\nComanda: " + abreviar(comanda.getId()) +
+                                    "\nLote: " + abreviar(lote.getId()) +
+                                    "\nmRNA: " + String.format("%.4f%%", mrnaAtual) +
+                                    "\n\nValor mínimo de " + threshold + "% atingido.",
+                                    "⚠ Vida útil comprometida", JOptionPane.ERROR_MESSAGE)
+                            );
+
+                        } else if (!alerta5Disparado && mrnaAtual <= threshold + 5) {
+                            alerta5Disparado = true;
+                            SwingUtilities.invokeLater(() ->
+                                JOptionPane.showMessageDialog(window,
+                                    "Transporte: " + placa + "\nCaixa: " + caixa.getId() +
+                                    "\nComanda: " + abreviar(comanda.getId()) +
+                                    "\nLote: " + abreviar(lote.getId()) +
+                                    "\nmRNA: " + String.format("%.4f%%", mrnaAtual) +
+                                    "\n\nFaltam 5% para atingir o mínimo de " + threshold + "%.",
+                                    "⚠ Atenção", JOptionPane.WARNING_MESSAGE)
+                            );
+
+                        } else if (!alerta10Disparado && mrnaAtual <= threshold + 10) {
+                            alerta10Disparado = true;
+                            SwingUtilities.invokeLater(() ->
+                                JOptionPane.showMessageDialog(window,
+                                    "Transporte: " + placa + "\nCaixa: " + caixa.getId() +
+                                    "\nComanda: " + abreviar(comanda.getId()) +
+                                    "\nLote: " + abreviar(lote.getId()) +
+                                    "\nmRNA: " + String.format("%.4f%%", mrnaAtual) +
+                                    "\n\nFaltam 10% para atingir o mínimo de " + threshold + "%.",
+                                    "⚠ Atenção", JOptionPane.WARNING_MESSAGE)
+                            );
+                        }
+
                         System.out.println("Registros do DL: " + dl.getRegistroDatalogger().size());
                         System.out.println("mrnaInicial: " + lc.getMRNA_Disponivel());
                         System.out.println("mrnaAtual calculado: " + mrnaAtual);
@@ -176,7 +226,13 @@ public class FluxoQualidade {
                     window.adicionarInfoCard(titulo, sub);
                 }
 
+                if (comanda.getStatus() != Comanda.StatusComanda.ENTREGUE) { // se falhar, retirar
+                    timerComanda = new Timer(5000, e -> renderizar.run());
+                    timerComanda.start();
+                }
+
                 if (comanda.getStatus() != Comanda.StatusComanda.ENTREGUE) {
+                    
                     window.adicionarEspacador();
                     window.adicionarBotaoAcao("✓ Marcar como Entregue", () -> {
                         Timer t = timerComanda; 
@@ -204,12 +260,12 @@ public class FluxoQualidade {
             window.redimensionar(460, 400);
         };
 
-        // renderiza imediatamente
         renderizar.run();
 
-        // atualiza a cada 5 segundos
-        timerComanda = new Timer(5000, e -> renderizar.run());
-        timerComanda.start();
+        if (comanda.getStatus() != Comanda.StatusComanda.ENTREGUE) {
+            timerComanda = new Timer(5000, e -> renderizar.run());
+            timerComanda.start();
+        }
     }
 
     // ── GRÁFICO ───────────────────────────────────────────────
