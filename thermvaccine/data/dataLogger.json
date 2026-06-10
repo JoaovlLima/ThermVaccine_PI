@@ -1306,6 +1306,14 @@
     "compressor" : true,
     "alarme" : true,
     "data_hora" : "2026-06-05T09:11:25.1150587"
+  }, {
+    "id" : "c8dc7749-705e-4ee3-a63a-c74640441c84",
+    "temperatura" : 4.95,
+    "rede" : true,
+    "energia" : 13.3,
+    "compressor" : true,
+    "alarme" : false,
+    "data_hora" : "2026-06-10T13:09:18.7726397"
   } ]
 }, {
   "id" : "DL02",
