@@ -226,11 +226,6 @@ public class FluxoQualidade {
                     window.adicionarInfoCard(titulo, sub);
                 }
 
-                if (comanda.getStatus() != Comanda.StatusComanda.ENTREGUE) { // se falhar, retirar
-                    timerComanda = new Timer(5000, e -> renderizar.run());
-                    timerComanda.start();
-                }
-
                 if (comanda.getStatus() != Comanda.StatusComanda.ENTREGUE) {
                     
                     window.adicionarEspacador();
